@@ -1,0 +1,19 @@
+UPWISE — AANVRAGEN ONTVANGEN
+
+1. Open jouw bestaande websiteproject in Netlify.
+2. Ga naar Forms en activeer form detection als dat nog niet aanstaat.
+3. Upload vervolgens de volledige Upwise-map opnieuw. index.html moet direct in die map staan.
+4. Controleer onder Forms dat upwise-aanvraag wordt herkend.
+5. Ga naar Forms > Submission notifications en voeg een e-mailmelding toe voor upwise-aanvraag.
+6. Ontvanger: beratkaranfil123@hotmail.com. Bevestig de uitnodiging/bevestigingsmail als Netlify dit vraagt.
+7. Dien via je gepubliceerde contactpagina een testaanvraag in. Controleer de inzending in Netlify en de melding in je mailbox (ook ongewenst).
+
+De melding kan niet uitsluitend via HTML worden ingesteld. Hiervoor is bovenstaande instelling in jouw Netlify-account nodig. Er is vanuit deze zip geen toegang tot jouw account en geen live testaanvraag verstuurd.
+
+De klant krijgt na een verwerkte aanvraag een bevestigingspagina. Er is geen automatische bevestigingsmail aan de klant ingesteld.
+
+WhatsApp opent een gesprek met +32 472 31 78 30. De bezoeker moet het bericht zelf versturen. Zet WhatsApp-meldingen aan op je telefoon.
+
+Bronnen:
+https://docs.netlify.com/manage/forms/setup/
+https://docs.netlify.com/manage/forms/notifications/

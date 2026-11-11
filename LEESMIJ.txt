@@ -1,0 +1,38 @@
+UPWISE — HTML, CSS EN JAVASCRIPT
+
+Pak de zip uit en open index.html in je browser.
+Je hebt geen Node.js, npm of React nodig.
+
+Bestanden:
+- index.html: homepage
+- diensten.html: diensten
+- groeiscan.html: groeiscan
+- resultaten.html: calculator en resultaten
+- projecten.html: projectconcepten
+- over.html: over Upwise
+- contact.html: contactpagina
+- style.css: alle vormgeving
+- script.js: mobiel menu, groeiscan, downloads en calculator
+- assets/: afbeeldingen en browsericoon
+
+Open de volledige map in VS Code om de website te bewerken.
+Upload ALLE uitgepakte bestanden en de map assets samen naar de websitehoofdmap.
+Bij Netlify Drop: sleep de map waarin index.html direct staat naar het uploadvak.
+Dit is een statische website zonder bouwstap.
+
+De lettertypes worden via Google Fonts geladen. Zonder internet gebruikt de website de terugvallettertypes.
+De groeiscan werkt met vaste adviesregels, nog niet met live AI.
+Het contactformulier is voorbereid voor Netlify Forms. Volg NETLIFY-FORMULIER-INSTELLEN.txt om inzendingen en e-mailmeldingen te activeren.
+Alle berekeningen en antwoorden worden lokaal in de browser verwerkt.
+
+VOORBEELDEN PER DIENST
+Op resultaten.html staan acht interactieve voorbeelden: Google-profiel, SEO, social media, e-mailmarketing, websites & CRO, AI & automatisering, advertenties en branding.
+Extra bestanden: resultaten-demo.css, resultaten-demo.js, diensten-voorbeelden.css en diensten-voorbeelden.js. Laat deze bij de HTML-bestanden staan.
+De kaart van Gent is een echte externe Google Maps-embed en vraagt internet. Het bedrijfsprofiel, reviews, cijfers en ontwerpen zijn fictieve demonstraties. De demo-foto’s zijn illustratief.
+De websitevoorbeelden zijn ontwerpminiaturen; knoppen in die miniaturen versturen niets.
+De AI-simulatie gebruikt vooraf geschreven tekst en verstuurt of plant niets.
+
+UPDATE PLATFORMVOORBEELDEN
+Instagram-profiel en Facebook-advertentie zijn herkenbare HTML/CSS-sjablonen met fictieve inhoud en interactiecijfers. Geen gekoppelde accounts of officiële platformembeds.
+SEO toont een fictief scenario positie 18 naar 3; dit is geen belofte of klantresultaat.
+De echte kaart van Gent is compacter gemaakt.

@@ -1,0 +1,5 @@
+Instagram- en Facebook-merksymbolen: Simple Icons v16.
+https://github.com/simple-icons/simple-icons
+https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/instagram.svg
+https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/facebook.svg
+Merknamen en logo’s behoren aan hun respectieve eigenaars. De demonstraties tonen fictieve profielen en zijn geen samenwerking met deze platforms.
