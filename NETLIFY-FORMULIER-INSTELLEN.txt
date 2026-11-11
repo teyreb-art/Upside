@@ -1,10 +1,10 @@
-UPWISE — AANVRAGEN ONTVANGEN
+UPSIDE — AANVRAGEN ONTVANGEN
 
 1. Open jouw bestaande websiteproject in Netlify.
 2. Ga naar Forms en activeer form detection als dat nog niet aanstaat.
-3. Upload vervolgens de volledige Upwise-map opnieuw. index.html moet direct in die map staan.
-4. Controleer onder Forms dat upwise-aanvraag wordt herkend.
-5. Ga naar Forms > Submission notifications en voeg een e-mailmelding toe voor upwise-aanvraag.
+3. Upload vervolgens de volledige Upside-map opnieuw. index.html moet direct in die map staan.
+4. Controleer onder Forms dat upside-aanvraag wordt herkend.
+5. Ga naar Forms > Submission notifications en voeg een e-mailmelding toe voor upside-aanvraag.
 6. Ontvanger: beratkaranfil123@hotmail.com. Bevestig de uitnodiging/bevestigingsmail als Netlify dit vraagt.
 7. Dien via je gepubliceerde contactpagina een testaanvraag in. Controleer de inzending in Netlify en de melding in je mailbox (ook ongewenst).
 

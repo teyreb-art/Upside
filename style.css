@@ -12,7 +12,7 @@
 
 .service-detail{grid-template-columns:1fr}.service-detail>div{max-width:720px}.service-detail p{max-width:620px}
 
-/* Upwise: fotoloze, compacte homepage */
+/* Upside: fotoloze, compacte homepage */
 body[data-page="home"] .hero-visual,
 body[data-page="home"] .approach-photo { display: none; }
 body[data-page="home"] .hero {

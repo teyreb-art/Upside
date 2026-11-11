@@ -1,4 +1,4 @@
-UPWISE — HTML, CSS EN JAVASCRIPT
+UPSIDE — HTML, CSS EN JAVASCRIPT
 
 Pak de zip uit en open index.html in je browser.
 Je hebt geen Node.js, npm of React nodig.
@@ -9,7 +9,7 @@ Bestanden:
 - groeiscan.html: groeiscan
 - resultaten.html: calculator en resultaten
 - projecten.html: projectconcepten
-- over.html: over Upwise
+- over.html: over Upside
 - contact.html: contactpagina
 - style.css: alle vormgeving
 - script.js: mobiel menu, groeiscan, downloads en calculator
