@@ -144,13 +144,13 @@ if (document.body.dataset.page === 'resultaten') {
   recalculate();
 }
 
-// Native POST lets Netlify process the form and show the confirmation page.
+// FormSubmit processes the native POST and redirects to the thank-you page.
 if (document.body.dataset.page === 'contact') {
  const leadForm = document.querySelector('#lead-form');
  leadForm?.addEventListener('submit', event => {
   if (location.protocol === 'file:') {
    event.preventDefault();
-   leadForm.querySelector('[role="status"]').textContent = 'Je bekijkt de website lokaal. Het formulier werkt na publicatie en activering van Netlify Forms. Je kunt ons nu al via WhatsApp of e-mail bereiken.';
+   leadForm.querySelector('[role="status"]').textContent = 'Je bekijkt de website lokaal. Test het formulier op de gepubliceerde website. Je kunt ons nu al via WhatsApp of e-mail bereiken.';
   }
  });
 }

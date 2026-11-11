@@ -36,3 +36,6 @@ UPDATE PLATFORMVOORBEELDEN
 Instagram-profiel en Facebook-advertentie zijn herkenbare HTML/CSS-sjablonen met fictieve inhoud en interactiecijfers. Geen gekoppelde accounts of officiële platformembeds.
 SEO toont een fictief scenario positie 18 naar 3; dit is geen belofte of klantresultaat.
 De echte kaart van Gent is compacter gemaakt.
+
+
+FORMULIERUPDATE: de eerdere Netlify Forms-instructies zijn vervangen. Volg FORMULIER-INSTELLEN.txt voor de huidige verwerking via FormSubmit.
