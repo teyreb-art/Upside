@@ -1,0 +1,8 @@
+AANPASSINGEN
+- FormSubmit vervangen door Web3Forms in contact.html en script.js.
+- Bestaande contactformulier-opmaak en bedankt.html behouden.
+- Web3Forms access key als duidelijk gemarkeerde placeholder toegevoegd.
+- Selectie van diensten wordt als leesbaar veld meegestuurd.
+- Alleen na bevestigde succesvolle verzending doorsturen naar bedankt.html.
+- Duidelijke foutmelding en bescherming tegen dubbel klikken.
+- Formulier-instructies vernieuwd.

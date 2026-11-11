@@ -144,13 +144,46 @@ if (document.body.dataset.page === 'resultaten') {
   recalculate();
 }
 
-// FormSubmit processes the native POST and redirects to the thank-you page.
+// Web3Forms: only redirect after confirmed successful submission.
 if (document.body.dataset.page === 'contact') {
  const leadForm = document.querySelector('#lead-form');
- leadForm?.addEventListener('submit', event => {
-  if (location.protocol === 'file:') {
-   event.preventDefault();
-   leadForm.querySelector('[role="status"]').textContent = 'Je bekijkt de website lokaal. Test het formulier op de gepubliceerde website. Je kunt ons nu al via WhatsApp of e-mail bereiken.';
+ let sending = false;
+ leadForm?.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (sending || !leadForm.reportValidity()) return;
+  const status = leadForm.querySelector('[role="status"]');
+  const fields = new FormData(leadForm);
+  const accessKey = String(fields.get('access_key') || '');
+  if (!accessKey || accessKey.includes('VUL_HIER')) {
+   status.textContent = 'Het formulier is nog niet geactiveerd. Neem voorlopig contact op via e-mail of WhatsApp.';
+   return;
+  }
+  if (String(fields.get('botcheck') || '').trim()) return;
+  fields.delete('diensten[]');
+  const selected = Array.from(leadForm.querySelectorAll('input[name="diensten[]"]:checked')).map(x => x.value);
+  fields.set('Diensten', selected.join(', ') || 'Geen diensten geselecteerd');
+  const button = leadForm.querySelector('[type="submit"]');
+  const originalText = button.textContent;
+  sending = true;
+  button.disabled = true;
+  button.textContent = 'Even verzenden…';
+  leadForm.setAttribute('aria-busy', 'true');
+  status.textContent = 'Je aanvraag wordt verzonden…';
+  try {
+   const response = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST', body: fields, headers: {Accept: 'application/json'}
+   });
+   const result = await response.json();
+   if (!response.ok || result.success !== true) throw new Error(result.message || 'Submission failed');
+   window.location.assign('/bedankt.html');
+  } catch (error) {
+   console.error('Web3Forms verzending:', error);
+   status.textContent = 'Verzenden is niet gelukt. Je gegevens blijven staan. Probeer later opnieuw of neem contact op via e-mail of WhatsApp.';
+  } finally {
+   sending = false;
+   button.disabled = false;
+   button.textContent = originalText;
+   leadForm.removeAttribute('aria-busy');
   }
  });
 }

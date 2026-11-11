@@ -12,3 +12,11 @@ body[data-page="home"] .under-button{font-size:12px;justify-content:center;line-
 @media(min-width:801px) and (max-width:1150px){.header-inner{gap:14px}.header nav{gap:12px;font-size:12px}.header .logo{font-size:29px}.header nav .nav-scan{display:none}}
 @media(max-width:800px){nav .nav-apply{width:100%;margin-top:8px}}
 @media(max-width:560px){body[data-page="home"] .hero .primary-apply{width:100%;font-size:16px}body[data-page="home"] .under-button{align-items:flex-start;font-size:11px}.under-button svg{flex-shrink:0;margin-top:3px}}
+
+/* Service name first, checkbox aligned on the right on all screen sizes. */
+.lead-services label{justify-content:space-between;gap:20px;min-height:48px;padding:12px 14px;margin:8px 0;border:1px solid #dce6f4;border-radius:8px;background:#fff;cursor:pointer;box-sizing:border-box}
+.lead-services label span{flex:1;min-width:0;line-height:1.5}
+.lead-services input[type="checkbox"]{flex:0 0 20px;width:20px;height:20px;margin:0;padding:0;cursor:pointer}
+.lead-services label:has(input:checked){border-color:#255edc;background:#f2f7fd}
+.lead-services label:focus-within{outline:2px solid #255edc;outline-offset:2px}
+.lead-form>button:disabled{opacity:.65;cursor:wait}

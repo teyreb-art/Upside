@@ -1,19 +1,3 @@
-UPSIDE — FORMULIERHERSTEL
-
-Vervang contact.html, script.js en bedankt.html in je bestaande repository door deze versies. De volledige website zit ook in deze ZIP. Er is geen nieuwe repository nodig.
-
-Dit formulier gebruikt nu FormSubmit in plaats van Netlify Forms. Hierdoor is de verwerking niet afhankelijk van Netlify-hosting. De ingevulde gegevens worden door FormSubmit verwerkt en per e-mail verstuurd naar beratkaranfil123@hotmail.com.
-
-NA PUBLICATIE — EENMALIG ACTIVEREN
-1. Open https://upsideagency.be/contact.html en vul zelf een testaanvraag in.
-2. Doorloop de spamcontrole als die wordt getoond.
-3. Open je mailbox beratkaranfil123@hotmail.com en bevestig de activatiemail van FormSubmit. Controleer ook ongewenste e-mail. Bij de eerste inzending kan een activatiepagina verschijnen in plaats van de bedankpagina.
-4. Verstuur NA activering opnieuw een herkenbare testaanvraag.
-5. Controleer dat je terugkomt op https://upsideagency.be/bedankt.html EN dat alle testgegevens in je mailbox aankomen. Controleer ook de gekozen diensten.
-6. Werkt iets niet, gebruik dan voorlopig de bestaande WhatsApp- of e-maillink en controleer de melding die FormSubmit toont.
-
-De redirect naar bedankt.html gebeurt via FormSubmit na verwerking, niet met een losse JavaScript-doorverwijzing die de aanvraag zou overslaan. De spamcontrole blijft ingeschakeld. Er wordt geen automatische ontvangstmail naar de klant gestuurd.
-
-De code is lokaal gecontroleerd. Er is geen live formulier verzonden, geen mailbox geactiveerd en niets gepubliceerd vanuit deze werksessie. Ontvangst is pas bevestigd na de bovenstaande test. Bij wijziging van je domeinnaam moet ook het verborgen _next-veld in contact.html worden aangepast.
-
-Documentatie: https://formsubmit.co/documentation en https://formsubmit.co/help
+Web3Forms access key is ingevuld in contact.html.
+Controleer of je e-mailadres bij Web3Forms is bevestigd.
+Test na publicatie een aanvraag en controleer inbox en spam.
