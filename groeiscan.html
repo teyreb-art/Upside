@@ -67,5 +67,181 @@
 </div>
 </footer>
 <a class="whatsapp-float" href="https://wa.me/32472317830?text=Hallo%20Upside%2C%20ik%20wil%20graag%20mijn%20bedrijf%20laten%20groeien.%20Kunnen%20we%20even%20praten%3F" target="_blank" rel="noopener noreferrer" aria-label="Stuur Upside een bericht op WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16 .5A15.4 15.4 0 0 0 2.6 23.6L.5 31.5l8.1-2.1A15.5 15.5 0 1 0 16 .5Zm0 28.2c-2.4 0-4.7-.7-6.7-1.9l-.5-.3-4.8 1.3 1.3-4.7-.3-.5A12.8 12.8 0 1 1 16 28.7Zm7-9.6c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.2.4-1 1.2-1.2 1.4-.2.2-.5.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.7.4-.6c.1-.2.1-.5 0-.7l-1.2-2.8c-.3-.7-.6-.6-.9-.6h-.7c-.2 0-.6.1-.9.4-.3.4-1.3 1.3-1.3 3.1s1.4 3.6 1.6 3.8c.2.3 2.7 4.2 6.5 5.8.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.2.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.5Z"/></svg><span>WhatsApp</span></a>
+
+<script>
+(() => {
+  const translations = {
+    nl: {
+      skip: "Naar de inhoud",
+      nav: ["Diensten", "Groei & resultaten", "Projecten", "Over Upside", "Gratis groeiscan", "Ik wil aan de slag"],
+      eyebrow: "JOUW GRATIS GROEISCAN",
+      intro: "Vertel kort over jouw onderneming. Ontdek hoe wij je kunnen ondersteunen met marketing, AI en automatisering.",
+      asideTitle: "Eerst inzicht.<br>Dan vooruit.",
+      privacy: "Geen verplicht e-mailadres. Je antwoorden blijven in deze pagina en worden niet verstuurd.",
+      duration: "Ongeveer 2 minuten",
+      note: "Testversie: persoonlijk advies op basis van vaste regels. De live AI-analyse is nog niet gekoppeld.",
+      footerTitle: "Jij bouwt aan je onderneming.<br>Wij staan aan je zijde.",
+      footerHeadings: ["Ontdek Upside", "Een stap vooruit"],
+      footerLinks: ["Onze oplossingen", "Onze aanpak", "Jouw vraag", "Gratis groeiscan", "Groei & resultaten", "Projecten"],
+      footerEnd: ["Marketing · AI · Automatisering", "Samen vooruit."],
+      whatsapp: "WhatsApp",
+      whatsappMessage: "Hallo Upside, ik wil graag mijn bedrijf laten groeien. Kunnen we even praten?"
+    },
+    fr: {
+      skip: "Aller au contenu",
+      nav: ["Services", "Croissance & résultats", "Projets", "À propos d’Upside", "Diagnostic gratuit", "Je veux me lancer"],
+      eyebrow: "VOTRE DIAGNOSTIC GRATUIT",
+      intro: "Parlez-nous brièvement de votre entreprise. Découvrez comment nous pouvons vous accompagner avec le marketing, l’IA et l’automatisation.",
+      asideTitle: "Comprendre d’abord.<br>Avancer ensuite.",
+      privacy: "Aucune adresse e-mail obligatoire. Vos réponses restent sur cette page et ne sont pas envoyées.",
+      duration: "Environ 2 minutes",
+      note: "Version de test : conseils personnalisés selon des règles prédéfinies. L’analyse IA en direct n’est pas encore disponible.",
+      footerTitle: "Vous développez votre entreprise.<br>Nous sommes à vos côtés.",
+      footerHeadings: ["Découvrez Upside", "Un pas en avant"],
+      footerLinks: ["Nos solutions", "Notre approche", "Votre demande", "Diagnostic gratuit", "Croissance & résultats", "Projets"],
+      footerEnd: ["Marketing · IA · Automatisation", "Avançons ensemble."],
+      whatsapp: "WhatsApp",
+      whatsappMessage: "Bonjour Upside, je souhaite développer mon entreprise. Pouvons-nous en discuter ?"
+    },
+    en: {
+      skip: "Skip to content",
+      nav: ["Services", "Growth & results", "Projects", "About Upside", "Free growth scan", "Let's get started"],
+      eyebrow: "YOUR FREE GROWTH SCAN",
+      intro: "Tell us a little about your business. Discover how we can support you with marketing, AI and automation.",
+      asideTitle: "Understand first.<br>Move forward.",
+      privacy: "No email address required. Your answers stay on this page and are not submitted.",
+      duration: "About 2 minutes",
+      note: "Test version: personalised advice based on predefined rules. Live AI analysis is not connected yet.",
+      footerTitle: "You're building your business.<br>We're by your side.",
+      footerHeadings: ["Discover Upside", "Take the next step"],
+      footerLinks: ["Our solutions", "Our approach", "Your enquiry", "Free growth scan", "Growth & results", "Projects"],
+      footerEnd: ["Marketing · AI · Automation", "Moving forward together."],
+      whatsapp: "WhatsApp",
+      whatsappMessage: "Hello Upside, I'd like to grow my business. Can we have a chat?"
+    },
+    tr: {
+      skip: "İçeriğe geç",
+      nav: ["Hizmetler", "Büyüme ve sonuçlar", "Projeler", "Upside hakkında", "Ücretsiz büyüme analizi", "Hemen başlayalım"],
+      eyebrow: "ÜCRETSİZ BÜYÜME ANALİZİNİZ",
+      intro: "İşletmenizden kısaca bahsedin. Pazarlama, yapay zekâ ve otomasyonla size nasıl destek olabileceğimizi keşfedin.",
+      asideTitle: "Önce analiz.<br>Sonra ilerleme.",
+      privacy: "E-posta adresi zorunlu değil. Yanıtlarınız bu sayfada kalır ve gönderilmez.",
+      duration: "Yaklaşık 2 dakika",
+      note: "Test sürümü: önceden belirlenmiş kurallara dayalı kişiselleştirilmiş öneriler. Canlı yapay zekâ analizi henüz bağlı değil.",
+      footerTitle: "Siz işletmenizi büyütüyorsunuz.<br>Biz yanınızdayız.",
+      footerHeadings: ["Upside'ı keşfedin", "Bir adım ileri"],
+      footerLinks: ["Çözümlerimiz", "Çalışma şeklimiz", "Bize ulaşın", "Ücretsiz büyüme analizi", "Büyüme ve sonuçlar", "Projeler"],
+      footerEnd: ["Pazarlama · Yapay zekâ · Otomasyon", "Birlikte ileriye."],
+      whatsapp: "WhatsApp",
+      whatsappMessage: "Merhaba Upside, işletmemi büyütmek istiyorum. Görüşebilir miyiz?"
+    },
+    es: {
+      skip: "Ir al contenido",
+      nav: ["Servicios", "Crecimiento y resultados", "Proyectos", "Sobre Upside", "Análisis gratuito", "Quiero empezar"],
+      eyebrow: "TU ANÁLISIS GRATUITO",
+      intro: "Cuéntanos brevemente sobre tu negocio. Descubre cómo podemos ayudarte con marketing, IA y automatización.",
+      asideTitle: "Primero entender.<br>Después avanzar.",
+      privacy: "No necesitas indicar tu correo electrónico. Tus respuestas permanecen en esta página y no se envían.",
+      duration: "Unos 2 minutos",
+      note: "Versión de prueba: recomendaciones personalizadas basadas en reglas predefinidas. El análisis con IA en directo aún no está conectado.",
+      footerTitle: "Tú haces crecer tu negocio.<br>Nosotros te acompañamos.",
+      footerHeadings: ["Descubre Upside", "Da el siguiente paso"],
+      footerLinks: ["Nuestras soluciones", "Nuestro enfoque", "Tu consulta", "Análisis gratuito", "Crecimiento y resultados", "Proyectos"],
+      footerEnd: ["Marketing · IA · Automatización", "Avancemos juntos."],
+      whatsapp: "WhatsApp",
+      whatsappMessage: "Hola Upside, quiero hacer crecer mi negocio. ¿Podemos hablar?"
+    }
+  };
+
+  const allowed = ["nl", "fr", "en", "tr", "es"];
+
+  function currentLanguage() {
+    const urlLang = new URLSearchParams(location.search).get("lang");
+    if (allowed.includes(urlLang)) return urlLang;
+    try {
+      const saved = localStorage.getItem("upside-language")
+        || localStorage.getItem("upside-lang");
+      if (allowed.includes(saved)) return saved;
+    } catch (_) {}
+    return "nl";
+  }
+
+  function setText(selector, value, html = false) {
+    const element = document.querySelector(selector);
+    if (!element) return;
+    if (html) element.innerHTML = value;
+    else element.textContent = value;
+  }
+
+  function applyTranslations() {
+    const lang = currentLanguage();
+    const t = translations[lang];
+    document.documentElement.lang = lang === "nl" ? "nl-BE" : lang;
+
+    setText(".skip-link", t.skip);
+    setText(".page-intro .eyebrow", t.eyebrow);
+    setText(".page-intro > p", t.intro);
+
+    const navLinks = document.querySelectorAll(".header nav > a");
+    navLinks.forEach((link, index) => {
+      if (t.nav[index]) {
+        const svg = link.querySelector("svg");
+        link.textContent = t.nav[index] + " ";
+        if (svg) link.appendChild(svg);
+      }
+    });
+
+    setText(".scan-layout aside h3", t.asideTitle, true);
+    setText(".scan-layout aside > p", t.privacy);
+    setText(".scan-meta", t.duration);
+    setText(".scan-layout aside small", t.note);
+
+    setText(".footer-main > div:first-child p", t.footerTitle, true);
+
+    const footerColumns = document.querySelectorAll(".footer-main > div");
+    [1, 2].forEach((columnIndex, index) => {
+      const heading = footerColumns[columnIndex]?.querySelector("span");
+      if (heading) heading.textContent = t.footerHeadings[index];
+    });
+
+    const footerLinks = [
+      ...footerColumns[1].querySelectorAll("a"),
+      ...footerColumns[2].querySelectorAll("a")
+    ];
+
+    footerLinks.forEach((link, index) => {
+      const svg = link.querySelector("svg");
+      link.textContent = t.footerLinks[index] + " ";
+      if (svg) link.appendChild(svg);
+    });
+
+    const footerBottom = document.querySelectorAll(".footer-bottom > span");
+    if (footerBottom[1]) footerBottom[1].textContent = t.footerEnd[0];
+    if (footerBottom[2]) footerBottom[2].textContent = t.footerEnd[1];
+
+    const whatsapp = document.querySelector(".whatsapp-float");
+    if (whatsapp) {
+      const label = whatsapp.querySelector("span");
+      if (label) label.textContent = t.whatsapp;
+
+      const url = new URL(whatsapp.href);
+      url.searchParams.set("text", t.whatsappMessage);
+      whatsapp.href = url.toString();
+    }
+  }
+
+  applyTranslations();
+
+  const languageSelect = document.querySelector("#upside-language");
+  if (languageSelect) {
+    languageSelect.addEventListener("change", () => {
+      // The existing script.js updates the stored language.
+      // Run this after its change handler.
+      queueMicrotask(applyTranslations);
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
