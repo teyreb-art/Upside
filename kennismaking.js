@@ -650,13 +650,7 @@ const languageSelect = document.getElementById('language');
 
 let step = 0;
 
-const browserLang = navigator.language
-  .toLowerCase()
-  .split('-')[0];
-
-let lang = dictionaries[browserLang]
-  ? browserLang
-  : 'nl';
+let lang = 'nl';
 
 languageSelect.value = lang;
 
