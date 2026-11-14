@@ -2,14 +2,15 @@
 const ADMIN_EMAIL = "beratkaranfil2005@gmail.com";
 const SESSION_DAYS = 7;
 const COOKIE_NAME = "__Host-upside_session";
- const PASSWORD_ITERATIONS = 100000;;
+const PASSWORD_ITERATIONS = 100000;
 
-function json(data, status = 200) {
+function json(data, status = 200, extraHeaders = {}) {
   return Response.json(data, {
     status,
     headers: {
       "Cache-Control": "no-store",
-      "X-Content-Type-Options": "nosniff"
+      "X-Content-Type-Options": "nosniff",
+      ...extraHeaders
     }
   });
 }
@@ -68,6 +69,8 @@ async function hashPassword(password, saltHex = null) {
 }
 
 async function verifyPassword(password, stored) {
+  if (typeof stored !== "string") return false;
+
   const parts = stored.split(":");
 
   if (
@@ -85,6 +88,7 @@ async function verifyPassword(password, stored) {
   if (a.length !== b.length) return false;
 
   let diff = 0;
+
   for (let i = 0; i < a.length; i++) {
     diff |= a[i] ^ b[i];
   }
@@ -98,9 +102,16 @@ function validOrigin(request) {
 }
 
 async function readJson(request) {
-  if (!(request.headers.get("content-type") || "")
-    .toLowerCase().includes("application/json")) {
+  const type = request.headers.get("content-type") || "";
+
+  if (!type.toLowerCase().includes("application/json")) {
     throw new Error("JSON vereist");
+  }
+
+  const length = Number(request.headers.get("content-length"));
+
+  if (length > 20000) {
+    throw new Error("Aanvraag te groot");
   }
 
   const raw = await request.text();
@@ -117,6 +128,7 @@ function getCookie(request, name) {
 
   for (const part of cookies.split(";")) {
     const index = part.indexOf("=");
+
     if (index === -1) continue;
 
     if (part.slice(0, index).trim() === name) {
@@ -148,8 +160,15 @@ async function currentAdmin(request, env) {
     WHERE admin_sessions.token_hash = ?
       AND admin_sessions.expires_at > ?
     LIMIT 1
-  `).bind(tokenHash, new Date().toISOString()).first();
+  `).bind(
+    tokenHash,
+    new Date().toISOString()
+  ).first();
 }
+
+// ----------------------------------
+// EENMALIGE REGISTRATIE
+// ----------------------------------
 
 async function handleSetup(request, env) {
   if (request.method !== "POST") {
@@ -209,9 +228,13 @@ async function handleSetup(request, env) {
 
   return json({
     success: true,
-    message: "Beheerdersaccount aangemaakt. Verwijder nu ADMIN_SETUP_TOKEN uit Cloudflare."
+    message: "Beheerdersaccount aangemaakt"
   }, 201);
 }
+
+// ----------------------------------
+// LOGIN MET BEVEILIGING
+// ----------------------------------
 
 async function handleLogin(request, env) {
   if (request.method !== "POST") {
@@ -241,21 +264,94 @@ async function handleLogin(request, env) {
     return json({ error: "Ongeldige inloggegevens" }, 401);
   }
 
-  // Deze login vereist daarnaast een server-side
-  // rate limiter voordat hij publiek gebruikt wordt.
+  const normalizedEmail = email.toLowerCase().trim();
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+
+  const identifier = await sha256(normalizedEmail + ":" + ip);
+
+  const now = Date.now();
+  const windowMs = 15 * 60 * 1000;
+  const maxAttempts = 5;
+
+  // Maak een teller aan indien nodig.
+  await env.DB.prepare(`
+    INSERT OR IGNORE INTO admin_login_attempts
+      (identifier, attempts, window_start, blocked_until)
+    VALUES (?, 0, ?, 0)
+  `).bind(identifier, now).run();
+
+  // Reset een verlopen venster.
+  await env.DB.prepare(`
+    UPDATE admin_login_attempts
+    SET attempts = 0,
+        window_start = ?,
+        blocked_until = 0
+    WHERE identifier = ?
+      AND window_start <= ?
+      AND blocked_until <= ?
+  `).bind(
+    now,
+    identifier,
+    now - windowMs,
+    now
+  ).run();
+
+  const attempt = await env.DB.prepare(`
+    SELECT attempts, blocked_until
+    FROM admin_login_attempts
+    WHERE identifier = ?
+  `).bind(identifier).first();
+
+  if (
+    attempt &&
+    (
+      attempt.blocked_until > now ||
+      attempt.attempts >= maxAttempts
+    )
+  ) {
+    return json({
+      error: "Te veel inlogpogingen. Probeer het over 15 minuten opnieuw."
+    }, 429);
+  }
+
   const user = await env.DB.prepare(`
     SELECT id, email, password_hash
     FROM admin_users
     WHERE email = ?
     LIMIT 1
-  `).bind(email.toLowerCase().trim()).first();
+  `).bind(normalizedEmail).first();
 
-  if (!user || !(await verifyPassword(password, user.password_hash))) {
+  const valid = user
+    ? await verifyPassword(password, user.password_hash)
+    : false;
+
+  if (!valid) {
+    await env.DB.prepare(`
+      UPDATE admin_login_attempts
+      SET attempts = attempts + 1,
+          blocked_until = CASE
+            WHEN attempts + 1 >= ? THEN ?
+            ELSE blocked_until
+          END
+      WHERE identifier = ?
+    `).bind(
+      maxAttempts,
+      now + windowMs,
+      identifier
+    ).run();
+
     return json({ error: "Ongeldige inloggegevens" }, 401);
   }
 
+  // Verwijder de teller na succesvolle login.
+  await env.DB.prepare(`
+    DELETE FROM admin_login_attempts
+    WHERE identifier = ?
+  `).bind(identifier).run();
+
   const token = randomToken();
   const tokenHash = await sha256(token);
+
   const expiresAt = new Date(
     Date.now() + SESSION_DAYS * 86400000
   ).toISOString();
@@ -284,6 +380,10 @@ async function handleLogin(request, env) {
   return response;
 }
 
+// ----------------------------------
+// UITLOGGEN
+// ----------------------------------
+
 async function handleLogout(request, env) {
   if (request.method !== "POST") {
     return json({ error: "Methode niet toegestaan" }, 405);
@@ -297,7 +397,8 @@ async function handleLogout(request, env) {
 
   if (token && /^[0-9a-f]{64}$/.test(token)) {
     await env.DB.prepare(`
-      DELETE FROM admin_sessions WHERE token_hash = ?
+      DELETE FROM admin_sessions
+      WHERE token_hash = ?
     `).bind(await sha256(token)).run();
   }
 
@@ -310,6 +411,10 @@ async function handleLogout(request, env) {
 
   return response;
 }
+
+// ----------------------------------
+// CONTROLEER INGELOGDE BEHEERDER
+// ----------------------------------
 
 async function handleMe(request, env) {
   if (request.method !== "GET") {
@@ -327,6 +432,10 @@ async function handleMe(request, env) {
     email: user.email
   });
 }
+
+// ----------------------------------
+// BESTAAND KENNISMAKINGSFORMULIER
+// ----------------------------------
 
 async function handleKennismaking(request, env) {
   if (request.method !== "POST") {
@@ -399,16 +508,25 @@ async function handleKennismaking(request, env) {
           item => typeof item !== "string" || item.length > 200
         )
       ) {
-        return json({ error: `Ongeldige waarde: ${key}` }, 400);
+        return json({
+          error: `Ongeldige waarde: ${key}`
+        }, 400);
       }
     }
 
-    for (const key of ["clients", "challenge", "photos", "budget"]) {
+    for (const key of [
+      "clients",
+      "challenge",
+      "photos",
+      "budget"
+    ]) {
       if (
         typeof data[key] !== "string" ||
         data[key].length > 200
       ) {
-        return json({ error: `Ongeldige waarde: ${key}` }, 400);
+        return json({
+          error: `Ongeldige waarde: ${key}`
+        }, 400);
       }
     }
 
@@ -444,9 +562,16 @@ async function handleKennismaking(request, env) {
 
   } catch (error) {
     console.error("Kennismaking opslaan mislukt:", error);
-    return json({ error: "Opslaan mislukt" }, 500);
+
+    return json({
+      error: "Opslaan mislukt"
+    }, 500);
   }
 }
+
+// ----------------------------------
+// WORKER ROUTES
+// ----------------------------------
 
 export default {
   async fetch(request, env) {
@@ -473,7 +598,7 @@ export default {
         return await handleMe(request, env);
       }
 
-      // Geen onbeveiligde toegang tot andere beheer-API's.
+      // Andere admin-API's zijn niet publiek toegankelijk.
       if (url.pathname.startsWith("/api/admin/")) {
         return json({ error: "Niet gevonden" }, 404);
       }
@@ -482,7 +607,10 @@ export default {
 
     } catch (error) {
       console.error("Upside Worker-fout:", error);
-      return json({ error: "Interne serverfout" }, 500);
+
+      return json({
+        error: "Interne serverfout"
+      }, 500);
     }
   }
 };
