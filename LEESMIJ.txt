@@ -1,1 +1,18 @@
-Lees AANPASSINGEN.txt en FORMULIER-INSTELLEN.txt voor de huidige formulierinstellingen.
+UPSIDE AGENCY — KENNISMAKINGSFORMULIER (STAP 1)
+
+Upload deze drie bestanden in de hoofdmap van je bestaande GitHub-repository:
+- kennismaking.html
+- kennismaking.css
+- kennismaking.js
+
+De bestanden gebruiken de bestaande style.css en assets/favicon.svg uit je huidige Upside-site.
+De header gebruikt hetzelfde tekstlogo en beeldmerk als de huidige website.
+
+URL na deployment: https://upsideagency.be/kennismaking.html
+Voor /kennismaking zonder .html is een route of redirect nodig, afhankelijk van je Cloudflare-configuratie.
+
+BELANGRIJK: het formulier is een werkende frontend, maar het versturen blijft bewust uitgeschakeld totdat de Cloudflare Worker POST /api/kennismaking veilig opslaat in D1. Er wordt geen succes getoond als de backend niet werkt.
+
+De privacy-link /privacy.html is een placeholder. Publiceer een correcte privacyverklaring op dat pad of wijzig de link naar je bestaande privacy-pagina VOORDAT je het formulier aan klanten verstuurt.
+
+VOLGENDE STAP: Cloudflare Worker/D1 + validatie, spambeveiliging, toegangscontrole en privé-dashboard bouwen. Publiceer het formulier pas voor echte inzendingen nadat die onderdelen zijn aangesloten en getest.
