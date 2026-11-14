@@ -1,483 +1,323 @@
 
-/* UPSIDE AGENCY – KENNISMAKINGSFORMULIER V3 */
-
-body.intake-page {
-  margin: 0;
-  background: #f2f6fd;
-  color: #102d69;
-  font-family: Manrope, Arial, sans-serif;
-}
-
-body.intake-page *,
-body.intake-page *::before,
-body.intake-page *::after {
-  box-sizing: border-box;
-}
-
-body.intake-page [hidden] {
-  display: none !important;
-}
-
-/* HEADER */
-
-body.intake-page .intake-header {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px 24px;
-  min-height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-body.intake-page .intake-brand {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 28px;
-  font-weight: 850;
-  letter-spacing: -1.5px;
-  color: #123579;
-  text-decoration: none;
-}
-
-.intake-brandmark {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: #255edc;
-  color: #fff;
-  font-size: 25px;
-}
-
-.intake-dot {
-  color: #255edc;
-}
-
-.intake-home {
-  color: #255edc;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-/* MAIN CONTAINER */
-
-body.intake-page .intake-main {
-  width: 100%;
-  padding: 18px 20px 70px;
-}
-
-body.intake-page .intake-shell {
-  width: 100%;
-  max-width: 820px;
-  margin: 0 auto;
-  padding: clamp(24px, 5vw, 48px);
-  background: #fff;
-  border: 1px solid #dbe5f3;
-  border-radius: 22px;
-  box-shadow: 0 15px 50px rgba(20, 50, 100, .06);
-}
-
-/* INTRO */
-
-.intake-intro {
-  max-width: 650px;
-  margin: 0 auto 35px;
-  text-align: center;
-}
-
-.intake-kicker {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 50px;
-  background: #eaf1ff;
-  color: #255edc;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .08em;
-}
-
-body.intake-page .intake-intro h1 {
-  margin: 22px 0 15px;
-  font-size: clamp(28px, 4vw, 42px);
-  line-height: 1.2;
-  letter-spacing: -.04em;
-  color: #102d69;
-  text-align: center;
-}
-
-.intake-intro p {
-  margin: 0 auto 18px;
-  max-width: 560px;
-  color: #60708b;
-  font-size: 15px;
-  line-height: 1.7;
-  text-align: center;
-}
-
-.intake-duration {
-  font-size: 12px;
-  color: #70819d;
-}
-
-/* PROGRESS */
-
-.intake-progress {
-  margin: 30px 0 35px;
-}
-
-.intake-progress-line {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  color: #173d88;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.intake-track {
-  height: 8px;
-  overflow: hidden;
-  border-radius: 50px;
-  background: #e3eaf6;
-}
-
-.intake-track > div {
-  width: 20%;
-  height: 100%;
-  background: #255edc;
-  border-radius: 50px;
-  transition: width .25s ease;
-}
-
-/* QUESTIONS */
-
-body.intake-page .intake-question {
-  display: block;
-  min-width: 0;
-  margin: 0 0 22px;
-  padding: 25px;
-  border: 1px solid #e0e8f5;
-  border-radius: 16px;
-  background: #fff;
-}
-
-body.intake-page .intake-question legend {
-  float: left;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  margin: 0 0 18px;
-  padding: 0;
-  color: #102d69;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.5;
-}
-
-body.intake-page .intake-question-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
-  color: #102d69;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.5;
-}
-
-.intake-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 34px;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: #eaf1ff;
-  color: #255edc;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.intake-hint {
-  clear: both;
-  margin: 0 0 16px;
-  color: #70819d;
-  font-size: 12px;
-}
-
-/* ANSWER GRID */
-
-body.intake-page .intake-options {
-  clear: both;
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  width: 100%;
-}
-
-/* ANSWER CARDS */
-
-body.intake-page label.intake-choice {
-  position: relative;
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 13px !important;
-
-  width: 100% !important;
-  min-width: 0;
-  min-height: 62px;
-
-  margin: 0 !important;
-  padding: 14px 16px !important;
-
-  border: 1px solid #dbe5f3 !important;
-  border-radius: 12px !important;
-  background: #fff !important;
-
-  color: #183c7a;
-  text-align: left !important;
-  cursor: pointer;
-  transition: background .2s, border-color .2s;
-}
-
-body.intake-page label.intake-choice:hover {
-  background: #f6f9ff !important;
-  border-color: #9ab8f0 !important;
-}
-
-body.intake-page label.intake-choice:has(input:checked) {
-  background: #eef4ff !important;
-  border-color: #255edc !important;
-}
-
-/* CHECKBOXES AND RADIO BUTTONS */
-
-body.intake-page label.intake-choice input[type="checkbox"],
-body.intake-page label.intake-choice input[type="radio"] {
-  appearance: auto !important;
-  -webkit-appearance: auto !important;
-
-  display: block !important;
-  position: static !important;
-
-  width: 18px !important;
-  height: 18px !important;
-  min-width: 18px !important;
-  max-width: 18px !important;
-
-  flex: 0 0 18px !important;
-  align-self: center !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-
-  accent-color: #255edc;
-  cursor: pointer;
-}
-
-body.intake-page label.intake-choice span {
-  display: block !important;
-  flex: 1 1 auto !important;
-  width: auto !important;
-  min-width: 0;
-  margin: 0 !important;
-  padding: 0 !important;
-  color: #183c7a;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.5;
-  text-align: left !important;
-}
-
-/* TEXT INPUTS */
-
-body.intake-page .intake-textinput {
-  display: block;
-  width: 100%;
-  min-height: 54px;
-  padding: 15px 16px;
-  border: 1px solid #cbd9ef;
-  border-radius: 11px;
-  background: #fff;
-  color: #102d69;
-  font: inherit;
-  font-size: 14px;
-}
-
-body.intake-page .intake-textinput:focus {
-  border-color: #255edc;
-  outline: 2px solid #e0eaff;
-}
-
-body.intake-page textarea.intake-textinput {
-  min-height: 120px;
-  resize: vertical;
-}
-
-/* CONSENT */
-
-.intake-consent {
-  margin: 20px 0 10px;
-}
-
-body.intake-page .intake-consent label {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 12px;
-  color: #566b8b;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-body.intake-page .intake-consent input {
-  flex: 0 0 18px;
-  width: 18px;
-  height: 18px;
-  margin: 2px 0 0;
-  accent-color: #255edc;
-}
-
-.intake-consent a {
-  color: #255edc;
-  text-decoration: underline;
-}
-
-.intake-footnote {
-  color: #70819d;
-  font-size: 12px;
-}
-
-.intake-feedback {
-  min-height: 1em;
-  margin: 10px 0;
-  color: #b32837;
-  font-size: 13px;
-}
-
-/* BUTTONS */
-
-body.intake-page .intake-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-top: 22px;
-}
-
-body.intake-page .intake-btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 50px;
-  padding: 13px 24px;
-  border-radius: 11px;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-body.intake-page .intake-btn-back {
-  border: 1px solid #cbd9ef;
-  background: #fff;
-  color: #173d88;
-}
-
-body.intake-page .intake-btn-next {
-  margin-left: auto;
-  border: 1px solid #255edc;
-  background: #255edc;
-  color: #fff;
-}
-
-body.intake-page .intake-btn-next:hover {
-  background: #194fbd;
-}
-
-.intake-btn:disabled {
-  opacity: .55;
-  cursor: wait;
-}
-
-/* SUCCESS */
-
-.intake-success {
-  padding: 45px 10px;
-  text-align: center;
-}
-
-.intake-success h2 {
-  color: #102d69;
-  font-size: 28px;
-}
-
-.intake-success a {
-  color: #255edc;
-}
-
-.intake-footer {
-  padding: 0 15px 35px;
-  color: #70819d;
-  font-size: 12px;
-  text-align: center;
-}
-
-.intake-footer a {
-  color: inherit;
-}
-
-/* MOBILE */
-
-@media (max-width: 650px) {
-  body.intake-page .intake-header {
-    min-height: 75px;
-    padding: 14px 18px;
-  }
-
-  body.intake-page .intake-main {
-    padding: 10px 12px 45px;
-  }
-
-  body.intake-page .intake-shell {
-    padding: 24px 16px;
-    border-radius: 16px;
-  }
-
-  body.intake-page .intake-options {
-    grid-template-columns: 1fr;
-  }
-
-  body.intake-page .intake-question {
-    padding: 18px;
-    border-radius: 12px;
-  }
-
-  body.intake-page label.intake-choice {
-    min-height: 56px;
-  }
-
-  body.intake-page .intake-intro h1 {
-    font-size: 29px;
-  }
-
-  body.intake-page .intake-brand {
-    font-size: 24px;
-  }
-
-  .intake-home {
-    font-size: 11px;
-  }
-}
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <meta name="theme-color" content="#255edc">
+
+  <title>Kennismaking | Upside Agency</title>
+
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="kennismaking.css">
+
+  <script src="kennismaking.js" defer></script>
+</head>
+
+<body class="intake-page">
+
+  <!-- HEADER -->
+  <header class="intake-header">
+    <a class="intake-brand" href="/" aria-label="Upside Agency homepage">
+      <span class="intake-brandmark">↗</span>
+      <span>upside<span class="intake-dot">.</span></span>
+    </a>
+
+    <a class="intake-home" href="/">
+      Terug naar website
+    </a>
+  </header>
+
+  <!-- MAIN -->
+  <main class="intake-main">
+    <div class="intake-shell">
+
+      <!-- INTRODUCTIE -->
+      <div class="intake-intro">
+        <span class="intake-kicker">
+          UPSIDE AGENCY · KENNISMAKING
+        </span>
+
+        <h1>
+          Vertel ons over jouw onderneming<span class="intake-dot">.</span>
+        </h1>
+
+        <p>
+          Met een paar korte vragen leren we jouw bedrijf beter kennen
+          en bereiden we ons gesprek voor.
+        </p>
+
+        <span class="intake-duration">
+          Ongeveer 5 minuten · 10 vragen
+        </span>
+      </div>
+
+      <!-- VOORTGANG -->
+      <div class="intake-progress">
+        <div class="intake-progress-line">
+          <span id="stepLabel">Stap 1 van 5</span>
+          <span id="stepPercent">20%</span>
+        </div>
+
+        <div
+          class="intake-track"
+          id="progress"
+          role="progressbar"
+          aria-label="Voortgang"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="20"
+        >
+          <div id="progressFill"></div>
+        </div>
+      </div>
+
+      <!-- FORMULIER -->
+      <form id="intake" novalidate>
+
+        <!-- STAP 1 -->
+        <section class="intake-step" data-step="0">
+
+          <div class="intake-question">
+            <label class="intake-question-title" for="company">
+              <span class="intake-number">01</span>
+              Wat is de naam van jouw bedrijf?
+            </label>
+
+            <input
+              class="intake-textinput"
+              type="text"
+              id="company"
+              name="company"
+              maxlength="120"
+              required
+              placeholder="Naam van jouw onderneming"
+            >
+          </div>
+
+          <fieldset class="intake-question" data-multi="activities">
+            <legend>
+              <span class="intake-number">02</span>
+              Welke werkzaamheden voert jouw bedrijf uit?
+            </legend>
+
+            <p class="intake-hint">
+              Meerdere antwoorden mogelijk
+            </p>
+
+            <div class="intake-options"></div>
+          </fieldset>
+
+        </section>
+
+        <!-- STAP 2 -->
+        <section class="intake-step" data-step="1" hidden>
+
+          <fieldset class="intake-question">
+            <legend>
+              <span class="intake-number">03</span>
+              Wie zijn jouw belangrijkste klanten?
+            </legend>
+
+            <div class="intake-options" data-single="clients"></div>
+          </fieldset>
+
+          <fieldset class="intake-question" data-multi="existing">
+            <legend>
+              <span class="intake-number">04</span>
+              Wat heeft jouw bedrijf momenteel al?
+            </legend>
+
+            <p class="intake-hint">
+              Meerdere antwoorden mogelijk
+            </p>
+
+            <div class="intake-options"></div>
+          </fieldset>
+
+        </section>
+
+        <!-- STAP 3 -->
+        <section class="intake-step" data-step="2" hidden>
+
+          <fieldset class="intake-question" data-multi="acquisition">
+            <legend>
+              <span class="intake-number">05</span>
+              Hoe vinden nieuwe klanten jouw bedrijf?
+            </legend>
+
+            <p class="intake-hint">
+              Meerdere antwoorden mogelijk
+            </p>
+
+            <div class="intake-options"></div>
+          </fieldset>
+
+          <fieldset class="intake-question" data-multi="services">
+            <legend>
+              <span class="intake-number">06</span>
+              Bij welke diensten zou jouw bedrijf ondersteuning
+              kunnen gebruiken?
+            </legend>
+
+            <p class="intake-hint">
+              Meerdere antwoorden mogelijk.
+              Je hoeft nog niets definitief te kiezen.
+            </p>
+
+            <div class="intake-options"></div>
+          </fieldset>
+
+        </section>
+
+        <!-- STAP 4 -->
+        <section class="intake-step" data-step="3" hidden>
+
+          <fieldset class="intake-question">
+            <legend>
+              <span class="intake-number">07</span>
+              Wat is momenteel de grootste uitdaging
+              voor jouw bedrijf?
+            </legend>
+
+            <div class="intake-options" data-single="challenge"></div>
+          </fieldset>
+
+          <fieldset class="intake-question">
+            <legend>
+              <span class="intake-number">08</span>
+              Heb je al foto's van uitgevoerde projecten?
+            </legend>
+
+            <div class="intake-options" data-single="photos"></div>
+          </fieldset>
+
+        </section>
+
+        <!-- STAP 5 -->
+        <section class="intake-step" data-step="4" hidden>
+
+          <fieldset class="intake-question">
+            <legend>
+              <span class="intake-number">09</span>
+              Heb je al een budget voorzien voor marketing
+              en online zichtbaarheid?
+            </legend>
+
+            <div class="intake-options" data-single="budget"></div>
+          </fieldset>
+
+          <div class="intake-question">
+            <label class="intake-question-title" for="notes">
+              <span class="intake-number">10</span>
+              Is er nog iets dat je graag wilt bespreken?
+            </label>
+
+            <textarea
+              class="intake-textinput"
+              id="notes"
+              name="notes"
+              maxlength="2000"
+              rows="4"
+              placeholder="Optioneel"
+            ></textarea>
+          </div>
+
+          <!-- PRIVACY -->
+          <div class="intake-consent">
+            <label>
+              <input type="checkbox" id="consent" required>
+
+              <span>
+                Ik ga ermee akkoord dat Upside Agency
+                mijn antwoorden gebruikt om het
+                kennismakingsgesprek voor te bereiden.
+
+                <a
+                  href="/privacy.html"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Privacyinformatie
+                </a>
+              </span>
+            </label>
+          </div>
+
+          <p class="intake-footnote">
+            Je gegevens worden niet gebruikt voor nieuwsbrieven
+            zonder aparte toestemming.
+          </p>
+
+        </section>
+
+        <!-- FOUTMELDINGEN -->
+        <p
+          id="feedback"
+          class="intake-feedback"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <!-- NAVIGATIE -->
+        <div class="intake-actions">
+
+          <button
+            type="button"
+            id="prev"
+            class="intake-btn intake-btn-back"
+            hidden
+          >
+            Vorige
+          </button>
+
+          <button
+            type="button"
+            id="next"
+            class="intake-btn intake-btn-next"
+          >
+            Volgende
+          </button>
+
+          <button
+            type="submit"
+            id="submit"
+            class="intake-btn intake-btn-next"
+            hidden
+          >
+            Antwoorden versturen
+          </button>
+
+        </div>
+
+      </form>
+
+      <!-- SUCCESMELDING -->
+      <div id="success" class="intake-success" hidden>
+
+        <h2>Bedankt voor het invullen!</h2>
+
+        <p>
+          Je antwoorden zijn ontvangen en worden
+          meegenomen naar ons gesprek.
+        </p>
+
+        <a href="/">
+          Terug naar Upside Agency
+        </a>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="intake-footer">
+    © Upside Agency ·
+    <a href="/">upsideagency.be</a>
+  </footer>
+
+</body>
+</html>
