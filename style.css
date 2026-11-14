@@ -59,135 +59,69 @@ body[data-page="home"] .approach-copy { max-width: 800px; margin: 0 auto; }
 .upside-lang-select { width: 150px !important; min-width: 150px !important; max-width: none !important; padding: 9px 28px 9px 12px !important; box-sizing: border-box; font-family: inherit; font-size: 13px; font-weight: 600; white-space: nowrap; text-overflow: clip; }
 @media (max-width: 900px) { .upside-lang-select { width: 150px !important; min-width: 150px !important; max-width: none !important; } }
 
-/* Mobiele header: logo, taalkeuze en menu */
+
+/* Definitieve mobiele header: ruimte voor logo, volledige taalnaam en menu */
 @media (max-width: 800px) {
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-  }
-
-  .header-inner .logo {
-    font-size: 25px;
-    flex-shrink: 0;
-  }
-
-  .upside-lang-wrap {
-    margin-left: auto !important;
-    margin-right: 0 !important;
-    flex-shrink: 1 !important;
-  }
-
-  .upside-lang-select {
-    width: 132px !important;
-    min-width: 0 !important;
-    max-width: 132px !important;
-    font-size: 12px;
-    padding: 8px 20px 8px 8px !important;
-  }
-
-  .menu-button {
-    display: grid !important;
-    place-items: center;
-    flex: 0 0 40px;
-    width: 40px;
-    height: 40px;
-    padding: 6px;
-    background: transparent;
-    border: 0;
-    color: #102d69;
-    position: relative;
-    z-index: 30;
-  }
-
-  .menu-button svg {
-    width: 25px;
-    height: 25px;
-  }
-
-  .header-inner nav.open {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-
-/* Mobiele navigatie Upside */
-@media (max-width: 800px) {
-
-  .header-inner {
+  .header .header-inner {
+    width: calc(100% - 28px) !important;
+    max-width: none;
+    margin: 0 14px;
     display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
+    align-items: center;
     gap: 8px !important;
-    flex-wrap: nowrap !important;
+    justify-content: space-between;
+    flex-wrap: nowrap;
   }
-
-  .header-inner .logo {
-    font-size: 25px !important;
-    flex: 0 1 auto !important;
+  .header .logo {
+    flex: 0 0 auto;
+    font-size: 24px !important;
+    letter-spacing: -1.5px;
+  }
+  .header .brand-icon { margin-right: 6px; transform: rotate(-10deg) scale(.78); }
+  .header .upside-lang-wrap {
+    margin: 0 0 0 auto !important;
     min-width: 0;
+    flex: 0 1 145px !important;
   }
-
-  .header-inner .brand-icon {
-    margin-right: 7px;
-    transform: rotate(-10deg) scale(.8);
-  }
-
-  .upside-lang-wrap {
-    margin-left: auto !important;
-    margin-right: 0 !important;
-    flex: 0 1 auto !important;
-  }
-
-  .upside-lang-select {
-    width: 135px !important;
+  .header .upside-lang-label { display: none; }
+  .header .upside-lang-select {
+    display: block;
+    width: 100% !important;
     min-width: 0 !important;
-    max-width: 135px !important;
+    max-width: none !important;
     padding: 8px 20px 8px 8px !important;
     font-size: 12px !important;
   }
-
-  .header-inner .menu-button {
+  .header .menu-button {
     display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex: 0 0 40px !important;
-    width: 40px !important;
-    height: 40px !important;
-    padding: 6px !important;
-    border: 0 !important;
-    background: transparent !important;
-    color: #102d69 !important;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px !important;
+    width: 42px !important;
+    height: 42px !important;
+    padding: 7px !important;
+    margin: 0 !important;
+    border: 0;
+    background: transparent;
+    color: #102d69;
     visibility: visible !important;
     opacity: 1 !important;
     position: relative;
-    z-index: 100;
+    z-index: 101;
   }
-
-  .menu-button svg {
-    display: block !important;
-    width: 26px !important;
-    height: 26px !important;
-    stroke: currentColor !important;
-  }
-
-  .header-inner nav {
-    display: none;
-    position: absolute;
-    top: 76px;
-    left: 0;
-    right: 0;
-    background: white;
-    z-index: 99;
-  }
-
-  .header-inner nav.open {
+  .header .menu-button svg { display: block !important; width: 26px; height: 26px; stroke: currentColor; }
+  .header .header-inner > nav { display: none; }
+  .header .header-inner > nav.open {
     display: flex !important;
     flex-direction: column;
     align-items: stretch;
     gap: 20px;
-    padding: 25px;
+    top: 81px;
+    padding: 24px;
+    z-index: 100;
   }
+}
+@media (max-width: 355px) {
+  .header .logo { font-size: 21px !important; }
+  .header .upside-lang-select { font-size: 11px !important; }
 }
