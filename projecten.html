@@ -1,99 +1,663 @@
+
 <!doctype html>
 <html lang="nl-BE">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Meer klanten. Minder repetitief werk. Slimmer groeien met marketing, AI en automatisering.">
+<meta name="description" content="Ontdek de websiteconcepten van Upside Agency. Professionele websites en digitale oplossingen voor ondernemers.">
 <title>Upside — Projecten</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css?v=mobile-2">
-<script src="script.js?v=contact-1" defer></script>
 <link rel="stylesheet" href="contact-extra.css?v=2">
+<script src="script.js?v=contact-1" defer></script>
+
+<style>
+/* Taalkeuze */
+.upside-lang-wrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.upside-lang-select {
+  width: 145px;
+  min-width: 145px;
+  max-width: 145px;
+  padding: 9px 28px 9px 11px;
+  border: 1px solid rgba(37,94,220,.2);
+  border-radius: 8px;
+  background: #fff;
+  color: #163b83;
+  font: 500 13px inherit;
+  font-size: 13px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* Alleen op mobiel */
+@media (max-width: 800px) {
+  .header-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .upside-lang-wrap {
+    margin-left: auto;
+  }
+
+  .upside-lang-select {
+    width: 135px;
+    min-width: 135px;
+    max-width: 135px;
+    font-size: 12px;
+    padding: 8px 24px 8px 8px;
+  }
+
+  .menu-button {
+    flex-shrink: 0;
+  }
+}
+</style>
 </head>
+
 <body data-page="projecten">
-<a href="#main" class="skip-link">Naar de inhoud</a>
+
+<a href="#main" class="skip-link" data-i18n="skip">Naar de inhoud</a>
+
 <header class="header">
-<div class="wrap header-inner"><a class="logo" href="index.html" aria-label="Upside home"><span class="brand-icon"><i></i><i></i><i></i><i></i></span>upside<span class="dot">.</span></a><button class="menu-button" aria-label="Menu openen" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button>
-<nav class="" aria-label="Hoofdnavigatie"><a href="diensten.html">Diensten</a><a href="resultaten.html">Groei &amp; resultaten</a><a href="projecten.html" aria-current="page">Projecten</a><a href="over.html">Over Upside</a><a class="nav-scan" href="groeiscan.html">Gratis groeiscan <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
-<a class="nav-apply" href="contact.html#lead-form">Ik wil aan de slag</a></nav>
-</div>
+  <div class="wrap header-inner">
+
+    <a class="logo" href="index.html" aria-label="Upside home">
+      <span class="brand-icon">
+        <i></i><i></i><i></i><i></i>
+      </span>
+      upside<span class="dot">.</span>
+    </a>
+
+    <div class="upside-lang-wrap">
+      <select
+        id="upside-language"
+        class="upside-lang-select"
+        aria-label="Kies taal"
+      >
+        <option value="nl">Nederlands</option>
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+
+    <button
+      class="menu-button"
+      aria-label="Menu openen"
+      aria-expanded="false"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg"
+        width="24" height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true">
+        <path d="M4 5h16"></path>
+        <path d="M4 12h16"></path>
+        <path d="M4 19h16"></path>
+      </svg>
+    </button>
+
+    <nav aria-label="Hoofdnavigatie">
+      <a href="diensten.html" data-i18n="navServices">Diensten</a>
+      <a href="resultaten.html" data-i18n="navResults">Groei &amp; resultaten</a>
+      <a href="projecten.html" aria-current="page" data-i18n="navProjects">Projecten</a>
+      <a href="over.html" data-i18n="navAbout">Over Upside</a>
+
+      <a class="nav-scan" href="groeiscan.html">
+        <span data-i18n="navScan">Gratis groeiscan</span>
+        <svg xmlns="http://www.w3.org/2000/svg"
+          width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+          <path d="M7 7h10v10"></path>
+          <path d="M7 17 17 7"></path>
+        </svg>
+      </a>
+
+      <a class="nav-apply" href="contact.html#lead-form"
+        data-i18n="navStart">Ik wil aan de slag</a>
+    </nav>
+
+  </div>
 </header>
+
 <main id="main">
-<div class="page-intro wrap">
-<div class="eyebrow"><span></span>PROJECTEN
-</div>
-<h1>Van een eerste idee naar een sterke online basis.
-</h1>
-<p>Een goede website begint bij de ondernemer en zijn klanten. Dit zijn ontwerprichtingen die laten zien hoe we zo’n vraagstuk benaderen.
-</p>
-</div>
-<div class="wrap projects">
-<article class="project">
-<div class="project-art art-0">
-<div class="mock-browser"><span>CONCEPT / DIENSTVERLENING</span>
-<div class="mock-nav"><b>studio.</b><span>Over ons · Aanbod · Contact</span>
-</div>
-<div class="mock-body">
-<h3>Goed werk begint met aandacht.
-</h3>
-<div class="mock-block"><span>Persoonlijk advies</span>
-</div>
-</div>
-</div>
-</div>
-<p class="section-label">ONTWERPCONCEPT · GEEN KLANTOPDRACHT
-</p>
-<h2>Lokaal &amp; persoonlijk
-</h2>
-<p>Een overzichtelijke website waar bezoekers snel het aanbod en de juiste contactmogelijkheid vinden.
-</p>
-</article>
-<article class="project">
-<div class="project-art art-1">
-<div class="mock-browser"><span>CONCEPT / HORECA &amp; RETAIL</span>
-<div class="mock-nav"><b>koffie &amp; co.</b><span>Over ons · Aanbod · Contact</span>
-</div>
-<div class="mock-body">
-<h3>Een moment voor jezelf.
-</h3>
-<div class="mock-block"><span>Onze koffie</span>
-</div>
-</div>
-</div>
-</div>
-<p class="section-label">ONTWERPCONCEPT · GEEN KLANTOPDRACHT
-</p>
-<h2>Aandacht voor het product
-</h2>
-<p>Een heldere menukaart, toegankelijke praktische informatie en een uitstraling die bij de zaak past.
-</p>
-</article>
-</div>
-<section class="banner wrap">
-<div>
-<p class="section-label">EEN HELDERE EERSTE STAP
-</p>
-<h2>Je hoeft het nog niet<br/>allemaal te weten.
-</h2>
-<p>Ontdek eerst waar jouw kansen liggen.
-</p>
-</div><a class="button " href="groeiscan.html">Ontdek jouw groeikansen<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
-</section>
+
+  <div class="page-intro wrap">
+
+    <div class="eyebrow">
+      <span></span>
+      <span data-i18n="eyebrow">PROJECTEN</span>
+    </div>
+
+    <h1 data-i18n="heading">
+      Van een eerste idee naar een sterke online basis.
+    </h1>
+
+    <p data-i18n="intro">
+      Een goede website begint bij de ondernemer en zijn klanten.
+      Dit zijn ontwerprichtingen die laten zien hoe we zo'n
+      vraagstuk benaderen.
+    </p>
+
+  </div>
+
+  <div class="wrap projects">
+
+    <!-- PROJECT 1 -->
+    <article class="project">
+
+      <div class="project-art art-0">
+        <div class="mock-browser">
+
+          <span data-i18n="mockCategory1">
+            CONCEPT / DIENSTVERLENING
+          </span>
+
+          <div class="mock-nav">
+            <b>studio.</b>
+            <span data-i18n="mockNav">
+              Over ons · Aanbod · Contact
+            </span>
+          </div>
+
+          <div class="mock-body">
+            <h3 data-i18n="mockHeading1">
+              Goed werk begint met aandacht.
+            </h3>
+
+            <div class="mock-block">
+              <span data-i18n="mockBlock1">
+                Persoonlijk advies
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="section-label" data-i18n="conceptLabel">
+        ONTWERPCONCEPT · GEEN KLANTOPDRACHT
+      </p>
+
+      <h2 data-i18n="projectTitle1">
+        Lokaal &amp; persoonlijk
+      </h2>
+
+      <p data-i18n="projectText1">
+        Een overzichtelijke website waar bezoekers snel het
+        aanbod en de juiste contactmogelijkheid vinden.
+      </p>
+
+    </article>
+
+    <!-- PROJECT 2 -->
+    <article class="project">
+
+      <div class="project-art art-1">
+        <div class="mock-browser">
+
+          <span data-i18n="mockCategory2">
+            CONCEPT / HORECA &amp; RETAIL
+          </span>
+
+          <div class="mock-nav">
+            <b>koffie &amp; co.</b>
+            <span data-i18n="mockNav">
+              Over ons · Aanbod · Contact
+            </span>
+          </div>
+
+          <div class="mock-body">
+            <h3 data-i18n="mockHeading2">
+              Een moment voor jezelf.
+            </h3>
+
+            <div class="mock-block">
+              <span data-i18n="mockBlock2">
+                Onze koffie
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="section-label" data-i18n="conceptLabel">
+        ONTWERPCONCEPT · GEEN KLANTOPDRACHT
+      </p>
+
+      <h2 data-i18n="projectTitle2">
+        Aandacht voor het product
+      </h2>
+
+      <p data-i18n="projectText2">
+        Een heldere menukaart, toegankelijke praktische
+        informatie en een uitstraling die bij de zaak past.
+      </p>
+
+    </article>
+
+  </div>
+
+  <section class="banner wrap">
+    <div>
+
+      <p class="section-label" data-i18n="bannerLabel">
+        EEN HELDERE EERSTE STAP
+      </p>
+
+      <h2 data-i18n="bannerHeading">
+        Je hoeft het nog niet<br>allemaal te weten.
+      </h2>
+
+      <p data-i18n="bannerText">
+        Ontdek eerst waar jouw kansen liggen.
+      </p>
+
+    </div>
+
+    <a class="button" href="groeiscan.html">
+      <span data-i18n="bannerButton">
+        Ontdek jouw groeikansen
+      </span>
+
+      <svg xmlns="http://www.w3.org/2000/svg"
+        width="18" height="18" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"
+        aria-hidden="true">
+        <path d="M7 7h10v10"></path>
+        <path d="M7 17 17 7"></path>
+      </svg>
+    </a>
+
+  </section>
+
 </main>
+
 <footer>
-<div class="wrap footer-main">
-<div><a class="logo" href="index.html" aria-label="Upside home"><span class="brand-icon"><i></i><i></i><i></i><i></i></span>upside<span class="dot">.</span></a>
-<p>Jij bouwt aan je onderneming.<br/>Wij staan aan je zijde.
-</p>
-</div>
-<div><span>Ontdek Upside</span><a href="diensten.html">Onze oplossingen</a><a href="over.html">Onze aanpak</a><a href="contact.html">Jouw vraag</a>
-</div>
-<div><span>Een stap vooruit</span><a href="groeiscan.html">Gratis groeiscan <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a><a href="resultaten.html">Groei &amp; resultaten</a><a href="projecten.html">Projecten</a>
-</div>
-</div>
-<div class="wrap footer-bottom"><span>© 2026 Upside</span><span>Marketing · AI · Automatisering</span><span>Samen vooruit.</span>
-</div>
+
+  <div class="wrap footer-main">
+
+    <div>
+      <a class="logo" href="index.html" aria-label="Upside home">
+        <span class="brand-icon">
+          <i></i><i></i><i></i><i></i>
+        </span>
+        upside<span class="dot">.</span>
+      </a>
+
+      <p data-i18n="footerTagline">
+        Jij bouwt aan je onderneming.<br>
+        Wij staan aan je zijde.
+      </p>
+    </div>
+
+    <div>
+      <span data-i18n="footerDiscover">Ontdek Upside</span>
+      <a href="diensten.html" data-i18n="footerSolutions">Onze oplossingen</a>
+      <a href="over.html" data-i18n="footerApproach">Onze aanpak</a>
+      <a href="contact.html" data-i18n="footerQuestion">Jouw vraag</a>
+    </div>
+
+    <div>
+      <span data-i18n="footerNext">Een stap vooruit</span>
+
+      <a href="groeiscan.html">
+        <span data-i18n="navScan">Gratis groeiscan</span>
+        <svg xmlns="http://www.w3.org/2000/svg"
+          width="14" height="14" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+          <path d="M7 7h10v10"></path>
+          <path d="M7 17 17 7"></path>
+        </svg>
+      </a>
+
+      <a href="resultaten.html" data-i18n="navResults">
+        Groei &amp; resultaten
+      </a>
+
+      <a href="projecten.html" data-i18n="navProjects">
+        Projecten
+      </a>
+    </div>
+
+  </div>
+
+  <div class="wrap footer-bottom">
+    <span>© 2026 Upside</span>
+    <span data-i18n="footerCategories">Marketing · AI · Automatisering</span>
+    <span data-i18n="footerTogether">Samen vooruit.</span>
+  </div>
+
 </footer>
-<a class="whatsapp-float" href="https://wa.me/32472317830?text=Hallo%20Upside%2C%20ik%20wil%20graag%20mijn%20bedrijf%20laten%20groeien.%20Kunnen%20we%20even%20praten%3F" target="_blank" rel="noopener noreferrer" aria-label="Stuur Upside een bericht op WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16 .5A15.4 15.4 0 0 0 2.6 23.6L.5 31.5l8.1-2.1A15.5 15.5 0 1 0 16 .5Zm0 28.2c-2.4 0-4.7-.7-6.7-1.9l-.5-.3-4.8 1.3 1.3-4.7-.3-.5A12.8 12.8 0 1 1 16 28.7Zm7-9.6c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.2.4-1 1.2-1.2 1.4-.2.2-.5.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.7.4-.6c.1-.2.1-.5 0-.7l-1.2-2.8c-.3-.7-.6-.6-.9-.6h-.7c-.2 0-.6.1-.9.4-.3.4-1.3 1.3-1.3 3.1s1.4 3.6 1.6 3.8c.2.3 2.7 4.2 6.5 5.8.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.2.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.5Z"/></svg><span>WhatsApp</span></a>
+
+<a
+  class="whatsapp-float"
+  href="https://wa.me/32472317830?text=Hallo%20Upside%2C%20ik%20wil%20graag%20mijn%20bedrijf%20laten%20groeien.%20Kunnen%20we%20even%20praten%3F"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Stuur Upside een bericht op WhatsApp"
+  data-i18n-aria="whatsappLabel"
+>
+  <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+    <path fill="currentColor" d="M16 .5A15.4 15.4 0 0 0 2.6 23.6L.5 31.5l8.1-2.1A15.5 15.5 0 1 0 16 .5Zm0 28.2c-2.4 0-4.7-.7-6.7-1.9l-.5-.3-4.8 1.3 1.3-4.7-.3-.5A12.8 12.8 0 1 1 16 28.7Zm7-9.6c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.2.4-1 1.2-1.2 1.4-.2.2-.5.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.7.4-.6c.1-.2.1-.5 0-.7l-1.2-2.8c-.3-.7-.6-.6-.9-.6h-.7c-.2 0-.6.1-.9.4-.3.4-1.3 1.3-1.3 3.1s1.4 3.6 1.6 3.8c.2.3 2.7 4.2 6.5 5.8.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.2.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.5Z"/>
+  </svg>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+"use strict";
+
+const projectTranslations = {
+  nl: {
+    title: "Upside — Projecten",
+    description: "Ontdek de websiteconcepten van Upside Agency. Professionele websites en digitale oplossingen voor ondernemers.",
+    skip: "Naar de inhoud",
+    navServices: "Diensten",
+    navResults: "Groei & resultaten",
+    navProjects: "Projecten",
+    navAbout: "Over Upside",
+    navScan: "Gratis groeiscan",
+    navStart: "Ik wil aan de slag",
+    eyebrow: "PROJECTEN",
+    heading: "Van een eerste idee naar een sterke online basis.",
+    intro: "Een goede website begint bij de ondernemer en zijn klanten. Dit zijn ontwerprichtingen die laten zien hoe we zo'n vraagstuk benaderen.",
+    mockCategory1: "CONCEPT / DIENSTVERLENING",
+    mockCategory2: "CONCEPT / HORECA & RETAIL",
+    mockNav: "Over ons · Aanbod · Contact",
+    mockHeading1: "Goed werk begint met aandacht.",
+    mockHeading2: "Een moment voor jezelf.",
+    mockBlock1: "Persoonlijk advies",
+    mockBlock2: "Onze koffie",
+    conceptLabel: "ONTWERPCONCEPT · GEEN KLANTOPDRACHT",
+    projectTitle1: "Lokaal & persoonlijk",
+    projectText1: "Een overzichtelijke website waar bezoekers snel het aanbod en de juiste contactmogelijkheid vinden.",
+    projectTitle2: "Aandacht voor het product",
+    projectText2: "Een heldere menukaart, toegankelijke praktische informatie en een uitstraling die bij de zaak past.",
+    bannerLabel: "EEN HELDERE EERSTE STAP",
+    bannerHeading: "Je hoeft het nog niet<br>allemaal te weten.",
+    bannerText: "Ontdek eerst waar jouw kansen liggen.",
+    bannerButton: "Ontdek jouw groeikansen",
+    footerTagline: "Jij bouwt aan je onderneming.<br>Wij staan aan je zijde.",
+    footerDiscover: "Ontdek Upside",
+    footerSolutions: "Onze oplossingen",
+    footerApproach: "Onze aanpak",
+    footerQuestion: "Jouw vraag",
+    footerNext: "Een stap vooruit",
+    footerCategories: "Marketing · AI · Automatisering",
+    footerTogether: "Samen vooruit.",
+    whatsappLabel: "Stuur Upside een bericht op WhatsApp"
+  },
+
+  fr: {
+    title: "Upside — Projets",
+    description: "Découvrez les concepts de sites web d'Upside Agency et nos solutions digitales pour les entrepreneurs.",
+    skip: "Aller au contenu",
+    navServices: "Services",
+    navResults: "Croissance & résultats",
+    navProjects: "Projets",
+    navAbout: "À propos d'Upside",
+    navScan: "Diagnostic de croissance gratuit",
+    navStart: "Je veux me lancer",
+    eyebrow: "PROJETS",
+    heading: "D'une première idée à une présence en ligne solide.",
+    intro: "Un bon site web commence par comprendre l'entrepreneur et ses clients. Voici des concepts de design qui montrent comment nous abordons ce type de projet.",
+    mockCategory1: "CONCEPT / SERVICES",
+    mockCategory2: "CONCEPT / HORECA & COMMERCE",
+    mockNav: "À propos · Services · Contact",
+    mockHeading1: "Le bon travail commence par l'attention.",
+    mockHeading2: "Un moment rien que pour vous.",
+    mockBlock1: "Conseils personnalisés",
+    mockBlock2: "Notre café",
+    conceptLabel: "CONCEPT DE DESIGN · PAS UNE COMMANDE CLIENT",
+    projectTitle1: "Local & personnel",
+    projectText1: "Un site clair qui permet aux visiteurs de trouver rapidement les services proposés et les bonnes coordonnées.",
+    projectTitle2: "Mettre le produit en valeur",
+    projectText2: "Une carte claire, des informations pratiques accessibles et une identité visuelle adaptée à l'établissement.",
+    bannerLabel: "UNE PREMIÈRE ÉTAPE CLAIRE",
+    bannerHeading: "Vous n'avez pas besoin de<br>tout savoir dès maintenant.",
+    bannerText: "Découvrez d'abord vos possibilités de croissance.",
+    bannerButton: "Découvrez vos opportunités",
+    footerTagline: "Vous développez votre entreprise.<br>Nous sommes à vos côtés.",
+    footerDiscover: "Découvrez Upside",
+    footerSolutions: "Nos solutions",
+    footerApproach: "Notre approche",
+    footerQuestion: "Votre demande",
+    footerNext: "Un pas en avant",
+    footerCategories: "Marketing · IA · Automatisation",
+    footerTogether: "Avançons ensemble.",
+    whatsappLabel: "Envoyer un message WhatsApp à Upside"
+  },
+
+  en: {
+    title: "Upside — Projects",
+    description: "Explore Upside Agency's website design concepts and digital solutions for entrepreneurs.",
+    skip: "Skip to content",
+    navServices: "Services",
+    navResults: "Growth & results",
+    navProjects: "Projects",
+    navAbout: "About Upside",
+    navScan: "Free growth scan",
+    navStart: "Let's get started",
+    eyebrow: "PROJECTS",
+    heading: "From an initial idea to a strong online presence.",
+    intro: "A good website starts with understanding the business owner and their customers. These design concepts show how we approach that challenge.",
+    mockCategory1: "CONCEPT / SERVICES",
+    mockCategory2: "CONCEPT / HOSPITALITY & RETAIL",
+    mockNav: "About us · Services · Contact",
+    mockHeading1: "Great work starts with attention.",
+    mockHeading2: "A moment just for you.",
+    mockBlock1: "Personal advice",
+    mockBlock2: "Our coffee",
+    conceptLabel: "DESIGN CONCEPT · NOT A CLIENT PROJECT",
+    projectTitle1: "Local & personal",
+    projectText1: "A clear website where visitors can quickly find the services offered and the right contact details.",
+    projectTitle2: "Putting the product first",
+    projectText2: "A clear menu, accessible practical information and a visual identity that suits the business.",
+    bannerLabel: "A CLEAR FIRST STEP",
+    bannerHeading: "You don't need to<br>have all the answers yet.",
+    bannerText: "Start by discovering your opportunities.",
+    bannerButton: "Explore your growth opportunities",
+    footerTagline: "You're building your business.<br>We're by your side.",
+    footerDiscover: "Discover Upside",
+    footerSolutions: "Our solutions",
+    footerApproach: "Our approach",
+    footerQuestion: "Your question",
+    footerNext: "One step forward",
+    footerCategories: "Marketing · AI · Automation",
+    footerTogether: "Moving forward together.",
+    whatsappLabel: "Send Upside a message on WhatsApp"
+  },
+
+  tr: {
+    title: "Upside — Projeler",
+    description: "Upside Agency'nin web sitesi tasarım konseptlerini ve girişimcilere yönelik dijital çözümlerini keşfedin.",
+    skip: "İçeriğe geç",
+    navServices: "Hizmetler",
+    navResults: "Büyüme ve sonuçlar",
+    navProjects: "Projeler",
+    navAbout: "Upside hakkında",
+    navScan: "Ücretsiz büyüme analizi",
+    navStart: "Hemen başlayalım",
+    eyebrow: "PROJELER",
+    heading: "İlk fikirden güçlü bir dijital varlığa.",
+    intro: "İyi bir web sitesi, işletme sahibini ve müşterilerini anlamakla başlar. Bu tasarım konseptleri, böyle bir projeye nasıl yaklaştığımızı gösteriyor.",
+    mockCategory1: "KONSEPT / HİZMET SEKTÖRÜ",
+    mockCategory2: "KONSEPT / YİYECEK İÇECEK & PERAKENDE",
+    mockNav: "Hakkımızda · Hizmetler · İletişim",
+    mockHeading1: "İyi iş, özenle başlar.",
+    mockHeading2: "Kendinize ayırdığınız bir an.",
+    mockBlock1: "Kişisel danışmanlık",
+    mockBlock2: "Kahvemiz",
+    conceptLabel: "TASARIM KONSEPTİ · MÜŞTERİ PROJESİ DEĞİLDİR",
+    projectTitle1: "Yerel ve kişisel",
+    projectText1: "Ziyaretçilerin sunulan hizmetleri ve iletişim bilgilerini kolayca bulabildiği sade bir web sitesi.",
+    projectTitle2: "Ürünü ön plana çıkarmak",
+    projectText2: "Anlaşılır bir menü, kolay erişilebilir bilgiler ve işletmeye uygun bir görsel kimlik.",
+    bannerLabel: "NET BİR İLK ADIM",
+    bannerHeading: "Şimdiden her şeyi<br>bilmek zorunda değilsiniz.",
+    bannerText: "Önce büyüme fırsatlarınızı keşfedin.",
+    bannerButton: "Büyüme fırsatlarınızı keşfedin",
+    footerTagline: "Siz işletmenizi büyütüyorsunuz.<br>Biz yanınızdayız.",
+    footerDiscover: "Upside'ı keşfedin",
+    footerSolutions: "Çözümlerimiz",
+    footerApproach: "Yaklaşımımız",
+    footerQuestion: "Sorunuz",
+    footerNext: "Bir adım ileri",
+    footerCategories: "Pazarlama · Yapay zekâ · Otomasyon",
+    footerTogether: "Birlikte ileri.",
+    whatsappLabel: "Upside'a WhatsApp üzerinden mesaj gönderin"
+  },
+
+  es: {
+    title: "Upside — Proyectos",
+    description: "Descubre los conceptos de diseño web de Upside Agency y nuestras soluciones digitales para emprendedores.",
+    skip: "Ir al contenido",
+    navServices: "Servicios",
+    navResults: "Crecimiento y resultados",
+    navProjects: "Proyectos",
+    navAbout: "Sobre Upside",
+    navScan: "Análisis de crecimiento gratis",
+    navStart: "Quiero empezar",
+    eyebrow: "PROYECTOS",
+    heading: "De una primera idea a una presencia online sólida.",
+    intro: "Una buena web empieza por entender al emprendedor y a sus clientes. Estos conceptos de diseño muestran cómo abordamos este tipo de proyectos.",
+    mockCategory1: "CONCEPTO / SERVICIOS",
+    mockCategory2: "CONCEPTO / HOSTELERÍA Y COMERCIO",
+    mockNav: "Sobre nosotros · Servicios · Contacto",
+    mockHeading1: "El buen trabajo empieza con atención.",
+    mockHeading2: "Un momento para ti.",
+    mockBlock1: "Asesoramiento personalizado",
+    mockBlock2: "Nuestro café",
+    conceptLabel: "CONCEPTO DE DISEÑO · NO ES UN PROYECTO DE CLIENTE",
+    projectTitle1: "Local y personal",
+    projectText1: "Una web clara donde los visitantes encuentran rápidamente los servicios y los datos de contacto adecuados.",
+    projectTitle2: "El producto como protagonista",
+    projectText2: "Un menú claro, información práctica accesible y una identidad visual adaptada al negocio.",
+    bannerLabel: "UN PRIMER PASO CLARO",
+    bannerHeading: "No necesitas<br>tener todas las respuestas.",
+    bannerText: "Empieza descubriendo tus oportunidades.",
+    bannerButton: "Descubre tus oportunidades de crecimiento",
+    footerTagline: "Tú construyes tu negocio.<br>Nosotros estamos a tu lado.",
+    footerDiscover: "Descubre Upside",
+    footerSolutions: "Nuestras soluciones",
+    footerApproach: "Nuestro enfoque",
+    footerQuestion: "Tu consulta",
+    footerNext: "Un paso adelante",
+    footerCategories: "Marketing · IA · Automatización",
+    footerTogether: "Avancemos juntos.",
+    whatsappLabel: "Enviar un mensaje de WhatsApp a Upside"
+  }
+};
+
+(function () {
+  const select = document.getElementById("upside-language");
+  const supported = ["nl", "fr", "en", "tr", "es"];
+
+  let savedLanguage = "nl";
+
+  try {
+    savedLanguage =
+      localStorage.getItem("upside-language") ||
+      localStorage.getItem("upside-lang") ||
+      "nl";
+  } catch (error) {
+    savedLanguage = "nl";
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const urlLanguage = params.get("lang");
+
+  const initialLanguage = supported.includes(urlLanguage)
+    ? urlLanguage
+    : supported.includes(savedLanguage)
+      ? savedLanguage
+      : "nl";
+
+  function setLanguage(language) {
+    const lang = supported.includes(language) ? language : "nl";
+    const translations = projectTranslations[lang];
+
+    document.documentElement.lang = lang === "nl" ? "nl-BE" : lang;
+    document.title = translations.title;
+
+    const description = document.querySelector('meta[name="description"]');
+    if (description) {
+      description.setAttribute("content", translations.description);
+    }
+
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const key = element.dataset.i18n;
+      if (Object.prototype.hasOwnProperty.call(translations, key)) {
+        element.innerHTML = translations[key];
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
+      const key = element.dataset.i18nAria;
+      if (translations[key]) {
+        element.setAttribute("aria-label", translations[key]);
+      }
+    });
+
+    select.value = lang;
+
+    try {
+      localStorage.setItem("upside-language", lang);
+      localStorage.setItem("upside-lang", lang);
+    } catch (error) {
+      // De taalkeuze blijft werken zonder opslag.
+    }
+
+    // Geef de gekozen taal door aan andere pagina's.
+    document.querySelectorAll('a[href]').forEach((link) => {
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#")) return;
+
+      const url = new URL(href, window.location.href);
+      if (url.origin !== window.location.origin) return;
+
+      if (!url.pathname.endsWith(".html") && url.pathname !== "/") return;
+
+      if (lang === "nl") {
+        url.searchParams.delete("lang");
+      } else {
+        url.searchParams.set("lang", lang);
+      }
+
+      link.setAttribute(
+        "href",
+        url.pathname + url.search + url.hash
+      );
+    });
+  }
+
+  select.addEventListener("change", () => {
+    setLanguage(select.value);
+  });
+
+  setLanguage(initialLanguage);
+})();
+</script>
+
 </body>
 </html>
