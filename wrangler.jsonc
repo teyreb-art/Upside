@@ -3,13 +3,11 @@
   "name": "upside",
   "main": "worker.js",
   "compatibility_date": "2026-11-14",
-
   "assets": {
     "directory": "./",
     "binding": "ASSETS",
     "run_worker_first": ["/api/*"]
   },
-
   "d1_databases": [
     {
       "binding": "DB",
@@ -17,7 +15,4 @@
       "database_id": "cd0625f3-c287-46db-9196-00cec2cc8889"
     }
   ]
-}
-{
-  "keep_vars": true
 }
