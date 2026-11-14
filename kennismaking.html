@@ -6,181 +6,413 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,follow">
   <meta name="theme-color" content="#255edc">
+
   <title>Kennismaking | Upside Agency</title>
+
   <link rel="icon" href="/assets/favicon.svg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="/kennismaking.css?v=7">
   <script src="/kennismaking.js?v=8" defer></script>
 </head>
+
 <body class="intake-page">
+
 <header class="intake-header">
+
   <a class="intake-brand" href="/" aria-label="Upside Agency homepage">
     <span class="brand-icon" aria-hidden="true">
       <i></i><i></i><i></i><i></i>
-    </span>upside<span class="dot">.</span>
+    </span>
+    upside<span class="dot">.</span>
   </a>
+
   <div class="intake-header-right">
-    <label class="language-label" for="language" data-i18n="language">Taal</label>
-    <select id="language" class="language-select" aria-label="Language">
+
+    <label
+      class="language-label"
+      for="language"
+      data-i18n="language"
+    >
+      Taal
+    </label>
+
+    <select id="language" aria-label="Kies taal">
       <option value="nl">Nederlands</option>
       <option value="fr">Français</option>
       <option value="en">English</option>
       <option value="tr">Türkçe</option>
       <option value="es">Español</option>
     </select>
-    <a class="intake-home" href="/" data-i18n="home">Terug naar website</a>
+
+    <a class="intake-home" href="/" data-i18n="home">
+      Terug naar website
+    </a>
+
   </div>
 </header>
 
+
 <main class="intake-main">
+
   <div class="intake-shell">
+
     <div class="intake-intro">
-      <span class="intake-kicker" data-i18n="kicker">UPSIDE AGENCY · KENNISMAKING</span>
-      <h1 data-i18n="heading">Vertel ons over jouw onderneming.</h1>
-      <p data-i18n="intro">Met een paar korte vragen leren we jouw bedrijf beter kennen en bereiden we ons gesprek voor.</p>
-      <span class="intake-duration" data-i18n="duration">Ongeveer 5 minuten · 10 vragen</span>
+      <span class="intake-kicker" data-i18n="kicker">
+        UPSIDE AGENCY · KENNISMAKING
+      </span>
+
+      <h1 data-i18n="heading">
+        Vertel ons over jouw onderneming.
+      </h1>
+
+      <p data-i18n="intro">
+        Met een paar korte vragen leren we jouw bedrijf beter kennen en bereiden we ons gesprek voor.
+      </p>
+
+      <span class="intake-duration" data-i18n="duration">
+        Ongeveer 5 minuten · 10 vragen
+      </span>
     </div>
 
+
     <div class="intake-progress">
+
       <div class="intake-progress-line">
         <span id="stepLabel">Stap 1 van 5</span>
         <span id="stepPercent">20%</span>
       </div>
-      <div class="intake-track" id="progress" role="progressbar" aria-label="Voortgang" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
+
+      <div
+        class="intake-track"
+        id="progress"
+        role="progressbar"
+        aria-label="Voortgang"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="20"
+      >
         <div id="progressFill"></div>
       </div>
+
     </div>
+
 
     <form id="intake" novalidate>
+
       <!-- STAP 1 -->
+
       <section class="intake-step" data-step="0">
+
         <div class="intake-question">
+
           <label class="intake-question-title" for="company">
             <span class="intake-number">01</span>
-            <span data-i18n="q1">Wat is de naam van jouw bedrijf?</span>
-          </label>
-          <input class="intake-textinput" id="company" name="company" type="text" maxlength="120" autocomplete="organization" required data-placeholder="companyPlaceholder" placeholder="Naam van jouw onderneming">
-        </div>
-
-        <fieldset class="intake-question" data-multi="activities">
-          <legend>
-            <span class="intake-number">02</span>
-<span data-i18n="q2">In welke sector is jouw onderneming actief?</span>          </legend>
-          <p class="intake-hint" data-i18n="multiple">Meerdere antwoorden mogelijk</p>
-          <div class="intake-options"></div>
-        </fieldset>
-      </section>
-
-      <!-- STAP 2 -->
-      <section class="intake-step" data-step="1" hidden>
-        <fieldset class="intake-question">
-          <legend>
-            <span class="intake-number">03</span>
-            <span data-i18n="q3">Wie zijn jouw belangrijkste klanten?</span>
-          </legend>
-          <div class="intake-options" data-single="clients"></div>
-        </fieldset>
-
-        <fieldset class="intake-question" data-multi="existing">
-          <legend>
-            <span class="intake-number">04</span>
-            <span data-i18n="q4">Wat heeft jouw bedrijf momenteel al?</span>
-          </legend>
-          <p class="intake-hint" data-i18n="multiple">Meerdere antwoorden mogelijk</p>
-          <div class="intake-options"></div>
-        </fieldset>
-      </section>
-
-      <!-- STAP 3 -->
-      <section class="intake-step" data-step="2" hidden>
-        <fieldset class="intake-question" data-multi="acquisition">
-          <legend>
-            <span class="intake-number">05</span>
-            <span data-i18n="q5">Hoe vinden nieuwe klanten jouw bedrijf?</span>
-          </legend>
-          <p class="intake-hint" data-i18n="multiple">Meerdere antwoorden mogelijk</p>
-          <div class="intake-options"></div>
-        </fieldset>
-
-        <fieldset class="intake-question" data-multi="services">
-          <legend>
-            <span class="intake-number">06</span>
-            <span data-i18n="q6">Bij welke diensten zou jouw bedrijf ondersteuning kunnen gebruiken?</span>
-          </legend>
-          <p class="intake-hint" data-i18n="multipleOptional">Meerdere antwoorden mogelijk. Je hoeft nog niets definitief te kiezen.</p>
-          <div class="intake-options"></div>
-        </fieldset>
-      </section>
-
-      <!-- STAP 4 -->
-      <section class="intake-step" data-step="3" hidden>
-        <fieldset class="intake-question">
-          <legend>
-            <span class="intake-number">07</span>
-            <span data-i18n="q7">Wat is momenteel de grootste uitdaging voor jouw bedrijf?</span>
-          </legend>
-          <div class="intake-options" data-single="challenge"></div>
-        </fieldset>
-
-        <fieldset class="intake-question">
-          <legend>
-            <span class="intake-number">08</span>
-<span data-i18n="q8">Heb je al foto's of ander beeldmateriaal van jouw onderneming, producten of diensten?</span>          </legend>
-          <div class="intake-options" data-single="photos"></div>
-        </fieldset>
-      </section>
-
-      <!-- STAP 5 -->
-      <section class="intake-step" data-step="4" hidden>
-        <fieldset class="intake-question">
-          <legend>
-            <span class="intake-number">09</span>
-            <span data-i18n="q9">Heb je al een budget voorzien voor marketing en online zichtbaarheid?</span>
-          </legend>
-          <div class="intake-options" data-single="budget"></div>
-        </fieldset>
-
-        <div class="intake-question">
-          <label class="intake-question-title" for="notes">
-            <span class="intake-number">10</span>
-            <span data-i18n="q10">Is er nog iets dat je graag wilt bespreken?</span>
-          </label>
-          <textarea class="intake-textinput" id="notes" name="notes" maxlength="2000" rows="4" data-placeholder="optional" placeholder="Optioneel"></textarea>
-        </div>
-
-        <div class="intake-consent">
-          <label>
-            <input type="checkbox" id="consent" required>
-            <span>
-              <span data-i18n="consent">Ik ga ermee akkoord dat Upside Agency mijn antwoorden gebruikt om het kennismakingsgesprek voor te bereiden.</span>
-              <a href="/privacy.html" target="_blank" rel="noopener noreferrer" data-i18n="privacy">Privacyinformatie</a>
+            <span data-i18n="q1">
+              Wat is de naam van jouw bedrijf?
             </span>
           </label>
+
+          <input
+            class="intake-textinput"
+            id="company"
+            name="company"
+            type="text"
+            maxlength="120"
+            autocomplete="organization"
+            required
+            data-placeholder="companyPlaceholder"
+            placeholder="Naam van jouw onderneming"
+          >
+
         </div>
-        <p class="intake-footnote" data-i18n="footnote">Je gegevens worden niet gebruikt voor nieuwsbrieven zonder aparte toestemming.</p>
+
+
+        <fieldset class="intake-question" data-multi="activities">
+
+          <legend>
+            <span class="intake-number">02</span>
+            <span data-i18n="q2">
+              In welke sector is jouw onderneming actief?
+            </span>
+          </legend>
+
+          <p class="intake-hint" data-i18n="multiple">
+            Meerdere antwoorden mogelijk
+          </p>
+
+          <div class="intake-options"></div>
+
+        </fieldset>
+
       </section>
 
-      <p id="feedback" class="intake-feedback" role="status" aria-live="polite"></p>
+
+      <!-- STAP 2 -->
+
+      <section class="intake-step" data-step="1" hidden>
+
+        <fieldset class="intake-question">
+
+          <legend>
+            <span class="intake-number">03</span>
+            <span data-i18n="q3">
+              Wie zijn jouw belangrijkste klanten?
+            </span>
+          </legend>
+
+          <div class="intake-options" data-single="clients"></div>
+
+        </fieldset>
+
+
+        <fieldset class="intake-question" data-multi="existing">
+
+          <legend>
+            <span class="intake-number">04</span>
+            <span data-i18n="q4">
+              Wat heeft jouw bedrijf momenteel al?
+            </span>
+          </legend>
+
+          <p class="intake-hint" data-i18n="multiple">
+            Meerdere antwoorden mogelijk
+          </p>
+
+          <div class="intake-options"></div>
+
+        </fieldset>
+
+      </section>
+
+
+      <!-- STAP 3 -->
+
+      <section class="intake-step" data-step="2" hidden>
+
+        <fieldset class="intake-question" data-multi="acquisition">
+
+          <legend>
+            <span class="intake-number">05</span>
+            <span data-i18n="q5">
+              Hoe vinden nieuwe klanten jouw bedrijf?
+            </span>
+          </legend>
+
+          <p class="intake-hint" data-i18n="multiple">
+            Meerdere antwoorden mogelijk
+          </p>
+
+          <div class="intake-options"></div>
+
+        </fieldset>
+
+
+        <fieldset class="intake-question" data-multi="services">
+
+          <legend>
+            <span class="intake-number">06</span>
+            <span data-i18n="q6">
+              Bij welke diensten zou jouw bedrijf ondersteuning kunnen gebruiken?
+            </span>
+          </legend>
+
+          <p class="intake-hint" data-i18n="multipleOptional">
+            Meerdere antwoorden mogelijk. Je hoeft nog niets definitief te kiezen.
+          </p>
+
+          <div class="intake-options"></div>
+
+        </fieldset>
+
+      </section>
+
+
+      <!-- STAP 4 -->
+
+      <section class="intake-step" data-step="3" hidden>
+
+        <fieldset class="intake-question">
+
+          <legend>
+            <span class="intake-number">07</span>
+            <span data-i18n="q7">
+              Wat is momenteel de grootste uitdaging voor jouw bedrijf?
+            </span>
+          </legend>
+
+          <div class="intake-options" data-single="challenge"></div>
+
+        </fieldset>
+
+
+        <fieldset class="intake-question">
+
+          <legend>
+            <span class="intake-number">08</span>
+            <span data-i18n="q8">
+              Heb je al foto's of ander beeldmateriaal van jouw onderneming, producten of diensten?
+            </span>
+          </legend>
+
+          <div class="intake-options" data-single="photos"></div>
+
+        </fieldset>
+
+      </section>
+
+
+      <!-- STAP 5 -->
+
+      <section class="intake-step" data-step="4" hidden>
+
+        <fieldset class="intake-question">
+
+          <legend>
+            <span class="intake-number">09</span>
+            <span data-i18n="q9">
+              Heb je al een budget voorzien voor marketing en online zichtbaarheid?
+            </span>
+          </legend>
+
+          <div class="intake-options" data-single="budget"></div>
+
+        </fieldset>
+
+
+        <div class="intake-question">
+
+          <label class="intake-question-title" for="notes">
+            <span class="intake-number">10</span>
+            <span data-i18n="q10">
+              Is er nog iets dat je graag wilt bespreken?
+            </span>
+          </label>
+
+          <textarea
+            class="intake-textinput"
+            id="notes"
+            name="notes"
+            maxlength="2000"
+            rows="4"
+            data-placeholder="optional"
+            placeholder="Optioneel"
+          ></textarea>
+
+        </div>
+
+
+        <div class="intake-consent">
+
+          <label>
+
+            <input type="checkbox" id="consent" required>
+
+            <span>
+
+              <span data-i18n="consent">
+                Ik ga ermee akkoord dat Upside Agency mijn antwoorden gebruikt om het kennismakingsgesprek voor te bereiden.
+              </span>
+
+              <a
+                href="/privacy.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="privacy"
+              >
+                Privacyinformatie
+              </a>
+
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <p class="intake-footnote" data-i18n="footnote">
+          Je gegevens worden niet gebruikt voor nieuwsbrieven zonder aparte toestemming.
+        </p>
+
+      </section>
+
+
+      <p
+        id="feedback"
+        class="intake-feedback"
+        role="status"
+        aria-live="polite"
+      ></p>
+
 
       <div class="intake-actions">
-        <button type="button" id="prev" class="intake-btn intake-btn-back" data-i18n="previous" hidden>Vorige</button>
-        <button type="button" id="next" class="intake-btn intake-btn-next" data-i18n="next">Volgende</button>
-        <button type="submit" id="submit" class="intake-btn intake-btn-next" data-i18n="send" hidden>Antwoorden versturen</button>
+
+        <button
+          type="button"
+          id="prev"
+          class="intake-btn intake-btn-back"
+          data-i18n="previous"
+          hidden
+        >
+          Vorige
+        </button>
+
+        <button
+          type="button"
+          id="next"
+          class="intake-btn intake-btn-next"
+          data-i18n="next"
+        >
+          Volgende
+        </button>
+
+        <button
+          type="submit"
+          id="submit"
+          class="intake-btn intake-btn-next"
+          data-i18n="send"
+          hidden
+        >
+          Antwoorden versturen
+        </button>
+
       </div>
+
     </form>
 
+
     <div id="success" class="intake-success" hidden>
-      <h2 data-i18n="successTitle">Bedankt voor het invullen!</h2>
-      <p data-i18n="successText">Je antwoorden zijn ontvangen en worden meegenomen naar ons gesprek.</p>
-      <a href="/" data-i18n="home">Terug naar website</a>
+
+      <h2 data-i18n="successTitle">
+        Bedankt voor het invullen!
+      </h2>
+
+      <p data-i18n="successText">
+        Je antwoorden zijn ontvangen en worden meegenomen naar ons gesprek.
+      </p>
+
+      <a href="/" data-i18n="home">
+        Terug naar website
+      </a>
+
     </div>
+
   </div>
+
 </main>
 
+
 <footer class="intake-footer">
-  © Upside Agency · <a href="/">upsideagency.be</a>
+  © Upside Agency ·
+  <a href="/">upsideagency.be</a>
 </footer>
+
 </body>
 </html>
