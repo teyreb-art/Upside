@@ -1,2 +1,641 @@
-/* Scoped to intake page to avoid conflicts with existing style.css */
-body.intake-page{margin:0;background:#f2f6fd;color:#102d69;font-family:Manrope,Arial,sans-serif}body.intake-page *{box-sizing:border-box}body.intake-page [hidden]{display:none!important}.intake-header{max-width:1100px;margin:0 auto;min-height:90px;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}.intake-brand{font-size:28px;font-weight:850;letter-spacing:-1.6px;color:#123579;text-decoration:none;display:flex;align-items:center;gap:9px}.intake-brandmark{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#255edc;color:white;font-size:26px}.intake-dot{color:#255edc}.intake-home{font-size:13px;color:#255edc;text-decoration:none;font-weight:700}.intake-main{padding:18px 18px 65px}.intake-shell{max-width:800px;margin:auto;padding:clamp(22px,5vw,48px);background:#fff;border:1px solid #dbe5f3;border-radius:22px;box-shadow:0 16px 48px rgba(20,50,100,.07)}.intake-intro{text-align:center;max-width:650px;margin:0 auto 30px}.intake-kicker{display:inline-block;background:#eaf1ff;border-radius:99px;color:#2256bd;font-size:11px;font-weight:800;letter-spacing:.09em;padding:10px 16px}.intake-intro h1{font-size:clamp(28px,4.5vw,42px);line-height:1.17;letter-spacing:-.045em;margin:22px 0 13px;color:#102d69}.intake-intro p{font-size:15px;line-height:1.75;color:#60708b;margin:0 auto 16px}.intake-duration{color:#60708b;font-size:12px}.intake-progress{margin:30px 0 32px}.intake-progress-line{display:flex;justify-content:space-between;font-size:13px;font-weight:800;margin-bottom:11px;color:#173d88}.intake-track{height:8px;border-radius:99px;background:#e3eaf6;overflow:hidden}.intake-track>div{width:20%;height:100%;background:#255edc;border-radius:99px;transition:width .2s}.intake-question{border:1px solid #e0e8f5;border-radius:16px;padding:23px;margin:0 0 18px;min-width:0;background:#fff}.intake-question legend{float:left;width:100%;padding:0;margin:0 0 14px}.intake-question legend::after{content:'';display:block;clear:both}.intake-question-title,.intake-question legend{font-size:16px;line-height:1.5;font-weight:800;letter-spacing:-.02em;color:#102d69}.intake-question-title{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}.intake-question legend{display:flex;align-items:flex-start;gap:12px}.intake-number{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;background:#eaf1ff;border-radius:9px;color:#255edc;font-size:12px;font-weight:800;letter-spacing:0}.intake-hint{clear:both;margin:0 0 14px;color:#70819d;font-size:12px}.intake-options{clear:both;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.intake-choice{position:relative;display:flex!important;align-items:center!important;gap:12px!important;min-height:58px;padding:12px 14px!important;margin:0!important;border:1px solid #dbe5f3!important;border-radius:11px!important;background:#fff;cursor:pointer;color:#183c7a;font-size:13px;line-height:1.45;text-align:left;transition:background .15s,border-color .15s}.intake-choice:hover{background:#f6f9ff;border-color:#9ab8f0!important}.intake-choice:has(input:checked){border-color:#255edc!important;background:#eef4ff}.intake-choice input{appearance:auto!important;display:block!important;position:static!important;width:17px!important;height:17px!important;flex:0 0 17px!important;margin:0!important;padding:0!important;accent-color:#255edc;opacity:1!important;transform:none!important}.intake-choice span{display:block;flex:1;min-width:0}.intake-textinput{width:100%;border:1px solid #cbd9ef;border-radius:10px;padding:15px 16px;background:#fff;color:#102d69;font:inherit;font-size:14px;outline-offset:3px}.intake-textinput:focus{border-color:#255edc;outline:2px solid #e0eaff}.intake-consent{margin:20px 0 8px}.intake-consent label{display:flex;align-items:flex-start;gap:11px;font-size:13px;line-height:1.6;color:#566b8b}.intake-consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:#255edc}.intake-consent a{color:#255edc;text-decoration:underline}.intake-footnote{color:#70819d;font-size:12px}.intake-feedback{color:#b32837;font-size:13px;min-height:1em;margin:8px 0}.intake-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}.intake-btn{min-height:49px;padding:12px 22px;border-radius:10px;font:inherit;font-size:14px;font-weight:800;cursor:pointer}.intake-btn-back{background:#fff;border:1px solid #cbd9ef;color:#173d88}.intake-btn-next{margin-left:auto;background:#255edc;color:white;border:1px solid #255edc}.intake-btn-next:hover{background:#194fbd}.intake-btn:disabled{opacity:.55;cursor:wait}.intake-success{text-align:center;padding:45px 10px}.intake-success h2{font-size:28px}.intake-success a{color:#255edc}.intake-footer{text-align:center;padding:0 15px 35px;color:#70819d;font-size:12px}.intake-footer a{color:inherit}@media(max-width:650px){.intake-header{min-height:75px;padding:14px 18px}.intake-main{padding:10px 12px 45px}.intake-shell{padding:24px 16px;border-radius:16px}.intake-options{grid-template-columns:1fr}.intake-question{padding:16px;border-radius:12px}.intake-choice{min-height:52px}.intake-intro h1{font-size:29px}.intake-brand{font-size:24px}.intake-home{font-size:11px}}
+
+/* ==========================================
+   UPSIDE AGENCY
+   KENNISMAKINGSFORMULIER V4
+   ========================================== */
+
+:root {
+  --up-blue: #255edc;
+  --up-blue-dark: #194fbd;
+  --up-navy: #102d69;
+  --up-text: #183c7a;
+  --up-muted: #60708b;
+  --up-border: #dbe5f3;
+  --up-background: #f2f6fd;
+}
+
+/* BASIS */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.intake-page {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--up-background);
+  color: var(--up-navy);
+  font-family: Manrope, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+body.intake-page *,
+body.intake-page *::before,
+body.intake-page *::after {
+  box-sizing: border-box;
+}
+
+body.intake-page [hidden] {
+  display: none !important;
+}
+
+/* HEADER */
+
+body.intake-page .intake-header {
+  width: 100%;
+  max-width: 1100px;
+  min-height: 88px;
+  margin: 0 auto;
+  padding: 18px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+body.intake-page .intake-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #123579;
+  font-size: 28px;
+  font-weight: 850;
+  letter-spacing: -1.5px;
+  text-decoration: none;
+}
+
+body.intake-page .intake-brandmark {
+  display: grid;
+  place-items: center;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+
+  background: var(--up-blue);
+  color: white;
+  font-size: 25px;
+}
+
+body.intake-page .intake-dot {
+  color: var(--up-blue);
+}
+
+body.intake-page .intake-home {
+  color: var(--up-blue);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+body.intake-page .intake-home:hover {
+  text-decoration: underline;
+}
+
+/* PAGINA EN FORMULIER */
+
+body.intake-page .intake-main {
+  width: 100%;
+  padding: 20px 20px 65px;
+}
+
+body.intake-page .intake-shell {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 48px);
+
+  background: white;
+  border: 1px solid var(--up-border);
+  border-radius: 22px;
+
+  box-shadow: 0 15px 50px rgba(20, 50, 100, 0.06);
+}
+
+/* INTRODUCTIE */
+
+body.intake-page .intake-intro {
+  max-width: 650px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+body.intake-page .intake-kicker {
+  display: inline-block;
+  padding: 9px 17px;
+
+  background: #eaf1ff;
+  border-radius: 50px;
+
+  color: var(--up-blue);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+body.intake-page .intake-intro h1 {
+  margin: 22px 0 14px;
+
+  color: var(--up-navy);
+  font-size: clamp(29px, 4vw, 42px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+body.intake-page .intake-intro p {
+  max-width: 560px;
+  margin: 0 auto 16px;
+
+  color: var(--up-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+body.intake-page .intake-duration {
+  color: #70819d;
+  font-size: 12px;
+}
+
+/* VOORTGANGSBALK */
+
+body.intake-page .intake-progress {
+  margin: 30px 0 34px;
+}
+
+body.intake-page .intake-progress-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+
+  color: #173d88;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+body.intake-page .intake-track {
+  width: 100%;
+  height: 8px;
+
+  overflow: hidden;
+  background: #e3eaf6;
+  border-radius: 50px;
+}
+
+body.intake-page .intake-track > div {
+  width: 20%;
+  height: 100%;
+
+  background: var(--up-blue);
+  border-radius: 50px;
+
+  transition: width 0.25s ease;
+}
+
+/* VRAGEN */
+
+body.intake-page .intake-question {
+  display: block;
+  min-width: 0;
+
+  margin: 0 0 22px;
+  padding: 24px;
+
+  background: white;
+  border: 1px solid #e0e8f5;
+  border-radius: 16px;
+}
+
+body.intake-page .intake-question legend {
+  float: left;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 0;
+
+  color: var(--up-navy);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+body.intake-page .intake-question-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 18px;
+
+  color: var(--up-navy);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+body.intake-page .intake-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+
+  background: #eaf1ff;
+  border-radius: 10px;
+
+  color: var(--up-blue);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+body.intake-page .intake-hint {
+  clear: both;
+  margin: 0 0 16px;
+
+  color: #70819d;
+  font-size: 12px;
+}
+
+/* ==========================================
+   ANTWOORDEN – TWEE GELIJKE KOLOMMEN
+   ========================================== */
+
+body.intake-page .intake-options {
+  clear: both;
+
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* VOLLEDIG KLIKBARE ANTWOORDKAARTEN */
+
+body.intake-page label.intake-choice {
+  position: relative !important;
+
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  min-width: 0;
+  min-height: 64px;
+
+  margin: 0 !important;
+  padding: 15px 18px !important;
+
+  background: white !important;
+  border: 1px solid var(--up-border) !important;
+  border-radius: 12px !important;
+
+  color: var(--up-text);
+  text-align: center !important;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+/* VERBERG CHECKBOXEN EN RADIOBUTTONS */
+
+body.intake-page .intake-choice input[type="checkbox"],
+body.intake-page .intake-choice input[type="radio"] {
+  position: absolute !important;
+
+  width: 1px !important;
+  height: 1px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  opacity: 0 !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  border: 0 !important;
+  pointer-events: none !important;
+
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+}
+
+/* ANTWOORDTEKST */
+
+body.intake-page label.intake-choice span {
+  display: block !important;
+  flex: 1 1 auto !important;
+
+  width: 100% !important;
+  min-width: 0;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: var(--up-text) !important;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center !important;
+
+  transition: color 0.18s ease;
+}
+
+/* HOVER */
+
+body.intake-page label.intake-choice:hover {
+  background: #f5f8ff !important;
+  border-color: var(--up-blue) !important;
+}
+
+/* GESELECTEERD = VOLLEDIG BLAUW */
+
+body.intake-page label.intake-choice:has(input:checked) {
+  background: var(--up-blue) !important;
+  border-color: var(--up-blue) !important;
+
+  box-shadow: 0 4px 12px rgba(37, 94, 220, 0.13);
+}
+
+body.intake-page label.intake-choice:has(input:checked) span {
+  color: white !important;
+  font-weight: 700 !important;
+}
+
+body.intake-page label.intake-choice:has(input:checked):hover {
+  background: var(--up-blue-dark) !important;
+  border-color: var(--up-blue-dark) !important;
+}
+
+/* TOETSENBORDNAVIGATIE */
+
+body.intake-page label.intake-choice:has(input:focus-visible) {
+  outline: 3px solid #8eb2ff !important;
+  outline-offset: 3px;
+}
+
+/* TEKSTVELDEN */
+
+body.intake-page .intake-textinput {
+  display: block;
+
+  width: 100%;
+  min-height: 54px;
+  padding: 15px 16px;
+
+  background: white;
+  border: 1px solid #cbd9ef;
+  border-radius: 11px;
+
+  color: var(--up-navy);
+  font: inherit;
+  font-size: 14px;
+
+  outline: none;
+}
+
+body.intake-page .intake-textinput:focus {
+  border-color: var(--up-blue);
+  box-shadow: 0 0 0 3px #e0eaff;
+}
+
+body.intake-page .intake-textinput::placeholder {
+  color: #8795aa;
+}
+
+body.intake-page textarea.intake-textinput {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* PRIVACY EN TOESTEMMING */
+
+body.intake-page .intake-consent {
+  margin: 22px 0 10px;
+}
+
+body.intake-page .intake-consent label {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+
+  color: #566b8b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+body.intake-page .intake-consent input {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+
+  accent-color: var(--up-blue);
+}
+
+body.intake-page .intake-consent a {
+  color: var(--up-blue);
+  text-decoration: underline;
+}
+
+body.intake-page .intake-footnote {
+  color: #70819d;
+  font-size: 12px;
+}
+
+/* FOUTMELDINGEN */
+
+body.intake-page .intake-feedback {
+  min-height: 1em;
+  margin: 10px 0;
+
+  color: #b32837;
+  font-size: 13px;
+}
+
+/* NAVIGATIEKNOPPEN */
+
+body.intake-page .intake-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-top: 22px;
+}
+
+body.intake-page .intake-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 50px;
+  padding: 13px 24px;
+
+  border-radius: 11px;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+body.intake-page .intake-btn-back {
+  background: white;
+  border: 1px solid #cbd9ef;
+  color: #173d88;
+}
+
+body.intake-page .intake-btn-back:hover {
+  background: #f2f6fd;
+}
+
+body.intake-page .intake-btn-next {
+  margin-left: auto;
+
+  background: var(--up-blue);
+  border: 1px solid var(--up-blue);
+  color: white;
+}
+
+body.intake-page .intake-btn-next:hover {
+  background: var(--up-blue-dark);
+}
+
+body.intake-page .intake-btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+/* BEVESTIGING */
+
+body.intake-page .intake-success {
+  padding: 45px 10px;
+  text-align: center;
+}
+
+body.intake-page .intake-success h2 {
+  color: var(--up-navy);
+  font-size: 28px;
+}
+
+body.intake-page .intake-success p {
+  color: var(--up-muted);
+  line-height: 1.7;
+}
+
+body.intake-page .intake-success a {
+  color: var(--up-blue);
+  font-weight: 700;
+}
+
+/* FOOTER */
+
+body.intake-page .intake-footer {
+  padding: 0 15px 35px;
+
+  color: #70819d;
+  font-size: 12px;
+  text-align: center;
+}
+
+body.intake-page .intake-footer a {
+  color: inherit;
+}
+
+/* TABLET */
+
+@media (max-width: 768px) {
+  body.intake-page .intake-shell {
+    padding: 28px 22px;
+  }
+
+  body.intake-page .intake-question {
+    padding: 20px;
+  }
+}
+
+/* MOBIEL */
+
+@media (max-width: 650px) {
+  body.intake-page .intake-header {
+    min-height: 75px;
+    padding: 14px 18px;
+  }
+
+  body.intake-page .intake-main {
+    padding: 10px 12px 45px;
+  }
+
+  body.intake-page .intake-shell {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  body.intake-page .intake-options {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  body.intake-page .intake-question {
+    padding: 18px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+
+  body.intake-page label.intake-choice {
+    min-height: 56px;
+    padding: 13px 15px !important;
+  }
+
+  body.intake-page .intake-intro h1 {
+    font-size: 29px;
+  }
+
+  body.intake-page .intake-brand {
+    font-size: 24px;
+  }
+
+  body.intake-page .intake-home {
+    font-size: 11px;
+  }
+
+  body.intake-page .intake-btn {
+    padding: 12px 17px;
+    font-size: 13px;
+  }
+}
+
+/* MINDER ANIMATIE INDIEN GEWENST */
+
+@media (prefers-reduced-motion: reduce) {
+  body.intake-page *,
+  body.intake-page *::before,
+  body.intake-page *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
