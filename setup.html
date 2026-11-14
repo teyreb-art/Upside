@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Beheerder instellen | Upside</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f4f7fc;
+      font-family: Arial, sans-serif;
+      color: #17315b;
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 430px;
+      background: white;
+      padding: 36px;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(20, 50, 100, .08);
+    }
+
+    h1 {
+      color: #1254d8;
+      margin-top: 0;
+    }
+
+    p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 20px 0 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 24px;
+      padding: 14px;
+      border: 0;
+      border-radius: 8px;
+      background: #1254d8;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    #message {
+      margin-top: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    .success { color: #16803c; }
+    .error { color: #c62828; }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <h1>UPSIDE</h1>
+    <h2>Beheerdersaccount instellen</h2>
+
+    <p>
+      Maak je persoonlijke account aan om
+      kennismakingsaanvragen te beheren.
+    </p>
+
+    <form id="setupForm">
+      <label for="email">E-mailadres</label>
+      <input
+        id="email"
+        type="email"
+        value="beratkaranfil2005@gmail.com"
+        readonly
+      >
+
+      <label for="password">Nieuw wachtwoord</label>
+      <input
+        id="password"
+        type="password"
+        minlength="14"
+        maxlength="128"
+        autocomplete="new-password"
+        required
+      >
+
+      <label for="confirm">Herhaal wachtwoord</label>
+      <input
+        id="confirm"
+        type="password"
+        minlength="14"
+        maxlength="128"
+        autocomplete="new-password"
+        required
+      >
+
+      <label for="token">Geheime installatiecode</label>
+      <input
+        id="token"
+        type="password"
+        autocomplete="off"
+        required
+      >
+
+      <button id="submit" type="submit">
+        Account aanmaken
+      </button>
+    </form>
+
+    <p id="message" role="status" aria-live="polite"></p>
+  </main>
+
+  <script>
+    const form = document.getElementById("setupForm");
+    const message = document.getElementById("message");
+    const button = document.getElementById("submit");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm").value;
+      const setupToken = document.getElementById("token").value;
+
+      message.textContent = "";
+      message.className = "";
+
+      if (password !== confirm) {
+        message.textContent = "De wachtwoorden komen niet overeen.";
+        message.className = "error";
+        return;
+      }
+
+      if (password.length < 14) {
+        message.textContent = "Gebruik minstens 14 tekens.";
+        message.className = "error";
+        return;
+      }
+
+      button.disabled = true;
+
+      try {
+        const response = await fetch("/api/admin/setup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email,
+            password,
+            setupToken
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Registratie mislukt.");
+        }
+
+        message.textContent =
+          "Je beheerdersaccount is aangemaakt! " +
+          "Verwijder nu de installatiecode uit Cloudflare.";
+
+        message.className = "success";
+        form.reset();
+        form.hidden = true;
+
+      } catch (error) {
+        message.textContent = error.message;
+        message.className = "error";
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
