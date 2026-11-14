@@ -40,5 +40,14 @@ function upsideApplyLanguage(language) {
     a.href = url.pathname + url.search + url.hash;
   });
 }
-if (upsideSelect) upsideSelect.addEventListener('change', () => upsideApplyLanguage(upsideSelect.value));
+if (upsideSelect) {
+  const languageNames = { nl: 'Nederlands', fr: 'Français', en: 'English', tr: 'Türkçe', es: 'Español' };
+  upsideSelect.replaceChildren(...Object.entries(languageNames).map(([code, name]) => {
+    const option = document.createElement('option');
+    option.value = code;
+    option.textContent = name;
+    return option;
+  }));
+  upsideSelect.addEventListener('change', () => upsideApplyLanguage(upsideSelect.value));
+}
 upsideApplyLanguage('nl');
