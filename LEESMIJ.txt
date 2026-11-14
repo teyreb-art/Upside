@@ -16,3 +16,4 @@ BELANGRIJK: het formulier is een werkende frontend, maar het versturen blijft be
 De privacy-link /privacy.html is een placeholder. Publiceer een correcte privacyverklaring op dat pad of wijzig de link naar je bestaande privacy-pagina VOORDAT je het formulier aan klanten verstuurt.
 
 VOLGENDE STAP: Cloudflare Worker/D1 + validatie, spambeveiliging, toegangscontrole en privé-dashboard bouwen. Publiceer het formulier pas voor echte inzendingen nadat die onderdelen zijn aangesloten en getest.
+Test automatische Cloudflare deployment 14-11-2026
