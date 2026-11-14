@@ -159,6 +159,12 @@ if (document.body.dataset.page === 'contact') {
    return;
   }
   if (String(fields.get('botcheck') || '').trim()) return;
+   const turnstileToken = String(fields.get('cf-turnstile-response') || '');
+   if (!turnstileToken) {
+    status.textContent = 'Bevestig eerst de beveiligingscontrole en probeer opnieuw.';
+    return;
+   }
+   fields.delete('cf-turnstile-response');
   fields.delete('diensten[]');
   const selected = Array.from(leadForm.querySelectorAll('input[name="diensten[]"]:checked')).map(x => x.value);
   fields.set('Diensten', selected.join(', ') || 'Geen diensten geselecteerd');
@@ -175,9 +181,27 @@ if (document.body.dataset.page === 'contact') {
    });
    const result = await response.json();
    if (!response.ok || result.success !== true) throw new Error(result.message || 'Submission failed');
-   window.location.assign('/bedankt.html');
+    // De aanvraag is ontvangen door Web3Forms. De bevestiging is een aparte stap.
+    try {
+     const confirmationResponse = await fetch('/api/contact-confirmation', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+       email: String(fields.get('email') || ''),
+       naam: String(fields.get('naam') || ''),
+       turnstileToken
+      })
+     });
+     if (!confirmationResponse.ok) {
+      console.warn('Aanvraag ontvangen, maar bevestigingsmail niet verstuurd:', confirmationResponse.status);
+     }
+    } catch (confirmationError) {
+     console.warn('Aanvraag ontvangen, maar bevestigingsmail niet verstuurd:', confirmationError);
+    }
+    window.location.assign('/bedankt.html');
   } catch (error) {
    console.error('Web3Forms verzending:', error);
+    if (window.turnstile) window.turnstile.reset('#upside-turnstile');
    status.textContent = 'Verzenden is niet gelukt. Je gegevens blijven staan. Probeer later opnieuw of neem contact op via e-mail of WhatsApp.';
   } finally {
    sending = false;

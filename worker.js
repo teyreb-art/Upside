@@ -1058,12 +1058,101 @@ async function handleAdminExport(request, env) {
 // ROUTES
 // ==========================================
 
+
+// ==========================================
+// CONTACTBEVESTIGING — RESEND + TURNSTILE
+// ==========================================
+async function handleContactConfirmation(request, env) {
+  if (request.method !== 'POST') return json({error:'Methode niet toegestaan'},405);
+  if (!validOrigin(request)) return json({error:'Ongeldige herkomst'},403);
+  if (!env.RESEND_API_KEY || !env.TURNSTILE_SECRET_KEY || !env.DB) {
+    console.error('Resend, Turnstile of DB ontbreekt');
+    return json({error:'Bevestiging niet beschikbaar'},503);
+  }
+  let data;
+  try { data = await readJson(request); }
+  catch { return json({error:'Ongeldige aanvraag'},400); }
+  const email = typeof data?.email === 'string' ? data.email.trim().toLowerCase() : '';
+  const naam = typeof data?.naam === 'string' ? data.naam.trim() : '';
+  const token = typeof data?.turnstileToken === 'string' ? data.turnstileToken : '';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 || naam.length > 120 || !token || token.length > 2048) {
+    return json({error:'Ongeldige gegevens'},400);
+  }
+  const ip = request.headers.get('CF-Connecting-IP') || '';
+  const check = new URLSearchParams({secret:env.TURNSTILE_SECRET_KEY,response:token});
+  if (ip) check.set('remoteip',ip);
+  let verification;
+  try {
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method:'POST', body:check
+    });
+    verification = await response.json();
+  } catch (error) {
+    console.error('Turnstile validatie mislukt',error);
+    return json({error:'Beveiligingscontrole niet beschikbaar'},502);
+  }
+  if (!verification?.success || verification.hostname !== 'upsideagency.be') {
+    return json({error:'Beveiligingscontrole mislukt'},403);
+  }
+  // Maximaal één bevestiging per e-mailadres per uur. Hash voorkomt opslag van adressen.
+  const identifier = await sha256('contact-confirmation:' + email);
+  const now = Date.now();
+  await env.DB.prepare(`CREATE TABLE IF NOT EXISTS contact_confirmation_limits
+    (identifier TEXT PRIMARY KEY, expires_at INTEGER NOT NULL)`).run();
+  const allowed = await env.DB.prepare(`INSERT INTO contact_confirmation_limits (identifier, expires_at)
+    VALUES (?, ?) ON CONFLICT(identifier) DO UPDATE SET expires_at=excluded.expires_at
+    WHERE contact_confirmation_limits.expires_at < ?`).bind(identifier,now+3600000,now).run();
+  if (!allowed.meta?.changes) return json({error:'Bevestiging recent verzonden'},429);
+  // Extra limiet per IP: maximaal 10 verschillende adressen per uur.
+  const ipIdentifier = await sha256('contact-confirmation-ip:' + ip);
+  await env.DB.prepare(`CREATE TABLE IF NOT EXISTS contact_confirmation_ip_limits
+    (identifier TEXT PRIMARY KEY, hits INTEGER NOT NULL, expires_at INTEGER NOT NULL)`).run();
+  await env.DB.prepare(`INSERT INTO contact_confirmation_ip_limits (identifier, hits, expires_at)
+    VALUES (?, 1, ?) ON CONFLICT(identifier) DO UPDATE SET
+    hits=CASE WHEN expires_at < ? THEN 1 ELSE hits+1 END,
+    expires_at=CASE WHEN expires_at < ? THEN excluded.expires_at ELSE expires_at END`)
+    .bind(ipIdentifier,now+3600000,now,now).run();
+  const ipLimit = await env.DB.prepare(`SELECT hits FROM contact_confirmation_ip_limits WHERE identifier=?`)
+    .bind(ipIdentifier).first();
+  if (ipLimit?.hits > 10) return json({error:'Te veel bevestigingen'},429);
+  const safeName = naam.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const html = `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#193a68;line-height:1.7">
+    <h2 style="color:#0a51d6">Bedankt voor je aanvraag!</h2>
+    <p>Hallo ${safeName || 'daar'},</p>
+    <p>We hebben je aanvraag goed ontvangen. We nemen zo snel mogelijk persoonlijk contact met je op.</p>
+    <p>Wil je ons alvast wat meer vertellen over je onderneming? Vul dan het korte kennismakingsformulier in. Zo kunnen we ons goed voorbereiden.</p>
+    <p><a href="https://upsideagency.be/kennismaking.html" style="background:#0a51d6;color:#fff;padding:12px 20px;text-decoration:none;border-radius:6px;display:inline-block">Vul het kennismakingsformulier in</a></p>
+    <p>Tot binnenkort!<br><strong>Upside Agency</strong></p>
+  </div>`;
+  const response = await fetch('https://api.resend.com/emails', {
+    method:'POST',
+    headers:{'Authorization':`Bearer ${env.RESEND_API_KEY}`,'Content-Type':'application/json'},
+    body:JSON.stringify({
+      from:'Upside Agency <info@upsideagency.be>',
+      to:[email],
+      subject:'Bedankt voor je aanvraag – Upside Agency',
+      html,
+      text:`Hallo ${naam || 'daar'},\n\nBedankt voor je aanvraag! We hebben je bericht goed ontvangen en nemen zo snel mogelijk contact met je op.\n\nKennismakingsformulier: https://upsideagency.be/kennismaking.html\n\nTot binnenkort!\nUpside Agency`
+    })
+  });
+  if (!response.ok) {
+    console.error('Resend fout',response.status,(await response.text()).slice(0,500));
+    // Geen automatische herhaling: voorkomt dubbele verzending bij onduidelijke API-respons.
+    return json({error:'Bevestigingsmail kon niet worden verzonden'},502);
+  }
+  return json({success:true});
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const path = url.pathname;
 
     try {
+
+      if (path === '/api/contact-confirmation') {
+        return await handleContactConfirmation(request, env);
+      }
 
       // Publiek kennismakingsformulier
       if (path === "/api/kennismaking") {
