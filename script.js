@@ -977,7 +977,7 @@ if (document.body.dataset.page === "groeiscan") {
           if (answers[step] === null) return;
 
           if (step === data.questions.length - 1) {
-            showReport();
+            displayReport();
           } else {
             step++;
             showQuestion(true);
