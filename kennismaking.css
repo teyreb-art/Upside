@@ -639,3 +639,106 @@ body.intake-page .intake-footer a {
     animation-duration: 0.01ms !important;
   }
 }
+
+
+/* ==========================================
+   UPSIDE - ORIGINELE BRANDING
+   ========================================== */
+
+/* Zelfde basistypografie als homepage */
+
+body.intake-page {
+  font-family: 'DM Sans', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Origineel Upside-woordmerk */
+
+body.intake-page .intake-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+
+  font-family: 'Manrope', Arial, sans-serif;
+  font-size: 35px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -2px;
+
+  color: #102d69;
+  text-decoration: none;
+}
+
+/* Originele vier blauwe blokjes */
+
+body.intake-page .brand-icon {
+  display: grid;
+  grid-template-columns: 8px 8px;
+  gap: 3px;
+
+  margin-right: 12px;
+  transform: rotate(-10deg);
+}
+
+body.intake-page .brand-icon i {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: #255edc;
+}
+
+body.intake-page .brand-icon i:first-child {
+  background: #a9c8ff;
+}
+
+body.intake-page .brand-icon i:nth-child(2) {
+  transform: translateY(-5px);
+}
+
+/* Blauwe punt */
+
+body.intake-page .intake-brand .dot {
+  color: #255edc;
+}
+
+/* Titels zoals op homepage */
+
+body.intake-page .intake-intro h1,
+body.intake-page .intake-success h2 {
+  font-family: 'Manrope', Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: -.045em;
+}
+
+/* Vraagteksten */
+
+body.intake-page .intake-question-title,
+body.intake-page .intake-question legend {
+  font-family: 'Manrope', Arial, sans-serif;
+  font-weight: 700;
+}
+
+/* Antwoordkaarten */
+
+body.intake-page label.intake-choice span {
+  font-family: 'DM Sans', Arial, sans-serif;
+  font-weight: 500;
+}
+
+/* Knoppen */
+
+body.intake-page .intake-btn {
+  font-family: 'DM Sans', Arial, sans-serif;
+  font-weight: 600;
+}
+
+/* Mobiel: zelfde logoformaat als homepage */
+
+@media (max-width: 800px) {
+  body.intake-page .intake-brand {
+    font-size: 31px;
+  }
+}
+
