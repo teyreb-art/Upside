@@ -349,7 +349,6 @@
         row.classList.contains('gbp-bar-after') ? t.after : t.before;
     });
 
-    all('.calc-inputs label', t.inputs.map(value => value));
 
     // Keep the existing input elements and their event listeners.
     document.querySelectorAll('.calc-inputs label')
