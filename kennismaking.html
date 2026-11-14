@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="nl">
+<html lang="nl-BE">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,31 +9,68 @@
 
   <title>Kennismaking | Upside Agency</title>
 
-  <link rel="icon" href="assets/favicon.svg">
-<link rel="stylesheet" href="kennismaking.css?v=4">
+  <meta
+    name="description"
+    content="Vertel ons meer over jouw onderneming en bereid je kennismakingsgesprek met Upside Agency voor."
+  >
 
-  <script src="kennismaking.js" defer></script>
+  <link
+    rel="icon"
+    href="/assets/favicon.svg"
+    type="image/svg+xml"
+  >
+
+  <!-- Zelfde lettertypes als de Upside-homepage -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Alleen de formulier-CSS, om conflicten te vermijden -->
+  <link rel="stylesheet" href="/kennismaking.css?v=6">
+
+  <script src="/kennismaking.js" defer></script>
 </head>
 
 <body class="intake-page">
 
   <!-- HEADER -->
   <header class="intake-header">
-<a class="intake-brand" href="/" aria-label="Upside Agency homepage">
-  <span>upside<span class="intake-dot">.</span></span>
-</a>
+
+    <a
+      class="intake-brand"
+      href="/"
+      aria-label="Upside Agency homepage"
+    >
+      <span class="brand-icon" aria-hidden="true">
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+      upside<span class="dot">.</span>
+    </a>
 
     <a class="intake-home" href="/">
       Terug naar website
     </a>
+
   </header>
 
-  <!-- MAIN -->
+  <!-- HOOFDINHOUD -->
   <main class="intake-main">
+
     <div class="intake-shell">
 
       <!-- INTRODUCTIE -->
       <div class="intake-intro">
+
         <span class="intake-kicker">
           UPSIDE AGENCY · KENNISMAKING
         </span>
@@ -43,17 +80,19 @@
         </h1>
 
         <p>
-          Met een paar korte vragen leren we jouw bedrijf beter kennen
-          en bereiden we ons gesprek voor.
+          Met een paar korte vragen leren we jouw bedrijf
+          beter kennen en bereiden we ons gesprek voor.
         </p>
 
         <span class="intake-duration">
           Ongeveer 5 minuten · 10 vragen
         </span>
+
       </div>
 
-      <!-- VOORTGANG -->
+      <!-- VOORTGANGSBALK -->
       <div class="intake-progress">
+
         <div class="intake-progress-line">
           <span id="stepLabel">Stap 1 van 5</span>
           <span id="stepPercent">20%</span>
@@ -63,13 +102,14 @@
           class="intake-track"
           id="progress"
           role="progressbar"
-          aria-label="Voortgang"
+          aria-label="Voortgang van het formulier"
           aria-valuemin="0"
           aria-valuemax="100"
           aria-valuenow="20"
         >
           <div id="progressFill"></div>
         </div>
+
       </div>
 
       <!-- FORMULIER -->
@@ -78,8 +118,13 @@
         <!-- STAP 1 -->
         <section class="intake-step" data-step="0">
 
+          <!-- VRAAG 1 -->
           <div class="intake-question">
-            <label class="intake-question-title" for="company">
+
+            <label
+              class="intake-question-title"
+              for="company"
+            >
               <span class="intake-number">01</span>
               Wat is de naam van jouw bedrijf?
             </label>
@@ -90,12 +135,19 @@
               id="company"
               name="company"
               maxlength="120"
+              autocomplete="organization"
               required
               placeholder="Naam van jouw onderneming"
             >
+
           </div>
 
-          <fieldset class="intake-question" data-multi="activities">
+          <!-- VRAAG 2 -->
+          <fieldset
+            class="intake-question"
+            data-multi="activities"
+          >
+
             <legend>
               <span class="intake-number">02</span>
               Welke werkzaamheden voert jouw bedrijf uit?
@@ -106,23 +158,39 @@
             </p>
 
             <div class="intake-options"></div>
+
           </fieldset>
 
         </section>
 
         <!-- STAP 2 -->
-        <section class="intake-step" data-step="1" hidden>
+        <section
+          class="intake-step"
+          data-step="1"
+          hidden
+        >
 
+          <!-- VRAAG 3 -->
           <fieldset class="intake-question">
+
             <legend>
               <span class="intake-number">03</span>
               Wie zijn jouw belangrijkste klanten?
             </legend>
 
-            <div class="intake-options" data-single="clients"></div>
+            <div
+              class="intake-options"
+              data-single="clients"
+            ></div>
+
           </fieldset>
 
-          <fieldset class="intake-question" data-multi="existing">
+          <!-- VRAAG 4 -->
+          <fieldset
+            class="intake-question"
+            data-multi="existing"
+          >
+
             <legend>
               <span class="intake-number">04</span>
               Wat heeft jouw bedrijf momenteel al?
@@ -133,14 +201,24 @@
             </p>
 
             <div class="intake-options"></div>
+
           </fieldset>
 
         </section>
 
         <!-- STAP 3 -->
-        <section class="intake-step" data-step="2" hidden>
+        <section
+          class="intake-step"
+          data-step="2"
+          hidden
+        >
 
-          <fieldset class="intake-question" data-multi="acquisition">
+          <!-- VRAAG 5 -->
+          <fieldset
+            class="intake-question"
+            data-multi="acquisition"
+          >
+
             <legend>
               <span class="intake-number">05</span>
               Hoe vinden nieuwe klanten jouw bedrijf?
@@ -151,13 +229,19 @@
             </p>
 
             <div class="intake-options"></div>
+
           </fieldset>
 
-          <fieldset class="intake-question" data-multi="services">
+          <!-- VRAAG 6 -->
+          <fieldset
+            class="intake-question"
+            data-multi="services"
+          >
+
             <legend>
               <span class="intake-number">06</span>
-              Bij welke diensten zou jouw bedrijf ondersteuning
-              kunnen gebruiken?
+              Bij welke diensten zou jouw bedrijf
+              ondersteuning kunnen gebruiken?
             </legend>
 
             <p class="intake-hint">
@@ -166,49 +250,81 @@
             </p>
 
             <div class="intake-options"></div>
+
           </fieldset>
 
         </section>
 
         <!-- STAP 4 -->
-        <section class="intake-step" data-step="3" hidden>
+        <section
+          class="intake-step"
+          data-step="3"
+          hidden
+        >
 
+          <!-- VRAAG 7 -->
           <fieldset class="intake-question">
+
             <legend>
               <span class="intake-number">07</span>
               Wat is momenteel de grootste uitdaging
               voor jouw bedrijf?
             </legend>
 
-            <div class="intake-options" data-single="challenge"></div>
+            <div
+              class="intake-options"
+              data-single="challenge"
+            ></div>
+
           </fieldset>
 
+          <!-- VRAAG 8 -->
           <fieldset class="intake-question">
+
             <legend>
               <span class="intake-number">08</span>
               Heb je al foto's van uitgevoerde projecten?
             </legend>
 
-            <div class="intake-options" data-single="photos"></div>
+            <div
+              class="intake-options"
+              data-single="photos"
+            ></div>
+
           </fieldset>
 
         </section>
 
         <!-- STAP 5 -->
-        <section class="intake-step" data-step="4" hidden>
+        <section
+          class="intake-step"
+          data-step="4"
+          hidden
+        >
 
+          <!-- VRAAG 9 -->
           <fieldset class="intake-question">
+
             <legend>
               <span class="intake-number">09</span>
-              Heb je al een budget voorzien voor marketing
-              en online zichtbaarheid?
+              Heb je al een budget voorzien voor
+              marketing en online zichtbaarheid?
             </legend>
 
-            <div class="intake-options" data-single="budget"></div>
+            <div
+              class="intake-options"
+              data-single="budget"
+            ></div>
+
           </fieldset>
 
+          <!-- VRAAG 10 -->
           <div class="intake-question">
-            <label class="intake-question-title" for="notes">
+
+            <label
+              class="intake-question-title"
+              for="notes"
+            >
               <span class="intake-number">10</span>
               Is er nog iets dat je graag wilt bespreken?
             </label>
@@ -221,12 +337,20 @@
               rows="4"
               placeholder="Optioneel"
             ></textarea>
+
           </div>
 
           <!-- PRIVACY -->
           <div class="intake-consent">
+
             <label>
-              <input type="checkbox" id="consent" required>
+
+              <input
+                type="checkbox"
+                id="consent"
+                name="consent"
+                required
+              >
 
               <span>
                 Ik ga ermee akkoord dat Upside Agency
@@ -236,17 +360,19 @@
                 <a
                   href="/privacy.html"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                 >
                   Privacyinformatie
                 </a>
               </span>
+
             </label>
+
           </div>
 
           <p class="intake-footnote">
-            Je gegevens worden niet gebruikt voor nieuwsbrieven
-            zonder aparte toestemming.
+            Je gegevens worden niet gebruikt voor
+            nieuwsbrieven zonder aparte toestemming.
           </p>
 
         </section>
@@ -293,7 +419,11 @@
       </form>
 
       <!-- SUCCESMELDING -->
-      <div id="success" class="intake-success" hidden>
+      <div
+        id="success"
+        class="intake-success"
+        hidden
+      >
 
         <h2>Bedankt voor het invullen!</h2>
 
@@ -309,6 +439,7 @@
       </div>
 
     </div>
+
   </main>
 
   <!-- FOOTER -->
