@@ -1,53 +1,210 @@
-"use strict";
-// Upside Agency: homepage translations, with Dutch as the default language.
-const upsideI18nData = {"source": ["Naar de inhoud", "upside", ".", "Diensten", "Groei & resultaten", "Projecten", "Over Upside", "Gratis groeiscan", "Ik wil aan de slag", "VOOR ONDERNEMERS MET AMBITIE", "Jij durfde", "te beginnen.", "Wij helpen", "je groeien.", "Meer klanten. Minder repetitief werk.", "Slimmer groeien met marketing, AI en automatisering.", "Ik wil aan de slag", "Vertel ons je plannen. Wij nemen persoonlijk contact met je op.", "Liever eerst je groeikansen ontdekken? Doe de gratis groeiscan", "JOUW AMBITIE. ONZE AANDACHT.", "UPSIDE", "Grote plannen beginnen", "met een goed gesprek.", "Persoonlijk. Praktisch. Samen vooruit.", "GROW TOGETHER", "SLIMME TECHNOLOGIE. MENSELIJKE AANPAK.", "Ontdek wat we voor je kunnen betekenen", "↓", "HERKENBAAR?", "Ondernemen vraagt al genoeg van je.", "Je hebt de eerste stap gezet. Dat betekent niet dat je alle volgende stappen alleen moet uitzoeken.", "Waar vind ik klanten?", "Je hebt een goed aanbod. Nu wil je de mensen bereiken die het nodig hebben.", "Hoe word ik zichtbaar?", "Je wilt dat potentiële klanten jouw onderneming ontdekken.", "Waar haal ik de tijd?", "Terugkerende taken nemen ruimte in die je liever aan ondernemen besteedt.", "Hoe groei ik met mijn budget?", "Je wilt vooruit, met keuzes die passen bij jouw mogelijkheden.", "VAN UITDAGING NAAR MOGELIJKHEID", "Slimme oplossingen. Menselijke aanpak.", "Upside Agency is een marketingbureau uit Gent. We helpen zelfstandigen en groeiende bedrijven met professionele websites, SEO, digitale marketing en AI-automatisering. Samen zoeken we de aanpak die bij jouw onderneming past.", "Marketing & klantenwerving", "Gevonden worden.", "Jouw aanbod verdient de juiste aandacht. We helpen je de mensen bereiken voor wie jij het verschil kunt maken.", "AI & automatisering", "Ruimte om te ondernemen.", "Minder tijd aan dezelfde taken. Meer aandacht voor je klanten. Ontdek wat je slimmer kunt organiseren.", "Websites & digitale groei", "Een sterke eerste indruk.", "Een website die laat zien wie je bent, duidelijk maakt wat je doet en bezoekers helpt hun volgende stap te zetten.", "PERSOONLIJKE AANDACHT", "Jouw vragen verdienen een echt gesprek.", "We luisteren naar jouw ideeën, beantwoorden je vragen en denken met je mee. Zodat jij met meer inzicht en vertrouwen verder kunt bouwen.", "Eerst begrijpen we jouw onderneming.", "Daarna ontdekken we de mogelijkheden.", "Samen bepalen we een haalbare volgende stap.", "SAMEN VOORUIT", "Jij bouwt aan je onderneming.", "Wij staan aan je zijde.", "Jouw groei staat centraal. We denken met je mee en helpen je de volgende stap te ontdekken. Op jouw tempo, met oplossingen die bij jouw onderneming passen.", "Ik wil aan de slag", "Begin met inzicht. De rest komt later.", "upside", ".", "Jij bouwt aan je onderneming.", "Wij staan aan je zijde.", "Ontdek Upside", "Onze oplossingen", "Onze aanpak", "Jouw vraag", "Een stap vooruit", "Gratis groeiscan", "Groei & resultaten", "Projecten", "© 2026 Upside", "Marketing · AI · Automatisering", "Samen vooruit.", "WhatsApp"], "translations": {"en": ["Skip to content", "upside", ".", "Services", "Growth & results", "Projects", "About Upside", "Free growth scan", "Let's get started", "FOR AMBITIOUS ENTREPRENEURS", "You dared", "to start.", "We help", "you grow.", "More customers. Less repetitive work.", "Grow smarter with marketing, AI and automation.", "Let's get started", "Tell us about your plans. We'll get in touch personally.", "Prefer to explore your opportunities first? Take the free growth scan", "YOUR AMBITION. OUR ATTENTION.", "UPSIDE", "Big plans start", "with a good conversation.", "Personal. Practical. Moving forward together.", "GROW TOGETHER", "SMART TECHNOLOGY. HUMAN APPROACH.", "Discover what we can do for you", "↓", "SOUND FAMILIAR?", "Running a business already asks enough of you.", "You've taken the first step. That doesn't mean you have to figure out every next step alone.", "Where do I find customers?", "You have a great offer. Now you want to reach the people who need it.", "How do I get noticed?", "You want potential customers to discover your business.", "Where do I find the time?", "Repetitive tasks take up time you'd rather spend running your business.", "How do I grow within my budget?", "You want to move forward with choices that suit your means.", "FROM CHALLENGE TO OPPORTUNITY", "Smart solutions. A human approach.", "Upside Agency is a marketing agency based in Ghent. We help entrepreneurs and growing businesses with professional websites, SEO, digital marketing and AI automation. Together, we find an approach that suits your business.", "Marketing & customer acquisition", "Get discovered.", "Your offer deserves the right attention. We help you reach the people who will benefit most.", "AI & automation", "More room to run your business.", "Less time on repetitive tasks. More attention for your customers. Discover what you can organize more efficiently.", "Websites & digital growth", "Make a strong first impression.", "A website that shows who you are, explains what you do and helps visitors take the next step.", "PERSONAL ATTENTION", "Your questions deserve a real conversation.", "We listen to your ideas, answer your questions and think along with you, so you can move forward with greater clarity and confidence.", "First, we get to know your business.", "Then we explore the possibilities.", "Together we choose a realistic next step.", "MOVING FORWARD TOGETHER", "You're building your business.", "We're by your side.", "Your growth comes first. We think along with you and help you find your next step, at your pace, with solutions that fit your business.", "Let's get started", "Start with clarity. The rest can follow.", "upside", ".", "You're building your business.", "We're by your side.", "Discover Upside", "Our solutions", "Our approach", "Your question", "One step forward", "Free growth scan", "Growth & results", "Projects", "© 2026 Upside", "Marketing · AI · Automation", "Moving forward together.", "WhatsApp"], "fr": ["Aller au contenu", "upside", ".", "Services", "Croissance & résultats", "Projets", "À propos", "Diagnostic de croissance gratuit", "Je veux me lancer", "POUR LES ENTREPRENEURS AMBITIEUX", "Vous avez osé", "vous lancer.", "Nous vous aidons", "à grandir.", "Plus de clients. Moins de tâches répétitives.", "Développez votre activité avec le marketing, l'IA et l'automatisation.", "Je veux me lancer", "Parlez-nous de vos projets. Nous vous contacterons personnellement.", "Vous préférez découvrir vos possibilités ? Faites le diagnostic gratuit", "VOTRE AMBITION. NOTRE ATTENTION.", "UPSIDE", "Les grands projets commencent", "par une bonne conversation.", "Personnel. Concret. Avançons ensemble.", "GRANDIR ENSEMBLE", "TECHNOLOGIE INTELLIGENTE. APPROCHE HUMAINE.", "Découvrez ce que nous pouvons faire pour vous", "↓", "ÇA VOUS PARLE ?", "Entreprendre vous demande déjà beaucoup.", "Vous avez fait le premier pas. Cela ne signifie pas que vous devez trouver seul toutes les étapes suivantes.", "Où trouver des clients ?", "Vous avez une bonne offre. Il faut maintenant atteindre ceux qui en ont besoin.", "Comment gagner en visibilité ?", "Vous souhaitez que de futurs clients découvrent votre entreprise.", "Où trouver le temps ?", "Les tâches répétitives prennent du temps que vous préféreriez consacrer à votre activité.", "Comment grandir avec mon budget ?", "Vous voulez avancer avec des choix adaptés à vos moyens.", "DES DÉFIS AUX OPPORTUNITÉS", "Des solutions intelligentes. Une approche humaine.", "Upside Agency est une agence de marketing basée à Gand. Nous aidons les indépendants et les entreprises en croissance avec des sites web professionnels, le SEO, le marketing digital et l'automatisation par l'IA. Ensemble, nous trouvons l'approche adaptée à votre entreprise.", "Marketing & acquisition de clients", "Faites-vous connaître.", "Votre offre mérite l'attention qu'elle mérite. Nous vous aidons à atteindre les bonnes personnes.", "IA & automatisation", "Plus de temps pour entreprendre.", "Moins de tâches répétitives. Plus d'attention pour vos clients. Découvrez ce que vous pouvez simplifier.", "Sites web & croissance digitale", "Une première impression réussie.", "Un site qui montre qui vous êtes, explique votre activité et aide les visiteurs à passer à l'action.", "ATTENTION PERSONNALISÉE", "Vos questions méritent un vrai échange.", "Nous écoutons vos idées, répondons à vos questions et réfléchissons avec vous pour avancer avec plus de clarté et de confiance.", "Nous commençons par comprendre votre entreprise.", "Ensuite, nous explorons les possibilités.", "Ensemble, nous définissons une prochaine étape réaliste.", "AVANÇONS ENSEMBLE", "Vous développez votre entreprise.", "Nous sommes à vos côtés.", "Votre croissance est notre priorité. Nous vous aidons à trouver la prochaine étape, à votre rythme, avec des solutions adaptées à votre activité.", "Je veux me lancer", "Commencez par y voir clair. Le reste viendra.", "upside", ".", "Vous développez votre entreprise.", "Nous sommes à vos côtés.", "Découvrez Upside", "Nos solutions", "Notre approche", "Votre demande", "Un pas en avant", "Diagnostic de croissance gratuit", "Croissance & résultats", "Projets", "© 2026 Upside", "Marketing · IA · Automatisation", "Avançons ensemble.", "WhatsApp"], "tr": ["İçeriğe geç", "upside", ".", "Hizmetler", "Büyüme ve sonuçlar", "Projeler", "Upside hakkında", "Ücretsiz büyüme analizi", "Hemen başlayalım", "HEDEFLERİ BÜYÜK GİRİŞİMCİLER İÇİN", "Başlamaya", "cesaret ettiniz.", "Biz de büyümenize", "yardımcı oluyoruz.", "Daha fazla müşteri. Daha az tekrarlayan iş.", "Pazarlama, yapay zekâ ve otomasyonla daha akıllı büyüyün.", "Hemen başlayalım", "Planlarınızı anlatın. Sizinle bizzat iletişime geçelim.", "Önce fırsatları mı keşfetmek istersiniz? Ücretsiz analizi deneyin", "SİZİN HEDEFİNİZ. BİZİM İLGİMİZ.", "UPSIDE", "Büyük planlar", "iyi bir sohbetle başlar.", "Samimi. Pratik. Birlikte ileri.", "BİRLİKTE BÜYÜYELİM", "AKILLI TEKNOLOJİ. İNSAN ODAKLI YAKLAŞIM.", "Sizin için neler yapabileceğimizi keşfedin", "↓", "TANIDIK GELDİ Mİ?", "İşletme yönetmek zaten yeterince zor.", "İlk adımı attınız. Sonraki tüm adımları tek başınıza planlamak zorunda değilsiniz.", "Müşterileri nerede bulabilirim?", "İyi bir ürün veya hizmetiniz var. Şimdi ona ihtiyaç duyan insanlara ulaşma zamanı.", "Nasıl görünür olurum?", "Potansiyel müşterilerin işletmenizi keşfetmesini istiyorsunuz.", "Zamanı nereden bulacağım?", "Tekrarlayan işler, işletmenize ayırmak istediğiniz zamanı alıyor.", "Bütçemle nasıl büyüyebilirim?", "İmkânlarınıza uygun seçimlerle ilerlemek istiyorsunuz.", "SORUNLARDAN FIRSATLARA", "Akıllı çözümler. İnsani yaklaşım.", "Upside Agency, Gent merkezli bir pazarlama ajansıdır. Girişimcilere ve büyüyen işletmelere profesyonel web siteleri, SEO, dijital pazarlama ve yapay zekâ otomasyonu alanlarında destek veriyoruz. İşletmenize uygun yolu birlikte belirliyoruz.", "Pazarlama ve müşteri kazanımı", "Keşfedilin.", "Sunduğunuz hizmet doğru ilgiyi hak ediyor. Doğru kişilere ulaşmanıza yardımcı oluyoruz.", "Yapay zekâ ve otomasyon", "İşletmenize daha fazla zaman.", "Tekrarlayan işlere daha az, müşterilerinize daha fazla zaman ayırın. İşlerinizi nasıl kolaylaştırabileceğinizi keşfedin.", "Web siteleri ve dijital büyüme", "Güçlü bir ilk izlenim.", "Kim olduğunuzu ve ne yaptığınızı anlatan, ziyaretçilerin sonraki adımı atmasını kolaylaştıran bir web sitesi.", "KİŞİSEL İLGİ", "Sorularınız gerçek bir sohbeti hak ediyor.", "Fikirlerinizi dinliyor, sorularınızı yanıtlıyor ve birlikte düşünüyoruz. Böylece daha net ve güvenli adımlar atabilirsiniz.", "Önce işletmenizi tanıyoruz.", "Sonra fırsatları keşfediyoruz.", "Birlikte uygulanabilir bir sonraki adım belirliyoruz.", "BİRLİKTE İLERİ", "Siz işletmenizi büyütüyorsunuz.", "Biz yanınızdayız.", "Önceliğimiz sizin büyümeniz. Size uygun çözümlerle, kendi hızınızda ilerlemeniz için birlikte düşünüyoruz.", "Hemen başlayalım", "Önce netlik kazanın. Gerisi sonra gelir.", "upside", ".", "Siz işletmenizi büyütüyorsunuz.", "Biz yanınızdayız.", "Upside'ı keşfedin", "Çözümlerimiz", "Yaklaşımımız", "Sorunuz", "Bir adım ileri", "Ücretsiz büyüme analizi", "Büyüme ve sonuçlar", "Projeler", "© 2026 Upside", "Pazarlama · Yapay zekâ · Otomasyon", "Birlikte ileri.", "WhatsApp"], "es": ["Ir al contenido", "upside", ".", "Servicios", "Crecimiento y resultados", "Proyectos", "Sobre Upside", "Análisis de crecimiento gratis", "Quiero empezar", "PARA EMPRENDEDORES CON AMBICIÓN", "Te atreviste", "a empezar.", "Te ayudamos", "a crecer.", "Más clientes. Menos tareas repetitivas.", "Crece de forma inteligente con marketing, IA y automatización.", "Quiero empezar", "Cuéntanos tus planes. Nos pondremos en contacto contigo personalmente.", "¿Prefieres explorar tus oportunidades? Haz el análisis gratuito", "TU AMBICIÓN. NUESTRA ATENCIÓN.", "UPSIDE", "Los grandes planes empiezan", "con una buena conversación.", "Personal. Práctico. Avanzamos juntos.", "CRECEMOS JUNTOS", "TECNOLOGÍA INTELIGENTE. TRATO HUMANO.", "Descubre lo que podemos hacer por ti", "↓", "¿TE SUENA?", "Emprender ya exige mucho de ti.", "Has dado el primer paso. Eso no significa que debas descubrir todos los siguientes por tu cuenta.", "¿Dónde encuentro clientes?", "Tienes una buena oferta. Ahora toca llegar a quienes la necesitan.", "¿Cómo gano visibilidad?", "Quieres que los clientes potenciales descubran tu negocio.", "¿De dónde saco tiempo?", "Las tareas repetitivas ocupan tiempo que preferirías dedicar a tu empresa.", "¿Cómo crezco con mi presupuesto?", "Quieres avanzar tomando decisiones acordes con tus posibilidades.", "DE LOS RETOS A LAS OPORTUNIDADES", "Soluciones inteligentes. Trato humano.", "Upside Agency es una agencia de marketing de Gante. Ayudamos a autónomos y empresas en crecimiento con sitios web profesionales, SEO, marketing digital y automatización con IA. Juntos encontramos el enfoque adecuado para tu negocio.", "Marketing y captación de clientes", "Hazte visible.", "Tu oferta merece la atención adecuada. Te ayudamos a llegar a las personas indicadas.", "IA y automatización", "Más tiempo para tu negocio.", "Menos tiempo en tareas repetitivas. Más atención a tus clientes. Descubre cómo simplificar tu trabajo.", "Sitios web y crecimiento digital", "Una gran primera impresión.", "Una web que muestra quién eres, explica qué haces y ayuda a los visitantes a dar el siguiente paso.", "ATENCIÓN PERSONALIZADA", "Tus preguntas merecen una conversación real.", "Escuchamos tus ideas, respondemos tus preguntas y buscamos soluciones contigo para que avances con más claridad y confianza.", "Primero conocemos tu empresa.", "Después exploramos las posibilidades.", "Juntos definimos un siguiente paso realista.", "AVANCEMOS JUNTOS", "Tú construyes tu negocio.", "Nosotros estamos a tu lado.", "Tu crecimiento es lo primero. Te ayudamos a encontrar el siguiente paso, a tu ritmo y con soluciones adaptadas a tu empresa.", "Quiero empezar", "Empieza con claridad. Lo demás vendrá después.", "upside", ".", "Tú construyes tu negocio.", "Nosotros estamos a tu lado.", "Descubre Upside", "Nuestras soluciones", "Nuestro enfoque", "Tu consulta", "Un paso adelante", "Análisis de crecimiento gratis", "Crecimiento y resultados", "Proyectos", "© 2026 Upside", "Marketing · IA · Automatización", "Avancemos juntos.", "WhatsApp"]}};
-const upsideLanguages = ['nl','fr','en','tr','es'];
+
+const upsideLanguages = ['nl', 'fr', 'en', 'tr', 'es'];
+
 const upsideSelect = document.getElementById('upside-language');
-function upsideNormalize(value) { return value.replace(/\s+/g,' ').trim(); }
+
+const upsideLanguageNames = {
+  nl: 'Nederlands',
+  fr: 'Français',
+  en: 'English',
+  tr: 'Türkçe',
+  es: 'Español'
+};
+
+function upsideNormalize(value) {
+  return value.replace(/\s+/g, ' ').trim();
+}
+
+// Verzamel de oorspronkelijke teksten op de homepage.
 const upsideNodes = [];
+
 if (document.body.dataset.page === 'home') {
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT
+  );
+
   let node;
+
   while ((node = walker.nextNode())) {
-    if (node.parentElement && (['SCRIPT','STYLE','SVG','OPTION'].includes(node.parentElement.tagName) || node.parentElement.closest('.upside-lang-wrap'))) continue;
-    if (upsideNormalize(node.nodeValue)) upsideNodes.push(node);
+    if (
+      node.parentElement &&
+      (
+        ['SCRIPT', 'STYLE', 'SVG', 'OPTION'].includes(
+          node.parentElement.tagName
+        ) ||
+        node.parentElement.closest('.upside-lang-wrap')
+      )
+    ) {
+      continue;
+    }
+
+    if (upsideNormalize(node.nodeValue)) {
+      upsideNodes.push(node);
+    }
   }
 }
-function upsideApplyLanguage(language) {
-  const lang = upsideLanguages.includes(language) ? language : 'nl';
-  document.documentElement.lang = lang === 'nl' ? 'nl-BE' : lang;
-  if (upsideSelect) upsideSelect.value = lang;
-  if (upsideNodes.length === upsideI18nData.source.length) {
-    const values = lang === 'nl' ? upsideI18nData.source : upsideI18nData.translations[lang];
-    upsideNodes.forEach((node,i) => {
-      const original = node.nodeValue;
-      const prefix = original.match(/^\s*/)[0];
-      const suffix = original.match(/\s*$/)[0];
-      node.nodeValue = prefix + values[i] + suffix;
-    });
-  } else {
-    console.warn('Upside: homepage structure changed; translation skipped to avoid incorrect text.');
+
+// Onthoud de originele tekstnodes.
+const upsideOriginalTexts = upsideNodes.map(
+  node => node.nodeValue
+);
+
+function upsideGetSavedLanguage() {
+  const param = new URLSearchParams(
+    window.location.search
+  ).get('lang');
+
+  if (upsideLanguages.includes(param)) {
+    return param;
   }
+
+  try {
+    const saved =
+      localStorage.getItem('upside-language') ||
+      localStorage.getItem('upside-lang');
+
+    if (upsideLanguages.includes(saved)) {
+      return saved;
+    }
+  } catch (error) {
+    console.warn('Taalvoorkeur niet beschikbaar.');
+  }
+
+  return 'nl';
+}
+
+function upsideApplyLanguage(language) {
+  const lang = upsideLanguages.includes(language)
+    ? language
+    : 'nl';
+
+  // Bewaar de taal voor andere pagina's.
+  try {
+    localStorage.setItem('upside-language', lang);
+    localStorage.setItem('upside-lang', lang);
+  } catch (error) {
+    console.warn('Taalvoorkeur kon niet worden opgeslagen.');
+  }
+
+  document.documentElement.lang =
+    lang === 'nl' ? 'nl-BE' : lang;
+
+  if (upsideSelect) {
+    upsideSelect.value = lang;
+  }
+
+  // Vertaal de homepage.
   if (document.body.dataset.page === 'home') {
-    const titles = {nl:'Upside Agency | Marketingbureau & Websites in Gent',en:'Upside Agency | Marketing Agency & Websites in Ghent',fr:'Upside Agency | Agence marketing et sites web à Gand',tr:'Upside Agency | Gent Pazarlama Ajansı ve Web Siteleri',es:'Upside Agency | Agencia de marketing y sitios web en Gante'};
+    if (upsideNodes.length === upsideI18nData.source.length) {
+      const values = lang === 'nl'
+        ? upsideI18nData.source
+        : upsideI18nData.translations[lang];
+
+      upsideNodes.forEach((node, index) => {
+        const original = upsideOriginalTexts[index];
+        const prefix = original.match(/^\s*/)[0];
+        const suffix = original.match(/\s*$/)[0];
+
+        node.nodeValue =
+          prefix + values[index] + suffix;
+      });
+    } else {
+      console.warn(
+        'Upside: de homepage is gewijzigd. ' +
+        'Vertaling overgeslagen om fouten te voorkomen.'
+      );
+    }
+
+    const titles = {
+      nl: 'Upside Agency | Marketingbureau & Websites in Gent',
+      fr: 'Upside Agency | Agence marketing et sites web à Gand',
+      en: 'Upside Agency | Marketing Agency & Websites in Ghent',
+      tr: 'Upside Agency | Gent Pazarlama Ajansı ve Web Siteleri',
+      es: 'Upside Agency | Agencia de marketing y sitios web en Gante'
+    };
+
     document.title = titles[lang];
   }
-  // Keep the selected language when visiting the introduction form.
-  document.querySelectorAll('a[href*="kennismaking.html"]').forEach(a => {
-    const url = new URL(a.href, location.href);
-    if (lang === 'nl') url.searchParams.delete('lang');
-    else url.searchParams.set('lang',lang);
-    a.href = url.pathname + url.search + url.hash;
+
+  // Neem de gekozen taal mee naar alle interne pagina's.
+  document.querySelectorAll('a[href]').forEach(link => {
+    const rawHref = link.getAttribute('href');
+
+    if (
+      !rawHref ||
+      rawHref.startsWith('#') ||
+      rawHref.startsWith('mailto:') ||
+      rawHref.startsWith('tel:') ||
+      rawHref.startsWith('javascript:')
+    ) {
+      return;
+    }
+
+    let url;
+
+    try {
+      url = new URL(rawHref, window.location.href);
+    } catch (error) {
+      return;
+    }
+
+    // Externe websites blijven ongewijzigd.
+    if (url.origin !== window.location.origin) {
+      return;
+    }
+
+    if (lang === 'nl') {
+      url.searchParams.delete('lang');
+    } else {
+      url.searchParams.set('lang', lang);
+    }
+
+    link.setAttribute(
+      'href',
+      url.pathname + url.search + url.hash
+    );
+  });
+
+  // Vertaal de toegankelijkheid van het mobiele menu.
+  const menuButton = document.querySelector('.menu-button');
+
+  if (menuButton) {
+    const menuLabels = {
+      nl: ['Menu openen', 'Menu sluiten'],
+      fr: ['Ouvrir le menu', 'Fermer le menu'],
+      en: ['Open menu', 'Close menu'],
+      tr: ['Menüyü aç', 'Menüyü kapat'],
+      es: ['Abrir menú', 'Cerrar menú']
+    };
+
+    const isOpen =
+      menuButton.getAttribute('aria-expanded') === 'true';
+
+    menuButton.setAttribute(
+      'aria-label',
+      menuLabels[lang][isOpen ? 1 : 0]
+    );
+  }
+}
+
+// Bouw de taalkeuzelijst op.
+if (upsideSelect) {
+  upsideSelect.replaceChildren(
+    ...Object.entries(upsideLanguageNames).map(
+      ([code, name]) => {
+        const option = document.createElement('option');
+        option.value = code;
+        option.textContent = name;
+        return option;
+      }
+    )
+  );
+
+  upsideSelect.addEventListener('change', () => {
+    upsideApplyLanguage(upsideSelect.value);
   });
 }
-if (upsideSelect) {
-  const languageNames = { nl: 'Nederlands', fr: 'Français', en: 'English', tr: 'Türkçe', es: 'Español' };
-  upsideSelect.replaceChildren(...Object.entries(languageNames).map(([code, name]) => {
-    const option = document.createElement('option');
-    option.value = code;
-    option.textContent = name;
-    return option;
-  }));
-  upsideSelect.addEventListener('change', () => upsideApplyLanguage(upsideSelect.value));
-}
-upsideApplyLanguage('nl');
+
+// Gebruik bij het openen de laatst gekozen taal.
+upsideApplyLanguage(upsideGetSavedLanguage());
