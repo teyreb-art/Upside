@@ -112,3 +112,82 @@ body[data-page="home"] .approach-copy { max-width: 800px; margin: 0 auto; }
     align-items: stretch;
   }
 }
+
+/* Mobiele navigatie Upside */
+@media (max-width: 800px) {
+
+  .header-inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .header-inner .logo {
+    font-size: 25px !important;
+    flex: 0 1 auto !important;
+    min-width: 0;
+  }
+
+  .header-inner .brand-icon {
+    margin-right: 7px;
+    transform: rotate(-10deg) scale(.8);
+  }
+
+  .upside-lang-wrap {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    flex: 0 1 auto !important;
+  }
+
+  .upside-lang-select {
+    width: 135px !important;
+    min-width: 0 !important;
+    max-width: 135px !important;
+    padding: 8px 20px 8px 8px !important;
+    font-size: 12px !important;
+  }
+
+  .header-inner .menu-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 40px !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 6px !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: #102d69 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+    z-index: 100;
+  }
+
+  .menu-button svg {
+    display: block !important;
+    width: 26px !important;
+    height: 26px !important;
+    stroke: currentColor !important;
+  }
+
+  .header-inner nav {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 99;
+  }
+
+  .header-inner nav.open {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 25px;
+  }
+}
