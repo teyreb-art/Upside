@@ -58,3 +58,57 @@ body[data-page="home"] .approach-copy { max-width: 800px; margin: 0 auto; }
 .upside-lang-wrap { flex: 0 0 auto !important; min-width: 0; }
 .upside-lang-select { width: 150px !important; min-width: 150px !important; max-width: none !important; padding: 9px 28px 9px 12px !important; box-sizing: border-box; font-family: inherit; font-size: 13px; font-weight: 600; white-space: nowrap; text-overflow: clip; }
 @media (max-width: 900px) { .upside-lang-select { width: 150px !important; min-width: 150px !important; max-width: none !important; } }
+
+/* Mobiele header: logo, taalkeuze en menu */
+@media (max-width: 800px) {
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .header-inner .logo {
+    font-size: 25px;
+    flex-shrink: 0;
+  }
+
+  .upside-lang-wrap {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    flex-shrink: 1 !important;
+  }
+
+  .upside-lang-select {
+    width: 132px !important;
+    min-width: 0 !important;
+    max-width: 132px !important;
+    font-size: 12px;
+    padding: 8px 20px 8px 8px !important;
+  }
+
+  .menu-button {
+    display: grid !important;
+    place-items: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    background: transparent;
+    border: 0;
+    color: #102d69;
+    position: relative;
+    z-index: 30;
+  }
+
+  .menu-button svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .header-inner nav.open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
