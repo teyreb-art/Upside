@@ -650,7 +650,8 @@ const languageSelect = document.getElementById('language');
 
 let step = 0;
 
-let lang = 'nl';
+const requestedLang = new URLSearchParams(window.location.search).get('lang');
+let lang = ['fr', 'en', 'tr', 'es'].includes(requestedLang) ? requestedLang : 'nl';
 
 languageSelect.value = lang;
 
