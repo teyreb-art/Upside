@@ -1,16 +1,28 @@
 
+"use strict";
+
+// ==========================================
+// UPSIDE AGENCY — CLOUDFLARE WORKER
+// ==========================================
+
 const ADMIN_EMAIL = "beratkaranfil2005@gmail.com";
 const SESSION_DAYS = 7;
 const COOKIE_NAME = "__Host-upside_session";
 const PASSWORD_ITERATIONS = 100000;
 
-function json(data, status = 200, extraHeaders = {}) {
+const STATUSES = ["nieuw", "opvolgen", "afgerond"];
+
+// ==========================================
+// ALGEMENE FUNCTIES
+// ==========================================
+
+function json(data, status = 200, headers = {}) {
   return Response.json(data, {
     status,
     headers: {
       "Cache-Control": "no-store",
       "X-Content-Type-Options": "nosniff",
-      ...extraHeaders
+      ...headers
     }
   });
 }
@@ -33,12 +45,17 @@ function fromHex(hex) {
 }
 
 function randomToken() {
-  return toHex(crypto.getRandomValues(new Uint8Array(32)));
+  return toHex(
+    crypto.getRandomValues(new Uint8Array(32))
+  );
 }
 
 async function sha256(value) {
   const bytes = new TextEncoder().encode(value);
-  return toHex(await crypto.subtle.digest("SHA-256", bytes));
+
+  return toHex(
+    await crypto.subtle.digest("SHA-256", bytes)
+  );
 }
 
 async function hashPassword(password, saltHex = null) {
@@ -81,7 +98,11 @@ async function verifyPassword(password, stored) {
     return false;
   }
 
-  const calculated = await hashPassword(password, parts[2]);
+  const calculated = await hashPassword(
+    password,
+    parts[2]
+  );
+
   const a = new TextEncoder().encode(calculated);
   const b = new TextEncoder().encode(stored);
 
@@ -98,17 +119,21 @@ async function verifyPassword(password, stored) {
 
 function validOrigin(request) {
   const origin = request.headers.get("Origin");
+
   return origin === new URL(request.url).origin;
 }
 
 async function readJson(request) {
-  const type = request.headers.get("content-type") || "";
+  const type =
+    request.headers.get("content-type") || "";
 
   if (!type.toLowerCase().includes("application/json")) {
     throw new Error("JSON vereist");
   }
 
-  const length = Number(request.headers.get("content-length"));
+  const length = Number(
+    request.headers.get("content-length")
+  );
 
   if (length > 20000) {
     throw new Error("Aanvraag te groot");
@@ -143,6 +168,10 @@ function sessionCookie(token, maxAge) {
   return `${COOKIE_NAME}=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${maxAge}`;
 }
 
+// ==========================================
+// BEHEERDER CONTROLEREN
+// ==========================================
+
 async function currentAdmin(request, env) {
   const token = getCookie(request, COOKIE_NAME);
 
@@ -166,21 +195,46 @@ async function currentAdmin(request, env) {
   ).first();
 }
 
-// ----------------------------------
+async function requireAdmin(request, env) {
+  const user = await currentAdmin(request, env);
+
+  if (!user) {
+    return {
+      user: null,
+      error: json(
+        { error: "Niet ingelogd" },
+        401
+      )
+    };
+  }
+
+  return { user, error: null };
+}
+
+// ==========================================
 // EENMALIGE REGISTRATIE
-// ----------------------------------
+// ==========================================
 
 async function handleSetup(request, env) {
   if (request.method !== "POST") {
-    return json({ error: "Methode niet toegestaan" }, 405);
+    return json(
+      { error: "Methode niet toegestaan" },
+      405
+    );
   }
 
   if (!validOrigin(request)) {
-    return json({ error: "Ongeldige herkomst" }, 403);
+    return json(
+      { error: "Ongeldige herkomst" },
+      403
+    );
   }
 
   if (!env.ADMIN_SETUP_TOKEN) {
-    return json({ error: "Registratie is uitgeschakeld" }, 403);
+    return json(
+      { error: "Registratie is uitgeschakeld" },
+      403
+    );
   }
 
   const existing = await env.DB.prepare(
@@ -188,7 +242,10 @@ async function handleSetup(request, env) {
   ).first();
 
   if (existing) {
-    return json({ error: "Er bestaat al een beheerder" }, 403);
+    return json(
+      { error: "Er bestaat al een beheerder" },
+      403
+    );
   }
 
   let data;
@@ -196,7 +253,10 @@ async function handleSetup(request, env) {
   try {
     data = await readJson(request);
   } catch {
-    return json({ error: "Ongeldige aanvraag" }, 400);
+    return json(
+      { error: "Ongeldige aanvraag" },
+      400
+    );
   }
 
   const { email, password, setupToken } = data || {};
@@ -208,23 +268,36 @@ async function handleSetup(request, env) {
     password.length > 128 ||
     typeof setupToken !== "string"
   ) {
-    return json({ error: "Ongeldige registratiegegevens" }, 400);
+    return json(
+      { error: "Ongeldige registratiegegevens" },
+      400
+    );
   }
 
-  const expectedHash = await sha256(env.ADMIN_SETUP_TOKEN);
+  const expectedHash = await sha256(
+    env.ADMIN_SETUP_TOKEN
+  );
+
   const providedHash = await sha256(setupToken);
 
   if (expectedHash !== providedHash) {
-    return json({ error: "Ongeldige installatiecode" }, 403);
+    return json(
+      { error: "Ongeldige installatiecode" },
+      403
+    );
   }
 
   const passwordHash = await hashPassword(password);
-  const id = crypto.randomUUID();
 
   await env.DB.prepare(`
-    INSERT INTO admin_users (id, email, password_hash)
+    INSERT INTO admin_users
+      (id, email, password_hash)
     VALUES (?, ?, ?)
-  `).bind(id, email, passwordHash).run();
+  `).bind(
+    crypto.randomUUID(),
+    email,
+    passwordHash
+  ).run();
 
   return json({
     success: true,
@@ -232,17 +305,23 @@ async function handleSetup(request, env) {
   }, 201);
 }
 
-// ----------------------------------
-// LOGIN MET BEVEILIGING
-// ----------------------------------
+// ==========================================
+// LOGIN MET POGINGENLIMIET
+// ==========================================
 
 async function handleLogin(request, env) {
   if (request.method !== "POST") {
-    return json({ error: "Methode niet toegestaan" }, 405);
+    return json(
+      { error: "Methode niet toegestaan" },
+      405
+    );
   }
 
   if (!validOrigin(request)) {
-    return json({ error: "Ongeldige herkomst" }, 403);
+    return json(
+      { error: "Ongeldige herkomst" },
+      403
+    );
   }
 
   let data;
@@ -250,7 +329,10 @@ async function handleLogin(request, env) {
   try {
     data = await readJson(request);
   } catch {
-    return json({ error: "Ongeldige aanvraag" }, 400);
+    return json(
+      { error: "Ongeldige aanvraag" },
+      400
+    );
   }
 
   const { email, password } = data || {};
@@ -261,26 +343,32 @@ async function handleLogin(request, env) {
     email.length > 254 ||
     password.length > 128
   ) {
-    return json({ error: "Ongeldige inloggegevens" }, 401);
+    return json(
+      { error: "Ongeldige inloggegevens" },
+      401
+    );
   }
 
   const normalizedEmail = email.toLowerCase().trim();
-  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
 
-  const identifier = await sha256(normalizedEmail + ":" + ip);
+  const ip =
+    request.headers.get("CF-Connecting-IP") ||
+    "unknown";
+
+  const identifier = await sha256(
+    normalizedEmail + ":" + ip
+  );
 
   const now = Date.now();
   const windowMs = 15 * 60 * 1000;
   const maxAttempts = 5;
 
-  // Maak een teller aan indien nodig.
   await env.DB.prepare(`
     INSERT OR IGNORE INTO admin_login_attempts
       (identifier, attempts, window_start, blocked_until)
     VALUES (?, 0, ?, 0)
   `).bind(identifier, now).run();
 
-  // Reset een verlopen venster.
   await env.DB.prepare(`
     UPDATE admin_login_attempts
     SET attempts = 0,
@@ -310,7 +398,8 @@ async function handleLogin(request, env) {
     )
   ) {
     return json({
-      error: "Te veel inlogpogingen. Probeer het over 15 minuten opnieuw."
+      error:
+        "Te veel inlogpogingen. Probeer het over 15 minuten opnieuw."
     }, 429);
   }
 
@@ -322,7 +411,10 @@ async function handleLogin(request, env) {
   `).bind(normalizedEmail).first();
 
   const valid = user
-    ? await verifyPassword(password, user.password_hash)
+    ? await verifyPassword(
+        password,
+        user.password_hash
+      )
     : false;
 
   if (!valid) {
@@ -340,10 +432,12 @@ async function handleLogin(request, env) {
       identifier
     ).run();
 
-    return json({ error: "Ongeldige inloggegevens" }, 401);
+    return json(
+      { error: "Ongeldige inloggegevens" },
+      401
+    );
   }
 
-  // Verwijder de teller na succesvolle login.
   await env.DB.prepare(`
     DELETE FROM admin_login_attempts
     WHERE identifier = ?
@@ -374,23 +468,32 @@ async function handleLogin(request, env) {
 
   response.headers.set(
     "Set-Cookie",
-    sessionCookie(token, SESSION_DAYS * 86400)
+    sessionCookie(
+      token,
+      SESSION_DAYS * 86400
+    )
   );
 
   return response;
 }
 
-// ----------------------------------
+// ==========================================
 // UITLOGGEN
-// ----------------------------------
+// ==========================================
 
 async function handleLogout(request, env) {
   if (request.method !== "POST") {
-    return json({ error: "Methode niet toegestaan" }, 405);
+    return json(
+      { error: "Methode niet toegestaan" },
+      405
+    );
   }
 
   if (!validOrigin(request)) {
-    return json({ error: "Ongeldige herkomst" }, 403);
+    return json(
+      { error: "Ongeldige herkomst" },
+      403
+    );
   }
 
   const token = getCookie(request, COOKIE_NAME);
@@ -399,7 +502,9 @@ async function handleLogout(request, env) {
     await env.DB.prepare(`
       DELETE FROM admin_sessions
       WHERE token_hash = ?
-    `).bind(await sha256(token)).run();
+    `).bind(
+      await sha256(token)
+    ).run();
   }
 
   const response = json({ success: true });
@@ -412,19 +517,25 @@ async function handleLogout(request, env) {
   return response;
 }
 
-// ----------------------------------
-// CONTROLEER INGELOGDE BEHEERDER
-// ----------------------------------
+// ==========================================
+// INLOGSESSIE CONTROLEREN
+// ==========================================
 
 async function handleMe(request, env) {
   if (request.method !== "GET") {
-    return json({ error: "Methode niet toegestaan" }, 405);
+    return json(
+      { error: "Methode niet toegestaan" },
+      405
+    );
   }
 
   const user = await currentAdmin(request, env);
 
   if (!user) {
-    return json({ authenticated: false }, 401);
+    return json(
+      { authenticated: false },
+      401
+    );
   }
 
   return json({
@@ -433,13 +544,17 @@ async function handleMe(request, env) {
   });
 }
 
-// ----------------------------------
-// BESTAAND KENNISMAKINGSFORMULIER
-// ----------------------------------
+// ==========================================
+// KENNISMAKINGSFORMULIER
+// BESTAANDE WERKING BEHOUDEN
+// ==========================================
 
 async function handleKennismaking(request, env) {
   if (request.method !== "POST") {
-    return json({ error: "Methode niet toegestaan" }, 405);
+    return json(
+      { error: "Methode niet toegestaan" },
+      405
+    );
   }
 
   try {
@@ -447,22 +562,34 @@ async function handleKennismaking(request, env) {
       throw new Error("D1-binding DB ontbreekt");
     }
 
-    const type = request.headers.get("content-type") || "";
+    const type =
+      request.headers.get("content-type") || "";
 
     if (!type.toLowerCase().includes("application/json")) {
-      return json({ error: "JSON vereist" }, 415);
+      return json(
+        { error: "JSON vereist" },
+        415
+      );
     }
 
-    const length = Number(request.headers.get("content-length"));
+    const length = Number(
+      request.headers.get("content-length")
+    );
 
     if (length > 20000) {
-      return json({ error: "Aanvraag te groot" }, 413);
+      return json(
+        { error: "Aanvraag te groot" },
+        413
+      );
     }
 
     const raw = await request.text();
 
     if (raw.length > 20000) {
-      return json({ error: "Aanvraag te groot" }, 413);
+      return json(
+        { error: "Aanvraag te groot" },
+        413
+      );
     }
 
     let data;
@@ -470,11 +597,21 @@ async function handleKennismaking(request, env) {
     try {
       data = JSON.parse(raw);
     } catch {
-      return json({ error: "Ongeldige JSON" }, 400);
+      return json(
+        { error: "Ongeldige JSON" },
+        400
+      );
     }
 
-    if (!data || typeof data !== "object" || Array.isArray(data)) {
-      return json({ error: "Ongeldige aanvraag" }, 400);
+    if (
+      !data ||
+      typeof data !== "object" ||
+      Array.isArray(data)
+    ) {
+      return json(
+        { error: "Ongeldige aanvraag" },
+        400
+      );
     }
 
     const company = data.company;
@@ -490,7 +627,10 @@ async function handleKennismaking(request, env) {
       !["nl", "fr", "en", "tr", "es"].includes(language) ||
       data.consent !== true
     ) {
-      return json({ error: "Ongeldige formuliergegevens" }, 400);
+      return json(
+        { error: "Ongeldige formuliergegevens" },
+        400
+      );
     }
 
     const allowed = {
@@ -505,12 +645,15 @@ async function handleKennismaking(request, env) {
         !Array.isArray(data[key]) ||
         data[key].length > max ||
         data[key].some(
-          item => typeof item !== "string" || item.length > 200
+          item =>
+            typeof item !== "string" ||
+            item.length > 200
         )
       ) {
-        return json({
-          error: `Ongeldige waarde: ${key}`
-        }, 400);
+        return json(
+          { error: `Ongeldige waarde: ${key}` },
+          400
+        );
       }
     }
 
@@ -524,9 +667,10 @@ async function handleKennismaking(request, env) {
         typeof data[key] !== "string" ||
         data[key].length > 200
       ) {
-        return json({
-          error: `Ongeldige waarde: ${key}`
-        }, 400);
+        return json(
+          { error: `Ongeldige waarde: ${key}` },
+          400
+        );
       }
     }
 
@@ -558,59 +702,476 @@ async function handleKennismaking(request, env) {
       consentAt
     ).run();
 
-    return json({ success: true, id }, 201);
+    return json({
+      success: true,
+      id
+    }, 201);
 
   } catch (error) {
-    console.error("Kennismaking opslaan mislukt:", error);
+    console.error(
+      "Kennismaking opslaan mislukt:",
+      error
+    );
 
-    return json({
-      error: "Opslaan mislukt"
-    }, 500);
+    return json(
+      { error: "Opslaan mislukt" },
+      500
+    );
   }
 }
 
-// ----------------------------------
-// WORKER ROUTES
-// ----------------------------------
+// ==========================================
+// DASHBOARD — ALLE AANVRAGEN
+// ==========================================
+
+async function handleAdminRequests(request, env) {
+  if (request.method !== "GET") {
+    return json(
+      { error: "Methode niet toegestaan" },
+      405
+    );
+  }
+
+  const auth = await requireAdmin(request, env);
+
+  if (auth.error) return auth.error;
+
+  const result = await env.DB.prepare(`
+    SELECT
+      id,
+      company,
+      activities,
+      clients,
+      existing_tools,
+      acquisition,
+      services,
+      challenge,
+      photos,
+      budget,
+      notes,
+      language,
+      consent,
+      consent_at,
+      status,
+      admin_notes,
+      created_at,
+      updated_at
+    FROM kennismakingen
+    ORDER BY created_at DESC, id DESC
+    LIMIT 1000
+  `).all();
+
+  const requests = result.results || [];
+
+  const stats = {
+    total: requests.length,
+    nieuw: 0,
+    opvolgen: 0,
+    afgerond: 0
+  };
+
+  for (const item of requests) {
+    if (STATUSES.includes(item.status)) {
+      stats[item.status]++;
+    }
+  }
+
+  return json({
+    success: true,
+    requests,
+    stats,
+    limit: 1000,
+    has_more: requests.length === 1000
+  });
+}
+
+// ==========================================
+// DASHBOARD — EEN AANVRAAG BEKIJKEN
+// ==========================================
+
+async function handleAdminRequestDetail(
+  request,
+  env,
+  id
+) {
+  if (request.method !== "GET") {
+    return json(
+      { error: "Methode niet toegestaan" },
+      405
+    );
+  }
+
+  const auth = await requireAdmin(request, env);
+
+  if (auth.error) return auth.error;
+
+  const item = await env.DB.prepare(`
+    SELECT *
+    FROM kennismakingen
+    WHERE id = ?
+    LIMIT 1
+  `).bind(id).first();
+
+  if (!item) {
+    return json(
+      { error: "Aanvraag niet gevonden" },
+      404
+    );
+  }
+
+  return json({
+    success: true,
+    request: item
+  });
+}
+
+// ==========================================
+// DASHBOARD — STATUS EN NOTITIES OPSLAAN
+// ==========================================
+
+async function handleAdminRequestUpdate(
+  request,
+  env,
+  id
+) {
+  if (request.method !== "PATCH") {
+    return json(
+      { error: "Methode niet toegestaan" },
+      405
+    );
+  }
+
+  if (!validOrigin(request)) {
+    return json(
+      { error: "Ongeldige herkomst" },
+      403
+    );
+  }
+
+  const auth = await requireAdmin(request, env);
+
+  if (auth.error) return auth.error;
+
+  let data;
+
+  try {
+    data = await readJson(request);
+  } catch {
+    return json(
+      { error: "Ongeldige aanvraag" },
+      400
+    );
+  }
+
+  if (
+    !data ||
+    typeof data !== "object" ||
+    Array.isArray(data)
+  ) {
+    return json(
+      { error: "Ongeldige gegevens" },
+      400
+    );
+  }
+
+  const hasStatus = Object.prototype.hasOwnProperty.call(
+    data,
+    "status"
+  );
+
+  const hasNotes = Object.prototype.hasOwnProperty.call(
+    data,
+    "admin_notes"
+  );
+
+  if (!hasStatus && !hasNotes) {
+    return json(
+      { error: "Geen wijzigingen opgegeven" },
+      400
+    );
+  }
+
+  if (
+    hasStatus &&
+    !STATUSES.includes(data.status)
+  ) {
+    return json(
+      { error: "Ongeldige status" },
+      400
+    );
+  }
+
+  if (
+    hasNotes &&
+    (
+      typeof data.admin_notes !== "string" ||
+      data.admin_notes.length > 5000
+    )
+  ) {
+    return json(
+      { error: "Notities mogen maximaal 5000 tekens bevatten" },
+      400
+    );
+  }
+
+  const existing = await env.DB.prepare(`
+    SELECT id, status, admin_notes
+    FROM kennismakingen
+    WHERE id = ?
+    LIMIT 1
+  `).bind(id).first();
+
+  if (!existing) {
+    return json(
+      { error: "Aanvraag niet gevonden" },
+      404
+    );
+  }
+
+  const status = hasStatus
+    ? data.status
+    : existing.status;
+
+  const adminNotes = hasNotes
+    ? data.admin_notes.trim()
+    : existing.admin_notes;
+
+  await env.DB.prepare(`
+    UPDATE kennismakingen
+    SET status = ?,
+        admin_notes = ?,
+        updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?
+  `).bind(
+    status,
+    adminNotes,
+    id
+  ).run();
+
+  const updated = await env.DB.prepare(`
+    SELECT *
+    FROM kennismakingen
+    WHERE id = ?
+    LIMIT 1
+  `).bind(id).first();
+
+  return json({
+    success: true,
+    message: "Wijzigingen opgeslagen",
+    request: updated
+  });
+}
+
+// ==========================================
+// DASHBOARD — CSV EXPORT
+// ==========================================
+
+function csvSafe(value) {
+  let text = String(value ?? "");
+
+  // Voorkom formule-uitvoering in spreadsheetsoftware.
+  if (/^[\s]*[=+\-@\t\r]/.test(text)) {
+    text = "'" + text;
+  }
+
+  return '"' + text.replace(/"/g, '""') + '"';
+}
+
+function csvRow(values) {
+  return values.map(csvSafe).join(";");
+}
+
+async function handleAdminExport(request, env) {
+  if (request.method !== "GET") {
+    return json(
+      { error: "Methode niet toegestaan" },
+      405
+    );
+  }
+
+  const auth = await requireAdmin(request, env);
+
+  if (auth.error) return auth.error;
+
+  const result = await env.DB.prepare(`
+    SELECT *
+    FROM kennismakingen
+    ORDER BY created_at DESC, id DESC
+  `).all();
+
+  if (!result.success) {
+    throw new Error("CSV-query mislukt");
+  }
+
+  const columns = [
+    ["id", "ID"],
+    ["company", "Bedrijf"],
+    ["activities", "Activiteiten"],
+    ["clients", "Klanten"],
+    ["existing_tools", "Bestaande tools"],
+    ["acquisition", "Klantenwerving"],
+    ["services", "Gewenste diensten"],
+    ["challenge", "Uitdaging"],
+    ["photos", "Foto's"],
+    ["budget", "Budget"],
+    ["notes", "Opmerkingen klant"],
+    ["language", "Taal"],
+    ["consent", "Toestemming"],
+    ["consent_at", "Toestemming datum"],
+    ["status", "Status"],
+    ["admin_notes", "Interne notities"],
+    ["created_at", "Aangemaakt"],
+    ["updated_at", "Bijgewerkt"]
+  ];
+
+  const lines = [
+    csvRow(columns.map(column => column[1]))
+  ];
+
+  for (const item of result.results || []) {
+    lines.push(
+      csvRow(
+        columns.map(column => item[column[0]])
+      )
+    );
+  }
+
+  const csv = "\uFEFF" + lines.join("\r\n");
+
+  const date = new Date()
+    .toISOString()
+    .slice(0, 10);
+
+  return new Response(csv, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/csv; charset=utf-8",
+      "Content-Disposition":
+        `attachment; filename="upside-aanvragen-${date}.csv"`,
+      "Cache-Control": "no-store, private",
+      "X-Content-Type-Options": "nosniff"
+    }
+  });
+}
+
+// ==========================================
+// ROUTES
+// ==========================================
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    const path = url.pathname;
 
     try {
-      if (url.pathname === "/api/kennismaking") {
-        return await handleKennismaking(request, env);
+
+      // Publiek kennismakingsformulier
+      if (path === "/api/kennismaking") {
+        return await handleKennismaking(
+          request,
+          env
+        );
       }
 
-      if (url.pathname === "/api/admin/setup") {
-        return await handleSetup(request, env);
+      // Registratie
+      if (path === "/api/admin/setup") {
+        return await handleSetup(
+          request,
+          env
+        );
       }
 
-      if (url.pathname === "/api/admin/login") {
-        return await handleLogin(request, env);
+      // Login
+      if (path === "/api/admin/login") {
+        return await handleLogin(
+          request,
+          env
+        );
       }
 
-      if (url.pathname === "/api/admin/logout") {
-        return await handleLogout(request, env);
+      // Logout
+      if (path === "/api/admin/logout") {
+        return await handleLogout(
+          request,
+          env
+        );
       }
 
-      if (url.pathname === "/api/admin/me") {
-        return await handleMe(request, env);
+      // Sessiestatus
+      if (path === "/api/admin/me") {
+        return await handleMe(
+          request,
+          env
+        );
       }
 
-      // Andere admin-API's zijn niet publiek toegankelijk.
-      if (url.pathname.startsWith("/api/admin/")) {
-        return json({ error: "Niet gevonden" }, 404);
+      // Alle aanvragen
+      if (path === "/api/admin/requests") {
+        return await handleAdminRequests(
+          request,
+          env
+        );
       }
 
+      // CSV-export
+      if (path === "/api/admin/export") {
+        return await handleAdminExport(
+          request,
+          env
+        );
+      }
+
+      // Individuele aanvragen
+      const match = path.match(
+        /^\/api\/admin\/requests\/([0-9a-f-]{36})$/
+      );
+
+      if (match) {
+        const id = match[1];
+
+        if (request.method === "GET") {
+          return await handleAdminRequestDetail(
+            request,
+            env,
+            id
+          );
+        }
+
+        if (request.method === "PATCH") {
+          return await handleAdminRequestUpdate(
+            request,
+            env,
+            id
+          );
+        }
+
+        return json(
+          { error: "Methode niet toegestaan" },
+          405
+        );
+      }
+
+      // Geen andere admin-API's beschikbaar
+      if (path.startsWith("/api/admin/")) {
+        return json(
+          { error: "Niet gevonden" },
+          404
+        );
+      }
+
+      // Bestaande website
       return env.ASSETS.fetch(request);
 
     } catch (error) {
-      console.error("Upside Worker-fout:", error);
+      console.error(
+        "Upside Worker-fout:",
+        error
+      );
 
-      return json({
-        error: "Interne serverfout"
-      }, 500);
+      return json(
+        { error: "Interne serverfout" },
+        500
+      );
     }
   }
 };
