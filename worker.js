@@ -2,7 +2,7 @@
 const ADMIN_EMAIL = "beratkaranfil2005@gmail.com";
 const SESSION_DAYS = 7;
 const COOKIE_NAME = "__Host-upside_session";
-const PASSWORD_ITERATIONS = 210000;
+ const PASSWORD_ITERATIONS = 100000;;
 
 function json(data, status = 200) {
   return Response.json(data, {
