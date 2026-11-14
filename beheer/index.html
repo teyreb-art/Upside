@@ -3,380 +3,742 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#1255cb">
-
-  <title>Beheer | Upside Agency</title>
+  <title>Dashboard | Upside Agency</title>
 
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --blue: #1255cb;
+      --blue-dark: #0d419f;
+      --blue-light: #edf4ff;
+      --bg: #f5f7fc;
+      --white: #fff;
+      --ink: #18345c;
+      --muted: #71819b;
+      --line: #e2e9f3;
+      --green: #147d55;
+      --orange: #a86616;
     }
+
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      background: #f4f7fc;
-      color: #17345f;
+      background: var(--bg);
+      color: var(--ink);
     }
 
-    .page {
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    button { cursor: pointer; }
+
+    button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .hidden { display: none !important; }
+
+    .login-page {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 20px;
     }
 
-    .card {
+    .login-card {
       width: 100%;
       max-width: 430px;
-      padding: 42px 36px;
       background: white;
-      border: 1px solid #e3eaf5;
+      border: 1px solid var(--line);
       border-radius: 18px;
-      box-shadow: 0 12px 45px rgba(18, 85, 203, .07);
-    }
-
-    .brand {
-      text-align: center;
-      margin-bottom: 35px;
+      padding: 38px;
+      box-shadow: 0 12px 40px rgba(20,60,130,.06);
     }
 
     .logo {
-      font-size: 39px;
+      color: var(--blue);
+      font-size: 32px;
       font-weight: 800;
-      letter-spacing: -2px;
-      color: #1255cb;
+      letter-spacing: -1.8px;
     }
 
-    .brand p {
-      margin: 9px 0 0;
-      font-size: 14px;
-      color: #71809a;
+    .login-card .logo {
+      text-align: center;
+      margin-bottom: 28px;
     }
+
+    h1, h2, h3 { letter-spacing: -.5px; }
 
     h1 {
-      font-size: 24px;
-      letter-spacing: -.6px;
-      margin: 0 0 10px;
+      font-size: 27px;
+      margin: 0 0 8px;
     }
 
-    .description {
+    h2 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .muted {
+      color: var(--muted);
+      line-height: 1.6;
       font-size: 14px;
-      line-height: 1.7;
-      color: #71809a;
-      margin-bottom: 28px;
     }
 
     label {
       display: block;
-      margin-bottom: 8px;
       font-size: 13px;
-      font-weight: 600;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px 15px;
-      margin-bottom: 20px;
-      border: 1px solid #dce4f1;
-      border-radius: 9px;
-      background: #fff;
-      font-size: 14px;
-      color: #17345f;
-      outline: none;
-      transition: border-color .2s;
-    }
-
-    input:focus {
-      border-color: #1255cb;
-      box-shadow: 0 0 0 3px rgba(18, 85, 203, .08);
-    }
-
-    button {
-      width: 100%;
-      padding: 15px;
-      border: 0;
-      border-radius: 9px;
-      background: #1255cb;
-      color: white;
-      font-size: 14px;
       font-weight: 700;
-      cursor: pointer;
-      transition: background .2s;
+      margin: 18px 0 8px;
     }
 
-    button:hover {
-      background: #0c42a4;
+    input, select, textarea {
+      width: 100%;
+      background: white;
+      border: 1px solid #dce5f2;
+      border-radius: 9px;
+      padding: 12px 13px;
+      color: var(--ink);
+      outline: none;
     }
 
-    button:disabled {
-      opacity: .65;
-      cursor: not-allowed;
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(18,85,203,.08);
     }
 
-    .message {
-      display: none;
-      margin-top: 18px;
-      padding: 13px;
-      border-radius: 8px;
-      background: #fff1f1;
-      color: #a12626;
+    textarea {
+      min-height: 115px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .btn {
+      border: 0;
+      background: var(--blue);
+      color: white;
+      border-radius: 9px;
+      padding: 12px 18px;
       font-size: 13px;
-      line-height: 1.5;
+      font-weight: 700;
     }
 
-    .message.visible {
+    .btn:hover { background: var(--blue-dark); }
+
+    .btn-secondary {
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    .btn-secondary:hover { background: #dceaff; }
+
+    .btn-outline {
+      background: white;
+      color: var(--blue);
+      border: 1px solid #cfddf3;
+    }
+
+    .btn-outline:hover { background: var(--blue-light); }
+
+    .full { width: 100%; }
+
+    .error {
+      color: #ae3030;
+      background: #fff0f0;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 15px;
+      font-size: 13px;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 245px;
+      flex-shrink: 0;
+      background: white;
+      border-right: 1px solid var(--line);
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .sidebar small {
       display: block;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 28px;
-      color: #8b98ac;
+      color: var(--muted);
+      margin-top: 5px;
       font-size: 12px;
     }
 
-    .hidden {
-      display: none !important;
-    }
-
-    .dashboard {
-      width: 100%;
-      max-width: 760px;
-      background: white;
-      border: 1px solid #e3eaf5;
-      border-radius: 18px;
-      padding: 36px;
-    }
-
-    .dashboard-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    .dashboard-header .logo {
-      font-size: 30px;
-    }
-
-    .logout {
-      width: auto;
-      padding: 11px 18px;
-      background: #edf3ff;
-      color: #1255cb;
-    }
-
-    .logout:hover {
-      background: #dfeaff;
-    }
-
-    .welcome {
-      padding: 28px;
-      border-radius: 12px;
-      background: #f4f7fc;
-    }
-
-    .welcome h1 {
-      margin-bottom: 12px;
-    }
-
-    .welcome p {
+    .nav-item {
+      background: var(--blue-light);
+      color: var(--blue);
+      padding: 13px;
+      border-radius: 9px;
       font-size: 14px;
-      line-height: 1.7;
-      color: #657794;
-      margin: 0;
+      font-weight: 700;
     }
 
-    .email {
-      margin-top: 15px !important;
-      color: #1255cb !important;
+    .sidebar-bottom { margin-top: auto; }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 36px;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 28px;
+    }
+
+    .topbar p { margin: 6px 0 0; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 22px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 32px;
+      margin-top: 12px;
+      color: var(--blue);
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 23px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      padding: 18px 23px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .filters input { flex: 1; }
+    .filters select { max-width: 180px; }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      font-size: 12px;
+      color: var(--muted);
+      background: #fafcff;
+      font-weight: 700;
+      padding: 15px 22px;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 17px 22px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      vertical-align: middle;
+    }
+
+    td strong { font-size: 14px; }
+
+    .company-btn {
+      border: 0;
+      padding: 0;
+      background: none;
+      color: var(--blue);
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .company-btn:hover { text-decoration: underline; }
+
+    .status {
+      display: inline-block;
+      border-radius: 20px;
+      padding: 6px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    .status.opvolgen {
+      background: #fff3e4;
+      color: var(--orange);
+    }
+
+    .status.afgerond {
+      background: #e8f7ef;
+      color: var(--green);
+    }
+
+    .empty {
+      padding: 45px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .detail-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(17,38,75,.4);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .detail {
+      width: min(600px, 100%);
+      height: 100%;
+      overflow-y: auto;
+      background: white;
+      padding: 30px;
+      box-shadow: -12px 0 40px rgba(0,0,0,.08);
+    }
+
+    .detail-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .close {
+      background: var(--blue-light);
+      color: var(--blue);
+      border: 0;
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-weight: 700;
+    }
+
+    .detail-section {
+      border-top: 1px solid var(--line);
+      padding: 22px 0;
+    }
+
+    .detail-section h3 {
+      font-size: 15px;
+      margin: 0 0 16px;
+    }
+
+    .field { margin-bottom: 17px; }
+
+    .field-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .field-value {
+      font-size: 14px;
+      line-height: 1.65;
       overflow-wrap: anywhere;
+      white-space: pre-wrap;
     }
 
-    @media (max-width: 480px) {
-      .card {
-        padding: 34px 24px;
+    .save-message {
+      font-size: 13px;
+      margin-top: 12px;
+      color: var(--green);
+    }
+
+    @media(max-width: 1000px) {
+      .sidebar { width: 190px; }
+      .main { padding: 25px; }
+      .stats { grid-template-columns: repeat(2,1fr); }
+    }
+
+    @media(max-width: 700px) {
+      .shell { display: block; }
+
+      .sidebar {
+        width: 100%;
+        padding: 15px 20px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
       }
 
-      .dashboard {
-        padding: 24px;
+      .sidebar small, .nav-item, .sidebar-bottom {
+        display: none;
       }
 
-      .dashboard-header {
+      .main { padding: 20px 14px; }
+
+      .topbar {
         align-items: flex-start;
+        flex-direction: column;
       }
 
-      .welcome {
-        padding: 22px;
-      }
+      .stats { gap: 9px; }
+
+      .stat { padding: 16px; }
+
+      .stat strong { font-size: 26px; }
+
+      .filters { flex-direction: column; }
+
+      .filters select { max-width: none; }
+
+      .detail { padding: 22px; }
+
+      th, td { padding: 14px; }
     }
   </style>
 </head>
 
 <body>
 
-  <main class="page">
+  <!-- LOGIN -->
 
-    <!-- LOGIN -->
-
-    <section class="card hidden" id="loginScreen">
-
-      <div class="brand">
-        <div class="logo">upside.</div>
-        <p>Beheerdersportaal</p>
-      </div>
+  <div class="login-page hidden" id="loginScreen">
+    <section class="login-card">
+      <div class="logo">upside.</div>
 
       <h1>Welkom terug</h1>
-
-      <p class="description">
-        Log in om je aanvragen en klantgegevens
-        te beheren.
+      <p class="muted">
+        Log in om je klantaanvragen te beheren.
       </p>
 
       <form id="loginForm">
-
         <label for="email">E-mailadres</label>
-
         <input
-          type="email"
           id="email"
-          name="email"
-          placeholder="jouw@email.be"
+          type="email"
           autocomplete="username"
           required
         >
 
         <label for="password">Wachtwoord</label>
-
         <input
-          type="password"
           id="password"
-          name="password"
-          placeholder="Je wachtwoord"
+          type="password"
           autocomplete="current-password"
           required
         >
 
-        <button type="submit" id="loginButton">
+        <button class="btn full" id="loginButton"
+                type="submit">
           Inloggen
         </button>
 
-        <div
-          class="message"
-          id="loginMessage"
-          role="alert"
-        ></div>
-
+        <div id="loginError" class="error hidden"
+             role="alert"></div>
       </form>
+    </section>
+  </div>
 
-      <div class="footer">
-        Upside Agency · Beveiligde toegang
+  <!-- DASHBOARD -->
+
+  <div class="shell hidden" id="dashboardScreen">
+
+    <aside class="sidebar">
+      <div>
+        <div class="logo">upside.</div>
+        <small>Beheerdersportaal</small>
       </div>
 
-    </section>
+      <div class="nav-item">Kennismakingsformulieren</div>
 
-    <!-- DASHBOARD -->
-
-    <section class="dashboard hidden" id="dashboardScreen">
-
-      <div class="dashboard-header">
-
-        <div class="logo">upside.</div>
-
-        <button
-          type="button"
-          class="logout"
-          id="logoutButton"
-        >
+      <div class="sidebar-bottom">
+        <p class="muted" id="sidebarEmail"></p>
+        <button class="btn btn-secondary full"
+                id="sidebarLogout">
           Uitloggen
         </button>
+      </div>
+    </aside>
 
+    <main class="main">
+
+      <div class="topbar">
+        <div>
+          <h1>Dashboard</h1>
+          <p class="muted">
+            Beheer je aanvragen en volg klanten op.
+          </p>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-outline"
+                  id="refreshButton">
+            Vernieuwen
+          </button>
+
+          <button class="btn"
+                  id="exportButton">
+            Exporteren naar CSV
+          </button>
+
+          <button class="btn btn-secondary"
+                  id="mobileLogout">
+            Uitloggen
+          </button>
+        </div>
       </div>
 
-      <div class="welcome">
+      <section class="stats">
+        <div class="stat">
+          <span>Totaal aanvragen</span>
+          <strong id="statTotal">0</strong>
+        </div>
 
-        <h1>Welkom in je dashboard</h1>
+        <div class="stat">
+          <span>Nieuw</span>
+          <strong id="statNieuw">0</strong>
+        </div>
 
-        <p>
-          Je bent succesvol ingelogd op het
-          beheerdersportaal van Upside Agency.
-        </p>
+        <div class="stat">
+          <span>Opvolgen</span>
+          <strong id="statOpvolgen">0</strong>
+        </div>
 
-        <p class="email" id="adminEmail"></p>
+        <div class="stat">
+          <span>Afgerond</span>
+          <strong id="statAfgerond">0</strong>
+        </div>
+      </section>
 
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Kennismakingsformulieren</h2>
+          <span class="muted" id="resultCount"></span>
+        </div>
+
+        <div class="filters">
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Zoek op bedrijfsnaam..."
+          >
+
+          <select id="statusFilter">
+            <option value="alle">Alle statussen</option>
+            <option value="nieuw">Nieuw</option>
+            <option value="opvolgen">Opvolgen</option>
+            <option value="afgerond">Afgerond</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Bedrijf</th>
+                <th>Datum</th>
+                <th>Budget</th>
+                <th>Status</th>
+                <th>Bekijken</th>
+              </tr>
+            </thead>
+
+            <tbody id="requestsBody"></tbody>
+          </table>
+        </div>
+
+        <div id="emptyState" class="empty hidden">
+          Geen aanvragen gevonden.
+        </div>
+
+        <div id="listMessage" class="error hidden"
+             style="margin:20px" role="alert"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- DETAILPANEEL -->
+
+  <div class="detail-overlay hidden" id="detailOverlay">
+    <section class="detail" role="dialog"
+             aria-modal="true"
+             aria-labelledby="detailTitle">
+
+      <div class="detail-top">
+        <div>
+          <h2 id="detailTitle">Aanvraag</h2>
+          <p class="muted" id="detailDate"></p>
+        </div>
+
+        <button class="close" id="closeDetail"
+                aria-label="Sluiten">
+          Sluiten
+        </button>
       </div>
 
-      <div class="footer">
-        Klantaanvragen en formulierbeheer
-        worden in de volgende stap toegevoegd.
+      <div class="detail-section">
+        <h3>Ingevulde antwoorden</h3>
+        <div id="detailFields"></div>
+      </div>
+
+      <div class="detail-section">
+        <h3>Interne opvolging</h3>
+
+        <label for="detailStatus">Status</label>
+        <select id="detailStatus">
+          <option value="nieuw">Nieuw</option>
+          <option value="opvolgen">Opvolgen</option>
+          <option value="afgerond">Afgerond</option>
+        </select>
+
+        <label for="detailNotes">Persoonlijke notities</label>
+        <textarea
+          id="detailNotes"
+          maxlength="5000"
+          placeholder="Bijvoorbeeld: klant bellen, offerte opmaken..."
+        ></textarea>
+
+        <button class="btn full" id="saveButton">
+          Wijzigingen opslaan
+        </button>
+
+        <p class="save-message" id="saveMessage"
+           role="status"></p>
       </div>
 
     </section>
-
-  </main>
+  </div>
 
   <script>
     "use strict";
 
-    const loginScreen =
-      document.getElementById("loginScreen");
+    const $ = selector =>
+      document.querySelector(selector);
 
-    const dashboardScreen =
-      document.getElementById("dashboardScreen");
+    let requests = [];
+    let selectedId = null;
 
-    const loginForm =
-      document.getElementById("loginForm");
+    const labels = [
+      ["company", "Bedrijfsnaam"],
+      ["activities", "Activiteiten"],
+      ["clients", "Klanten"],
+      ["existing_tools", "Bestaande tools"],
+      ["acquisition", "Klantenwerving"],
+      ["services", "Gewenste diensten"],
+      ["challenge", "Grootste uitdaging"],
+      ["photos", "Foto's"],
+      ["budget", "Budget"],
+      ["notes", "Opmerkingen klant"],
+      ["language", "Taal"],
+      ["consent_at", "Toestemming gegeven op"]
+    ];
 
-    const loginButton =
-      document.getElementById("loginButton");
-
-    const loginMessage =
-      document.getElementById("loginMessage");
-
-    const adminEmail =
-      document.getElementById("adminEmail");
-
-    const logoutButton =
-      document.getElementById("logoutButton");
+    function escapeHtml(value) {
+      return String(value ?? "").replace(
+        /[&<>"']/g,
+        char => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[char]
+      );
+    }
 
     function showLogin() {
-      loginScreen.classList.remove("hidden");
-      dashboardScreen.classList.add("hidden");
+      $("#loginScreen").classList.remove("hidden");
+      $("#dashboardScreen").classList.add("hidden");
+      closeDetail();
     }
 
     function showDashboard(email) {
-      loginScreen.classList.add("hidden");
-      dashboardScreen.classList.remove("hidden");
-      adminEmail.textContent = email || "";
+      $("#loginScreen").classList.add("hidden");
+      $("#dashboardScreen").classList.remove("hidden");
+      $("#sidebarEmail").textContent = email || "";
     }
 
-    function showError(message) {
-      loginMessage.textContent = message;
-      loginMessage.classList.add("visible");
+    async function api(url, options = {}) {
+      const response = await fetch(url, {
+        credentials: "same-origin",
+        cache: "no-store",
+        ...options
+      });
+
+      if (response.status === 401) {
+        showLogin();
+        throw new Error("Je sessie is verlopen. Log opnieuw in.");
+      }
+
+      let data;
+
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error("Ongeldig antwoord van de server.");
+      }
+
+      if (!response.ok) {
+        throw new Error(
+          data.error || "Er is iets misgegaan."
+        );
+      }
+
+      return data;
     }
 
-    function clearError() {
-      loginMessage.textContent = "";
-      loginMessage.classList.remove("visible");
-    }
-
-    // Controleer of er al een sessie bestaat.
     async function checkSession() {
       try {
-        const response = await fetch(
-          "/api/admin/me",
-          {
-            method: "GET",
-            credentials: "same-origin",
-            cache: "no-store"
-          }
-        );
+        const response = await fetch("/api/admin/me", {
+          credentials: "same-origin",
+          cache: "no-store"
+        });
 
         if (!response.ok) {
           showLogin();
@@ -385,107 +747,454 @@
 
         const data = await response.json();
 
-        if (data.authenticated === true) {
-          showDashboard(data.email);
+        if (!data.authenticated) {
+          showLogin();
+          return;
+        }
+
+        showDashboard(data.email);
+        await loadRequests();
+
+      } catch (error) {
+        if (!$("#dashboardScreen").classList.contains("hidden")) {
+          showListError(error.message);
         } else {
           showLogin();
         }
-
-      } catch (error) {
-        showLogin();
-        showError(
-          "Verbinding mislukt. Probeer het opnieuw."
-        );
       }
     }
 
-    // Inloggen
-    loginForm.addEventListener(
+    $("#loginForm").addEventListener(
       "submit",
-      async function(event) {
+      async event => {
         event.preventDefault();
 
-        clearError();
+        const button = $("#loginButton");
+        const errorBox = $("#loginError");
 
-        loginButton.disabled = true;
-        loginButton.textContent = "Even wachten...";
-
-        const email =
-          document.getElementById("email").value.trim();
-
-        const password =
-          document.getElementById("password").value;
+        button.disabled = true;
+        button.textContent = "Even wachten...";
+        errorBox.classList.add("hidden");
 
         try {
-          const response = await fetch(
-            "/api/admin/login",
-            {
-              method: "POST",
-              credentials: "same-origin",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-                email,
-                password
-              })
-            }
-          );
+          await api("/api/admin/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email: $("#email").value.trim(),
+              password: $("#password").value
+            })
+          });
 
-          const data = await response.json();
-
-          if (!response.ok) {
-            throw new Error(
-              data.error || "Inloggen mislukt"
-            );
-          }
-
-          document.getElementById("password").value = "";
-
+          $("#password").value = "";
           await checkSession();
 
         } catch (error) {
-          showError(
-            error.message || "Inloggen mislukt"
-          );
+          errorBox.textContent = error.message;
+          errorBox.classList.remove("hidden");
 
         } finally {
-          loginButton.disabled = false;
-          loginButton.textContent = "Inloggen";
+          button.disabled = false;
+          button.textContent = "Inloggen";
         }
       }
     );
 
-    // Uitloggen
-    logoutButton.addEventListener(
+    async function logout() {
+      try {
+        await api("/api/admin/logout", {
+          method: "POST"
+        });
+
+        requests = [];
+        selectedId = null;
+        $("#loginForm").reset();
+        showLogin();
+
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    $("#sidebarLogout").addEventListener("click", logout);
+    $("#mobileLogout").addEventListener("click", logout);
+
+    function showListError(message) {
+      $("#listMessage").textContent = message;
+      $("#listMessage").classList.remove("hidden");
+    }
+
+    function formatDate(value) {
+      if (!value) return "—";
+
+      const raw = String(value);
+
+      const normalized = raw.includes("T")
+        ? raw
+        : raw.replace(" ", "T") + "Z";
+
+      const date = new Date(normalized);
+
+      if (Number.isNaN(date.getTime())) {
+        return raw;
+      }
+
+      return date.toLocaleDateString("nl-BE", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+      });
+    }
+
+    function displayValue(value) {
+      if (value === null || value === undefined) {
+        return "—";
+      }
+
+      if (typeof value === "string") {
+        const trimmed = value.trim();
+
+        if (!trimmed) return "—";
+
+        if (trimmed.startsWith("[")) {
+          try {
+            const parsed = JSON.parse(trimmed);
+
+            if (Array.isArray(parsed)) {
+              return parsed.length
+                ? parsed.join(", ")
+                : "—";
+            }
+          } catch {
+            // Toon de oorspronkelijke waarde.
+          }
+        }
+
+        return trimmed;
+      }
+
+      return String(value);
+    }
+
+    async function loadRequests() {
+      $("#listMessage").classList.add("hidden");
+
+      try {
+        const data = await api("/api/admin/requests");
+
+        requests = Array.isArray(data.requests)
+          ? data.requests
+          : [];
+
+        updateStats();
+        renderRequests();
+
+        if (data.has_more) {
+          showListError(
+            "Er zijn meer dan 1000 aanvragen. " +
+            "De lijst toont voorlopig maximaal 1000 records."
+          );
+        }
+
+      } catch (error) {
+        showListError(error.message);
+      }
+    }
+
+    function updateStats() {
+      $("#statTotal").textContent = requests.length;
+
+      for (const status of [
+        "nieuw",
+        "opvolgen",
+        "afgerond"
+      ]) {
+        const count = requests.filter(
+          item => item.status === status
+        ).length;
+
+        const elementId = {
+          nieuw: "#statNieuw",
+          opvolgen: "#statOpvolgen",
+          afgerond: "#statAfgerond"
+        }[status];
+
+        $(elementId).textContent = count;
+      }
+    }
+
+    function renderRequests() {
+      const query = $("#searchInput").value
+        .trim()
+        .toLowerCase();
+
+      const filter = $("#statusFilter").value;
+
+      const filtered = requests.filter(item => {
+        const matchesName = String(item.company || "")
+          .toLowerCase()
+          .includes(query);
+
+        const matchesStatus =
+          filter === "alle" || item.status === filter;
+
+        return matchesName && matchesStatus;
+      });
+
+      $("#resultCount").textContent =
+        filtered.length + " aanvragen";
+
+      $("#emptyState").classList.toggle(
+        "hidden",
+        filtered.length > 0
+      );
+
+      $("#requestsBody").innerHTML = filtered.map(item => {
+        const status = [
+          "nieuw",
+          "opvolgen",
+          "afgerond"
+        ].includes(item.status)
+          ? item.status
+          : "nieuw";
+
+        const statusLabel = {
+          nieuw: "Nieuw",
+          opvolgen: "Opvolgen",
+          afgerond: "Afgerond"
+        }[status];
+
+        return `
+          <tr>
+            <td>
+              <button
+                class="company-btn"
+                data-open="${escapeHtml(item.id)}"
+              >
+                ${escapeHtml(item.company)}
+              </button>
+            </td>
+
+            <td>${escapeHtml(formatDate(item.created_at))}</td>
+
+            <td>${escapeHtml(displayValue(item.budget))}</td>
+
+            <td>
+              <span class="status ${status}">
+                ${statusLabel}
+              </span>
+            </td>
+
+            <td>
+              <button
+                class="btn btn-secondary"
+                data-open="${escapeHtml(item.id)}"
+              >
+                Bekijken
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    $("#requestsBody").addEventListener(
       "click",
-      async function() {
-        logoutButton.disabled = true;
+      event => {
+        const button = event.target.closest("[data-open]");
+
+        if (button) {
+          openDetail(button.dataset.open);
+        }
+      }
+    );
+
+    $("#searchInput").addEventListener(
+      "input",
+      renderRequests
+    );
+
+    $("#statusFilter").addEventListener(
+      "change",
+      renderRequests
+    );
+
+    $("#refreshButton").addEventListener(
+      "click",
+      loadRequests
+    );
+
+    async function openDetail(id) {
+      selectedId = id;
+      $("#saveMessage").textContent = "";
+      $("#detailOverlay").classList.remove("hidden");
+      $("#detailTitle").textContent = "Aanvraag laden...";
+      $("#detailFields").textContent = "";
+
+      try {
+        const data = await api(
+          "/api/admin/requests/" + encodeURIComponent(id)
+        );
+
+        if (selectedId !== id) return;
+
+        const item = data.request;
+
+        $("#detailTitle").textContent =
+          item.company || "Aanvraag";
+
+        $("#detailDate").textContent =
+          "Ontvangen: " + formatDate(item.created_at);
+
+        $("#detailFields").innerHTML = labels.map(
+          ([key, label]) => `
+            <div class="field">
+              <div class="field-name">
+                ${escapeHtml(label)}
+              </div>
+              <div class="field-value">
+                ${escapeHtml(displayValue(item[key]))}
+              </div>
+            </div>
+          `
+        ).join("");
+
+        $("#detailStatus").value = item.status || "nieuw";
+        $("#detailNotes").value = item.admin_notes || "";
+
+      } catch (error) {
+        if (selectedId !== id) return;
+
+        $("#detailTitle").textContent = "Fout";
+        $("#detailFields").textContent = error.message;
+      }
+    }
+
+    function closeDetail() {
+      selectedId = null;
+      $("#detailOverlay").classList.add("hidden");
+    }
+
+    $("#closeDetail").addEventListener(
+      "click",
+      closeDetail
+    );
+
+    $("#detailOverlay").addEventListener(
+      "click",
+      event => {
+        if (event.target === $("#detailOverlay")) {
+          closeDetail();
+        }
+      }
+    );
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeDetail();
+      }
+    });
+
+    $("#saveButton").addEventListener(
+      "click",
+      async () => {
+        if (!selectedId) return;
+
+        const id = selectedId;
+        const button = $("#saveButton");
+
+        button.disabled = true;
+        button.textContent = "Opslaan...";
+        $("#saveMessage").textContent = "";
 
         try {
-          const response = await fetch(
-            "/api/admin/logout",
+          const data = await api(
+            "/api/admin/requests/" + encodeURIComponent(id),
             {
-              method: "POST",
-              credentials: "same-origin"
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                status: $("#detailStatus").value,
+                admin_notes: $("#detailNotes").value
+              })
             }
           );
 
-          if (!response.ok) {
-            throw new Error("Uitloggen mislukt");
-          }
-
-          loginForm.reset();
-          clearError();
-          showLogin();
-
-        } catch (error) {
-          alert(
-            "Uitloggen mislukt. Probeer opnieuw."
+          const index = requests.findIndex(
+            item => item.id === id
           );
 
+          if (index !== -1) {
+            requests[index] = data.request;
+          }
+
+          updateStats();
+          renderRequests();
+
+          if (selectedId === id) {
+            $("#saveMessage").textContent =
+              "Wijzigingen opgeslagen.";
+          }
+
+        } catch (error) {
+          $("#saveMessage").textContent = error.message;
+
         } finally {
-          logoutButton.disabled = false;
+          button.disabled = false;
+          button.textContent = "Wijzigingen opslaan";
+        }
+      }
+    );
+
+    $("#exportButton").addEventListener(
+      "click",
+      async () => {
+        const button = $("#exportButton");
+        button.disabled = true;
+
+        try {
+          const response = await fetch(
+            "/api/admin/export",
+            {
+              credentials: "same-origin",
+              cache: "no-store"
+            }
+          );
+
+          if (response.status === 401) {
+            showLogin();
+            throw new Error("Log opnieuw in.");
+          }
+
+          if (!response.ok) {
+            throw new Error("Exporteren mislukt.");
+          }
+
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+
+          const link = document.createElement("a");
+          link.href = url;
+          link.download =
+            "upside-aanvragen-" +
+            new Date().toISOString().slice(0,10) +
+            ".csv";
+
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+        } catch (error) {
+          alert(error.message);
+
+        } finally {
+          button.disabled = false;
         }
       }
     );
